@@ -1,72 +1,76 @@
-/* --- 1. GLOBAL STEALTH --- */
 * { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important; }
 
 body {
   background-color: #fff;
   font-family: "Montserrat", sans-serif;
   color: #111;
-  overflow-x: hidden;
+  height: 300vh; /* Keeps the page scrollable for the rotation effect */
 }
 
-/* --- 2. CIRCULAR TEXT STYLE --- */
+/* --- CURSOR --- */
+.cursor-dot, .cursor-follower {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 10000;
+}
+.cursor-dot { width: 6px; height: 6px; background: #111; border-radius: 50%; }
+.cursor-follower {
+  width: 40px; height: 40px; border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 50%; margin: -20px 0 0 -20px;
+  transition: width 0.3s, height 0.3s, background 0.3s;
+}
+.cursor-follower.hover-active { width: 60px; height: 60px; background: rgba(0,0,0,0.05); }
+
+/* --- CIRCULAR QUOTE (Corner Fixed) --- */
 .circular-text-container {
   position: fixed;
-  bottom: -40px; /* Partial crop for a modern look */
-  right: -40px;
-  width: 280px;
-  height: 280px;
-  z-index: 5;
+  bottom: -60px; /* Pushed into the corner */
+  right: -60px;
+  width: 250px;
+  height: 250px;
+  z-index: 100;
   pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   will-change: transform;
-  transition: transform 0.1s linear; /* Smooths out the scroll steps */
+}
+.circular-text-container svg { width: 100%; height: 100%; overflow: visible; }
+
+/* --- HERO SECTION --- */
+.sticky-frame {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
 }
 
-.circular-text-container svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+.hero-content {
+  display: grid; grid-template-columns: 1fr 1fr;
+  width: 100%; max-width: 1100px;
+  padding: 0 40px; align-items: center;
 }
 
-/* --- 3. CUSTOM CURSOR --- */
-@media (pointer: fine) {
-  .cursor-dot, .cursor-follower {
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 999999;
-  }
-  .cursor-dot { width: 6px; height: 6px; background-color: #111; border-radius: 50%; }
-  .cursor-follower {
-    width: 40px; height: 40px; border: 1px solid rgba(17, 17, 17, 0.3);
-    border-radius: 50%; margin: -20px 0 0 -20px;
-    transition: width 0.3s, height 0.3s, background-color 0.3s;
-  }
-  .cursor-follower.hover-active { width: 60px; height: 60px; background-color: rgba(17, 17, 17, 0.05); }
-}
+.hero-name { font-family: "Playfair Display"; font-size: clamp(40px, 6vw, 80px); line-height: 1.1; margin: 10px 0; }
+.hero-sub { color: #666; font-size: 18px; }
+.badge { background: #eee; padding: 4px 8px; border-radius: 4px; font-size: 14px; }
 
-/* --- 4. NAVIGATION & HERO --- */
-.bottom-nav { position: absolute; bottom: 45px; left: 50%; transform: translateX(-50%); z-index: 100; }
-.nav-group { display: flex; gap: 16px; }
+.hero-illustration { width: 100%; max-height: 400px; object-fit: contain; }
+
+/* --- BUTTONS --- */
+.bottom-nav { position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); }
+.nav-group { display: flex; gap: 15px; }
 .nav-button {
-  text-decoration: none; font-size: 14px; font-weight: 500; color: #fff; background: #111;
-  padding: 16px 28px; border-radius: 100px; display: flex; align-items: center; gap: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: 0.3s;
+  background: #111; color: #fff; text-decoration: none;
+  padding: 14px 28px; border-radius: 50px; font-size: 14px;
+  display: flex; align-items: center; gap: 8px; transition: 0.3s;
 }
+.nav-button:hover { background: #333; transform: translateY(-2px); }
 .nav-button::after {
-  content: ''; width: 14px; height: 14px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cline x1='7' y1='17' x2='17' y2='7'%3E%3C/line%3E%3Cpolyline points='8 7 17 7 17 16'%3E%3C/polyline%3E%3C/svg%3E");
-  background-size: contain; background-repeat: no-repeat;
+  content: '↗'; font-size: 16px; 
 }
-.nav-button:hover { background-color: #333; transform: translateY(-3px); }
 
-/* --- 5. LAYOUT --- */
-.scroll-area { height: 400vh; }
-.sticky-frame { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; }
-.watermark-track { position: absolute; font-family: "Playfair Display"; font-size: 15vw; color: rgba(0,0,0,0.04); white-space: nowrap; z-index: -1; }
-.hero-content { display: grid; grid-template-columns: 1fr 1fr; width: 100%; max-width: 1200px; padding: 0 60px; }
-.hero-name { font-family: "Playfair Display"; font-size: 7vw; line-height: 1.1; }
-.hero-illustration { width: 100%; animation: float 6s ease-in-out infinite; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+.signature {
+  position: absolute; right: 30px; bottom: 30px;
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  font-size: 10px; color: #ccc; letter-spacing: 2px;
+}
