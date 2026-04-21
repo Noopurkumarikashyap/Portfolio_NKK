@@ -79,26 +79,3 @@ document.addEventListener("click", function (e) {
   }
 
 });
-window.addEventListener("scroll", () => {
-
-  const bird = document.querySelector(".flying-bird");
-  if (!bird) return;
-
-  const scrollTop = window.scrollY;
-  const docHeight = document.body.scrollHeight - window.innerHeight;
-
-  const scrollPercent = scrollTop / docHeight;
-
-  // Curved path
-  const x = scrollPercent * window.innerWidth * 0.7;
-  const y = Math.sin(scrollPercent * Math.PI) * -200;
-
-  // Slight rotation
-  const rotate = scrollPercent * 20;
-
-  bird.style.transform = `
-    translate(${x}px, ${y}px)
-    rotate(${rotate}deg)
-  `;
-
-});
