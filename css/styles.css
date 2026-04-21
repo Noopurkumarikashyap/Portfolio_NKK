@@ -1,49 +1,84 @@
-/* --- 1. RESET & SCROLLBAR HIDE --- */
+/* --- GLOBAL RESET & SCROLLBAR --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   background-color: #fff;
   font-family: "Montserrat", sans-serif;
   color: #111;
-  /* Hides the scrollbar visually but keeps the scroll function */
-  -ms-overflow-style: none;  
-  scrollbar-width: none;  
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-x: hidden;
+}
+body::-webkit-scrollbar { display: none; }
+
+/* --- CUSTOM CURSOR --- */
+@media (pointer: fine) {
+  body, a, .nav-button { cursor: none !important; }
+
+  .cursor-dot, .cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    /* This ensures they center exactly on the mouse point */
+    margin-top: -3px; 
+    margin-left: -3px;
+  }
+
+  .cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #111;
+    border-radius: 50%;
+  }
+
+  .cursor-follower {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(17, 17, 17, 0.3);
+    border-radius: 50%;
+    margin-top: -20px;
+    margin-left: -20px;
+    transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+  }
+
+  .cursor-follower.hover-active {
+    width: 60px;
+    height: 60px;
+    margin-top: -30px;
+    margin-left: -30px;
+    background-color: rgba(17, 17, 17, 0.05);
+    border-color: transparent;
+  }
 }
 
-body::-webkit-scrollbar { 
-  display: none; 
-}
-
-/* --- 2. THE STICKY LAYOUT (Bulletproof) --- */
-.scroll-area {
-  height: 400vh; /* Make the page 4x taller so we can scroll */
-}
+/* --- LAYOUT --- */
+.scroll-area { height: 400vh; }
 
 .sticky-frame {
   position: sticky;
   top: 0;
-  height: 100vh; /* Locks exactly to your screen height */
+  height: 100vh;
   width: 100vw;
-  overflow: hidden; /* Stops text from stretching the screen sideways */
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* --- 3. THE WATERMARK --- */
 .watermark-track {
   position: absolute;
   display: flex;
   white-space: nowrap;
   font-family: "Playfair Display", serif;
-  font-size: 15vw; /* Extremely big text */
+  font-size: 15vw;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.04); /* Faint color */
-  z-index: -1; /* Pushes it to the background */
+  color: rgba(0, 0, 0, 0.04);
+  z-index: -1;
   will-change: transform;
 }
 
-/* --- 4. HERO CONTENT --- */
 .hero-content {
   width: 100%;
   max-width: 1200px;
@@ -57,20 +92,17 @@ body::-webkit-scrollbar {
 
 .greeting { font-size: 18px; color: #6f6f6f; margin-bottom: 12px; }
 .badge { background: #f4f4f4; padding: 4px 10px; border-radius: 6px; color: #111; }
-.hero-name { font-family: "Playfair Display", serif; font-size: clamp(48px, 7vw, 84px); line-height: 1.1; margin-bottom: 16px; }
+.hero-name { font-family: "Playfair Display", serif; font-size: clamp(40px, 7vw, 84px); line-height: 1.1; margin-bottom: 16px; }
 .hero-sub { font-size: 20px; font-weight: 300; color: #6f6f6f; }
 
-.hero-illustration {
-  width: 100%;
-  animation: floatGif 6s ease-in-out infinite;
-}
+.hero-illustration { width: 100%; animation: floatGif 6s ease-in-out infinite; }
 
 @keyframes floatGif {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
 }
 
-/* --- 5. THE BUTTONS & THE ARROW FIX --- */
+/* --- NAVIGATION --- */
 .bottom-nav {
   position: absolute;
   bottom: 45px;
@@ -93,10 +125,9 @@ body::-webkit-scrollbar {
   align-items: center;
   gap: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  transition: 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+  transition: 0.3s;
 }
 
-/* The Premium CSS Arrow */
 .nav-button::after {
   content: '';
   width: 14px;
@@ -105,18 +136,11 @@ body::-webkit-scrollbar {
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0.7;
-  transition: 0.3s;
 }
 
-/* FORCE-HIDES YOUR HTML ARROWS */
-.nav-button span, .nav-button i {
-  display: none !important;
-}
+.nav-button span { display: none !important; }
 
-.nav-button:hover { transform: translateY(-5px); background: #333; }
-.nav-button:hover::after { opacity: 1; transform: translate(2px, -2px); }
-
-/* --- 6. SIGNATURE --- */
+/* --- SIGNATURE --- */
 .signature {
   position: absolute;
   right: 24px;
@@ -126,52 +150,4 @@ body::-webkit-scrollbar {
   font-size: 9px;
   letter-spacing: 0.3em;
   color: #d1d1d1;
-  text-transform: uppercase;
-}
-/* --- 7. CUSTOM CURSOR EFFECTS --- */
-@media (pointer: fine) {
-  /* Hides the default system cursor */
-  body, a, .nav-button { 
-    cursor: none !important; 
-  }
-
-  /* The tiny sharp dot */
-  .cursor-dot {
-    position: fixed;
-    top: 0; left: 0;
-    width: 6px; height: 6px;
-    background-color: #111;
-    border-radius: 50%;
-    pointer-events: none; /* Allows you to click *through* the cursor */
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-  }
-
-  /* The larger trailing outline */
-  .cursor-follower {
-    position: fixed;
-    top: 0; left: 0;
-    width: 36px; height: 36px;
-    border: 1px solid rgba(17, 17, 17, 0.4);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s cubic-bezier(0.2, 1, 0.3, 1), 
-                height 0.3s cubic-bezier(0.2, 1, 0.3, 1), 
-                background-color 0.3s, border-color 0.3s;
-  }
-
-  /* When hovering over buttons, the follower expands into a soft halo */
-  .cursor-follower.hover-active {
-    width: 56px;
-    height: 56px;
-    background-color: rgba(17, 17, 17, 0.05);
-    border-color: transparent;
-  }
-}
-
-/* Hide custom cursor completely on phones/tablets */
-@media (pointer: coarse) {
-  .cursor-dot, .cursor-follower { display: none; }
 }
