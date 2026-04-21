@@ -48,20 +48,33 @@
       const cursorDot = document.querySelector('.cursor-dot');
       const cursorFollower = document.querySelector('.cursor-follower');
 
+      // 1. Scroll Marquee
       window.addEventListener('scroll', () => {
         const scrollAmount = window.scrollY * 0.2; 
         if (marquee) marquee.style.transform = `translateX(-${scrollAmount % 50}%)`;
       });
 
+      // 2. Custom Cursor Logic
       if (cursorDot && cursorFollower && window.matchMedia("(pointer: fine)").matches) {
         let mouseX = -100, mouseY = -100;
         let followerX = -100, followerY = -100;
 
+        // Function to force-hide the system arrow
+        const hideSystemCursor = () => {
+          document.documentElement.style.cursor = 'none';
+          document.body.style.cursor = 'none';
+        };
+
         window.addEventListener('mousemove', (e) => {
+          hideSystemCursor(); // Run on every move
           mouseX = e.clientX;
           mouseY = e.clientY;
           cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
         });
+
+        // Force hide on focus/click (fixes the tab-switching issue)
+        window.addEventListener('focus', hideSystemCursor);
+        window.addEventListener('mousedown', hideSystemCursor);
 
         function animateFollower() {
           followerX += (mouseX - followerX) * 0.15;
@@ -71,11 +84,12 @@
         }
         animateFollower();
 
-        const interactives = document.querySelectorAll('a, .nav-button, .hero-illustration');
-        interactives.forEach(el => {
+        document.querySelectorAll('a, .nav-button').forEach(el => {
           el.addEventListener('mouseenter', () => cursorFollower.classList.add('hover-active'));
           el.addEventListener('mouseleave', () => cursorFollower.classList.remove('hover-active'));
         });
+        
+        hideSystemCursor(); // Initial call
       }
     });
   </script>
