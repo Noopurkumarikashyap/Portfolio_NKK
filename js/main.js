@@ -1,12 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const marquee = document.getElementById('marquee');
+    const rotatingText = document.getElementById('rotatingText');
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorFollower = document.querySelector('.cursor-follower');
 
-    // 1. SCROLLING MARQUEE
+    // 1. SCROLL ANIMATIONS
     window.addEventListener('scroll', () => {
-        const scrollAmount = window.scrollY * 0.2; 
-        if (marquee) marquee.style.transform = `translateX(-${scrollAmount % 50}%)`;
+        const scrollVal = window.scrollY;
+
+        // Background Marquee
+        const marqueeAmount = scrollVal * 0.2; 
+        if (marquee) marquee.style.transform = `translateX(-${marqueeAmount % 50}%)`;
+
+        // Circular Text Rotation
+        // Multiplying by 0.2 determines the speed of rotation
+        if (rotatingText) {
+            rotatingText.style.transform = `rotate(${scrollVal * 0.2}deg)`;
+        }
     });
 
     // 2. CUSTOM CURSOR LOGIC
@@ -14,13 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let mouseX = -100, mouseY = -100;
         let followerX = -100, followerY = -100;
 
-        // THE ULTIMATE HIDE: Forces the system cursor to none on the HTML element
         const killSystemCursor = () => {
             document.documentElement.style.setProperty('cursor', 'none', 'important');
             document.body.style.setProperty('cursor', 'none', 'important');
         };
 
-        // Run the kill command every 100ms just in case the browser resets it
+        // Aggressive persistent hide
         setInterval(killSystemCursor, 100);
 
         window.addEventListener('mousemove', (e) => {
@@ -37,14 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         animateFollower();
 
-        // HOVER EFFECTS
-        const interactives = document.querySelectorAll('a, .nav-button, .hero-illustration');
-        interactives.forEach(el => {
+        // Hover effects for links and buttons
+        document.querySelectorAll('a, .nav-button').forEach(el => {
             el.addEventListener('mouseenter', () => cursorFollower.classList.add('hover-active'));
             el.addEventListener('mouseleave', () => cursorFollower.classList.remove('hover-active'));
         });
 
-        // RE-HIDE ON WINDOW FOCUS
         window.addEventListener('focus', killSystemCursor);
         killSystemCursor();
     }
