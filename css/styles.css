@@ -1,5 +1,10 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* The "Nuclear" Option for CSS Cursors */
+html, body, * {
+  cursor: none !important;
+}
+
 body {
   background-color: #fff;
   font-family: "Montserrat", sans-serif;
@@ -10,45 +15,35 @@ body {
 }
 body::-webkit-scrollbar { display: none; }
 
-/* --- CUSTOM CURSOR (STRICT ARROW HIDE) --- */
+/* --- CUSTOM CURSOR --- */
 @media (pointer: fine) {
-  /* This 'wildcard' rule forces the system arrow to hide on every single element */
-  *, body, a, button, img, .nav-button { 
-    cursor: none !important; 
-  }
-
   .cursor-dot, .cursor-follower {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     pointer-events: none;
-    z-index: 99999;
+    z-index: 999999;
     margin-top: -3px; 
     margin-left: -3px;
+    will-change: transform;
   }
 
   .cursor-dot {
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     background-color: #111;
     border-radius: 50%;
   }
 
   .cursor-follower {
-    width: 40px;
-    height: 40px;
+    width: 40px; height: 40px;
     border: 1px solid rgba(17, 17, 17, 0.3);
     border-radius: 50%;
-    margin-top: -20px;
-    margin-left: -20px;
+    margin-top: -20px; margin-left: -20px;
     transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
   }
 
   .cursor-follower.hover-active {
-    width: 60px;
-    height: 60px;
-    margin-top: -30px;
-    margin-left: -30px;
+    width: 60px; height: 60px;
+    margin-top: -30px; margin-left: -30px;
     background-color: rgba(17, 17, 17, 0.05);
     border-color: transparent;
   }
@@ -56,38 +51,25 @@ body::-webkit-scrollbar { display: none; }
 
 /* --- LAYOUT --- */
 .scroll-area { height: 400vh; }
-
 .sticky-frame {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  width: 100vw;
+  position: sticky; top: 0;
+  height: 100vh; width: 100vw;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
 }
 
 .watermark-track {
-  position: absolute;
-  display: flex;
-  white-space: nowrap;
+  position: absolute; display: flex; white-space: nowrap;
   font-family: "Playfair Display", serif;
-  font-size: 15vw;
-  font-weight: 700;
+  font-size: 15vw; font-weight: 700;
   color: rgba(0, 0, 0, 0.04);
-  z-index: -1;
-  will-change: transform;
+  z-index: -1; will-change: transform;
 }
 
 .hero-content {
-  width: 100%;
-  max-width: 1200px;
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  align-items: center;
-  gap: 80px;
-  padding: 0 60px;
+  width: 100%; max-width: 1200px;
+  display: grid; grid-template-columns: 1.1fr 1fr;
+  align-items: center; gap: 80px; padding: 0 60px;
   z-index: 10;
 }
 
@@ -95,7 +77,6 @@ body::-webkit-scrollbar { display: none; }
 .badge { background: #f4f4f4; padding: 4px 10px; border-radius: 6px; color: #111; }
 .hero-name { font-family: "Playfair Display", serif; font-size: clamp(40px, 7vw, 84px); line-height: 1.1; margin-bottom: 16px; }
 .hero-sub { font-size: 20px; font-weight: 300; color: #6f6f6f; }
-
 .hero-illustration { width: 100%; animation: floatGif 6s ease-in-out infinite; }
 
 @keyframes floatGif {
@@ -105,10 +86,8 @@ body::-webkit-scrollbar { display: none; }
 
 /* --- NAVIGATION --- */
 .bottom-nav {
-  position: absolute;
-  bottom: 45px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: absolute; bottom: 45px;
+  left: 50%; transform: translateX(-50%);
   z-index: 100;
 }
 
@@ -116,17 +95,22 @@ body::-webkit-scrollbar { display: none; }
 
 .nav-button {
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  color: #fff;
-  background: #111;
-  padding: 16px 36px;
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 14px; font-weight: 500;
+  color: #fff; background: #111;
+  padding: 16px 28px; border-radius: 100px;
+  display: flex; align-items: center; gap: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s, background-color 0.3s;
+}
+
+.nav-button::after {
+  content: '';
+  width: 14px; height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='7' y1='17' x2='17' y2='7'%3E%3C/line%3E%3Cpolyline points='8 7 17 7 17 16'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  transition: transform 0.3s;
 }
 
 .nav-button:hover {
@@ -134,13 +118,9 @@ body::-webkit-scrollbar { display: none; }
   transform: translateY(-3px);
 }
 
+/* --- SIGNATURE --- */
 .signature {
-  position: absolute;
-  right: 24px;
-  bottom: 40px;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-size: 9px;
-  letter-spacing: 0.3em;
-  color: #d1d1d1;
+  position: absolute; right: 24px; bottom: 40px;
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  font-size: 9px; letter-spacing: 0.3em; color: #d1d1d1;
 }
