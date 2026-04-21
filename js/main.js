@@ -1,64 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    const rotatingText = document.getElementById('rotatingText');
+    const dot = document.querySelector('.cursor-dot');
+    const ring = document.querySelector('.cursor-follower');
 
-    // State for mouse and cursor positions
-    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    let dotPos = { x: mouse.x, y: mouse.y };
-    let followerPos = { x: mouse.x, y: mouse.y };
+    let mouseX = 0;
+    let mouseY = 0;
+    let dotX = 0;
+    let dotY = 0;
+    let ringX = 0;
+    let ringY = 0;
 
-    // 1. Mouse Tracking - Global window level
+    // Start coordinates at center of screen
+    mouseX = window.innerWidth / 2;
+    mouseY = window.innerHeight / 2;
+
+    // 1. Capture Global Mouse Move
     window.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-    }, { passive: true });
-
-    // 2. Smooth Animation Loop
-    function animate() {
-        // Linear Interpolation (Lerp) for smooth lag
-        dotPos.x += (mouse.x - dotPos.x) * 0.4;
-        dotPos.y += (mouse.y - dotPos.y) * 0.4;
-        
-        followerPos.x += (mouse.x - followerPos.x) * 0.12;
-        followerPos.y += (mouse.y - followerPos.y) * 0.12;
-
-        if (cursorDot) {
-            cursorDot.style.transform = `translate3d(${dotPos.x}px, ${dotPos.y}px, 0)`;
-        }
-        if (cursorFollower) {
-            cursorFollower.style.transform = `translate3d(${followerPos.x}px, ${followerPos.y}px, 0)`;
-        }
-
-        requestAnimationFrame(animate);
-    }
-    animate();
-
-    // 3. Scroll Rotation
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset || document.documentElement.scrollTop;
-        if (rotatingText) {
-            // Adjust 0.2 to change the spin speed
-            rotatingText.style.transform = `rotate(${scrolled * 0.2}deg)`;
-        }
-    }, { passive: true });
-
-    // 4. Interaction Hover States
-    const interactives = document.querySelectorAll('a, button, .nav-button');
-    interactives.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            if (cursorFollower) cursorFollower.classList.add('hover-active');
-        });
-        el.addEventListener('mouseleave', () => {
-            if (cursorFollower) cursorFollower.classList.remove('hover-active');
-        });
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     });
 
-    // 5. Hide System Cursor (Safety)
-    const hideSystemCursor = () => {
-        document.documentElement.style.cursor = 'none';
-        document.body.style.cursor = 'none';
-    };
-    hideSystemCursor();
-    window.addEventListener('focus', hideSystemCursor);
+    // 2. Animation Loop
+    function render() {
+        // Dot: fast movement (0.2)
+        dotX += (mouseX - dotX) * 0.2;
+        dotY += (mouseY - dotY) * 0.2;
+
+        // Ring: smooth lag (0.1)
+        ringX += (mouseX - ringX) * 0.1;
+        ringY += (mouseY - ringY) * 0.1;
+
+        // Update CSS transform (centering the elements with -50%)
+        if (dot) {
+            dot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate(-50%, -50%)`;
+        }
+        if (ring) {
+            ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+        }
+
+        requestAnimationFrame(render);
+    }
+    render();
+
+    // 3. Hover Interactions
+    const interactiveElements = document.querySelectorAll('a, .nav-button, .hero-illustration');
+    
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => ring.classList.add('hover-active'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('hover-active'));
+    });
 });
