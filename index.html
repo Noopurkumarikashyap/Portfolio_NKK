@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Noopur Kashyap — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="cursor-dot"></div>
+  <div class="cursor-follower"></div>
+  <div class="scroll-area">
+    
+    <div class="sticky-frame">
+      
+      <div class="watermark-track" id="marquee">
+        <span>Design is about envisioning castles in the sky, with the purpose of grounding them to reality. &nbsp;</span>
+        <span>Design is about envisioning castles in the sky, with the purpose of grounding them to reality. &nbsp;</span>
+      </div>
+
+      <main class="hero-content">
+        <div class="hero-left">
+          <p class="greeting"><span class="badge">नमस्ते</span>, I'm</p>
+          <h1 class="hero-name">Noopur<br/>Kashyap</h1>
+          <p class="hero-sub">UX Designer and Illustrator</p>
+        </div>
+        <div class="hero-right">
+          <img src="images/hero_illustration.gif" class="hero-illustration" alt="UX Illustration">
+        </div>
+      </main>
+
+      <nav class="bottom-nav">
+        <div class="nav-group">
+          <a href="about.html" class="nav-button">About</a>
+          <a href="projects.html" class="nav-button">Projects</a>
+          <a href="contact.html" class="nav-button">Contact</a>
+        </div>
+      </nav>
+
+      <div class="signature">© 2026 Noopur Kashyap</div>
+
+    </div>
+  </div>
+
+  <script>
+    const marquee = document.getElementById('marquee');
+    
+    window.addEventListener('scroll', () => {
+      // Multiply by 0.2 to control speed. Higher number = faster movement.
+      const scrollAmount = window.scrollY * 0.2; 
+      
+      // % 50 means when the first sentence ends, it instantly resets to 0.
+      // Because we have two identical sentences, the reset is completely invisible!
+      marquee.style.transform = `translateX(-${scrollAmount % 50}%)`;
+    });
+  </script>
+
+</body>
+</html>

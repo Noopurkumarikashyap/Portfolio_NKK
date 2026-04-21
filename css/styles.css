@@ -1,0 +1,177 @@
+/* --- 1. RESET & SCROLLBAR HIDE --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: #fff;
+  font-family: "Montserrat", sans-serif;
+  color: #111;
+  /* Hides the scrollbar visually but keeps the scroll function */
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+body::-webkit-scrollbar { 
+  display: none; 
+}
+
+/* --- 2. THE STICKY LAYOUT (Bulletproof) --- */
+.scroll-area {
+  height: 400vh; /* Make the page 4x taller so we can scroll */
+}
+
+.sticky-frame {
+  position: sticky;
+  top: 0;
+  height: 100vh; /* Locks exactly to your screen height */
+  width: 100vw;
+  overflow: hidden; /* Stops text from stretching the screen sideways */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- 3. THE WATERMARK --- */
+.watermark-track {
+  position: absolute;
+  display: flex;
+  white-space: nowrap;
+  font-family: "Playfair Display", serif;
+  font-size: 15vw; /* Extremely big text */
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.04); /* Faint color */
+  z-index: -1; /* Pushes it to the background */
+  will-change: transform;
+}
+
+/* --- 4. HERO CONTENT --- */
+.hero-content {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 80px;
+  padding: 0 60px;
+  z-index: 10;
+}
+
+.greeting { font-size: 18px; color: #6f6f6f; margin-bottom: 12px; }
+.badge { background: #f4f4f4; padding: 4px 10px; border-radius: 6px; color: #111; }
+.hero-name { font-family: "Playfair Display", serif; font-size: clamp(48px, 7vw, 84px); line-height: 1.1; margin-bottom: 16px; }
+.hero-sub { font-size: 20px; font-weight: 300; color: #6f6f6f; }
+
+.hero-illustration {
+  width: 100%;
+  animation: floatGif 6s ease-in-out infinite;
+}
+
+@keyframes floatGif {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* --- 5. THE BUTTONS & THE ARROW FIX --- */
+.bottom-nav {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.nav-group { display: flex; gap: 16px; }
+
+.nav-button {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: #111;
+  padding: 16px 28px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* The Premium CSS Arrow */
+.nav-button::after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='7' y1='17' x2='17' y2='7'%3E%3C/line%3E%3Cpolyline points='8 7 17 7 17 16'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+/* FORCE-HIDES YOUR HTML ARROWS */
+.nav-button span, .nav-button i {
+  display: none !important;
+}
+
+.nav-button:hover { transform: translateY(-5px); background: #333; }
+.nav-button:hover::after { opacity: 1; transform: translate(2px, -2px); }
+
+/* --- 6. SIGNATURE --- */
+.signature {
+  position: absolute;
+  right: 24px;
+  bottom: 40px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: #d1d1d1;
+  text-transform: uppercase;
+}
+/* --- 7. CUSTOM CURSOR EFFECTS --- */
+@media (pointer: fine) {
+  /* Hides the default system cursor */
+  body, a, .nav-button { 
+    cursor: none !important; 
+  }
+
+  /* The tiny sharp dot */
+  .cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 6px; height: 6px;
+    background-color: #111;
+    border-radius: 50%;
+    pointer-events: none; /* Allows you to click *through* the cursor */
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+  }
+
+  /* The larger trailing outline */
+  .cursor-follower {
+    position: fixed;
+    top: 0; left: 0;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(17, 17, 17, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s cubic-bezier(0.2, 1, 0.3, 1), 
+                height 0.3s cubic-bezier(0.2, 1, 0.3, 1), 
+                background-color 0.3s, border-color 0.3s;
+  }
+
+  /* When hovering over buttons, the follower expands into a soft halo */
+  .cursor-follower.hover-active {
+    width: 56px;
+    height: 56px;
+    background-color: rgba(17, 17, 17, 0.05);
+    border-color: transparent;
+  }
+}
+
+/* Hide custom cursor completely on phones/tablets */
+@media (pointer: coarse) {
+  .cursor-dot, .cursor-follower { display: none; }
+}
