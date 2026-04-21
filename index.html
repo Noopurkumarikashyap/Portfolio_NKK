@@ -1,51 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Noopur Kashyap — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noopur Kashyap — Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <div class="cursor-dot"></div>
-  <div class="cursor-follower"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-follower"></div>
 
-  <div class="circular-text-container" id="rotatingText">
-    <svg viewBox="0 0 200 200">
-      <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" fill="transparent" />
-      <text fill="#111" font-family="Montserrat" font-size="12" letter-spacing="4">
-        <textPath href="#circlePath">
-          DESIGNING SYSTEMS • GROUNDING THEM TO REALITY • 
-        </textPath>
-      </text>
-    </svg>
-  </div>
+    <main class="hero-section">
+        <div class="hero-content">
+            <div class="hero-left">
+                <p class="greeting"><span class="badge">नमस्ते</span>, I'm</p>
+                <h1 class="hero-name">Noopur<br/>Kashyap</h1>
+                <p class="hero-sub">UX Designer and Illustrator</p>
+            </div>
+            <div class="hero-right">
+                <img src="images/hero_illustration.gif" class="hero-illustration" alt="UX Illustration">
+            </div>
+        </div>
+    </main>
 
-  <main class="hero-section">
-    <div class="hero-content">
-      <div class="hero-left">
-        <p class="greeting"><span class="badge">नमस्ते</span>, I'm</p>
-        <h1 class="hero-name">Noopur<br/>Kashyap</h1>
-        <p class="hero-sub">UX Designer and Illustrator</p>
-      </div>
-      <div class="hero-right">
-        <img src="images/hero_illustration.gif" class="hero-illustration" alt="UX Illustration">
-      </div>
-    </div>
-  </main>
+    <nav class="bottom-nav">
+        <div class="nav-group">
+            <a href="about.html" class="nav-button">About</a>
+            <a href="projects.html" class="nav-button">Projects</a>
+            <a href="contact.html" class="nav-button">Contact</a>
+        </div>
+    </nav>
 
-  <nav class="bottom-nav">
-    <div class="nav-group">
-      <a href="about.html" class="nav-button">About</a>
-      <a href="projects.html" class="nav-button">Projects</a>
-      <a href="contact.html" class="nav-button">Contact</a>
-    </div>
-  </nav>
+    <div class="signature">© 2026 Noopur Kashyap</div>
 
-  <div class="signature">© 2026 Noopur Kashyap</div>
-
-  <script src="js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
