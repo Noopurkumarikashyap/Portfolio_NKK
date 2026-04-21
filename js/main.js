@@ -1,51 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const dot = document.querySelector('.cursor-dot');
-    const ring = document.querySelector('.cursor-follower');
-
-    let mouseX = 0;
-    let mouseY = 0;
-    let dotX = 0;
-    let dotY = 0;
-    let ringX = 0;
-    let ringY = 0;
-
-    // Start coordinates at center of screen
-    mouseX = window.innerWidth / 2;
-    mouseY = window.innerHeight / 2;
-
-    // 1. Capture Global Mouse Move
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    // 2. Animation Loop
-    function render() {
-        // Dot: fast movement (0.2)
-        dotX += (mouseX - dotX) * 0.2;
-        dotY += (mouseY - dotY) * 0.2;
-
-        // Ring: smooth lag (0.1)
-        ringX += (mouseX - ringX) * 0.1;
-        ringY += (mouseY - ringY) * 0.1;
-
-        // Update CSS transform (centering the elements with -50%)
-        if (dot) {
-            dot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate(-50%, -50%)`;
-        }
-        if (ring) {
-            ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
-        }
-
-        requestAnimationFrame(render);
-    }
-    render();
-
-    // 3. Hover Interactions
-    const interactiveElements = document.querySelectorAll('a, .nav-button, .hero-illustration');
+  const dot = document.querySelector('.dot');
+  const outline = document.querySelector('.outline');
+  
+  let mouseX = 0;
+  let mouseY = 0;
+  
+  // Update mouse coordinates on every move
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
     
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => ring.classList.add('hover-active'));
-        el.addEventListener('mouseleave', () => ring.classList.remove('hover-active'));
-    });
+    // Immediate update for the tiny dot (zero lag)
+    dot.style.setProperty('--x', mouseX);
+    dot.style.setProperty('--y', mouseY);
+  });
+
+  // Smooth update for the outline (the "lag" effect)
+  const animateOutline = () => {
+    // This allows the outline to slightly trail the dot
+    outline.style.setProperty('--x', mouseX);
+    outline.style.setProperty('--y', mouseY);
+    
+    requestAnimationFrame(animateOutline);
+  };
+  animateOutline();
+
+  // Handle Hover States
+  const interactiveElements = document.querySelectorAll('a, button, .nav-button');
+  
+  interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => outline.classList.add('active'));
+    el.addEventListener('mouseleave', () => outline.classList.remove('active'));
+  });
 });
