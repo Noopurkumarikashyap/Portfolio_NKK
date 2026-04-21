@@ -14,7 +14,6 @@
 
   <div class="scroll-area">
     <div class="sticky-frame">
-      
       <div class="watermark-track" id="marquee">
         <span>Design is about envisioning castles in the sky, with the purpose of grounding them to reality. &nbsp;</span>
         <span>Design is about envisioning castles in the sky, with the purpose of grounding them to reality. &nbsp;</span>
@@ -49,26 +48,22 @@
       const cursorDot = document.querySelector('.cursor-dot');
       const cursorFollower = document.querySelector('.cursor-follower');
 
-      // 1. SCROLLING MARQUEE
       window.addEventListener('scroll', () => {
         const scrollAmount = window.scrollY * 0.2; 
         if (marquee) marquee.style.transform = `translateX(-${scrollAmount % 50}%)`;
       });
 
-      // 2. CURSOR LOGIC
       if (cursorDot && cursorFollower && window.matchMedia("(pointer: fine)").matches) {
-        let mouseX = -100, mouseY = -100; // Start off-screen
+        let mouseX = -100, mouseY = -100;
         let followerX = -100, followerY = -100;
 
         window.addEventListener('mousemove', (e) => {
           mouseX = e.clientX;
           mouseY = e.clientY;
-          // Immediate movement for the dot
           cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
         });
 
         function animateFollower() {
-          // Smooth easing math
           followerX += (mouseX - followerX) * 0.15;
           followerY += (mouseY - followerY) * 0.15;
           cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0)`;
@@ -76,8 +71,7 @@
         }
         animateFollower();
 
-        // Hover Detection
-        const interactives = document.querySelectorAll('a, .nav-button');
+        const interactives = document.querySelectorAll('a, .nav-button, .hero-illustration');
         interactives.forEach(el => {
           el.addEventListener('mouseenter', () => cursorFollower.classList.add('hover-active'));
           el.addEventListener('mouseleave', () => cursorFollower.classList.remove('hover-active'));
