@@ -1,40 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noopur Kashyap — Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Noopur Kashyap — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-follower"></div>
 
-    <main class="hero-section">
-        <div class="hero-content">
-            <div class="hero-left">
-                <p class="greeting"><span class="badge">नमस्ते</span>, I'm</p>
-                <h1 class="hero-name">Noopur<br/>Kashyap</h1>
-                <p class="hero-sub">UX Designer and Illustrator</p>
-            </div>
-            <div class="hero-right">
-                <img src="images/hero_illustration.gif" class="hero-illustration" alt="UX Illustration">
-            </div>
+<div class="stamp-container">
+  <svg viewBox="0 0 200 200" class="stamp-svg">
+    <circle cx="100" cy="100" r="92" class="stamp-bg" />
+    
+    <circle cx="100" cy="100" r="92" class="stamp-ring" />
+    
+    <circle cx="100" cy="100" r="68" class="stamp-ring" />
+
+    <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="transparent" />
+    <text>
+      <textPath href="#circlePath" class="stamp-text">
+        Illustration ★ Service Design ★ UX Design ★ Illustration ★ Service Design ★ UX Design ★
+      </textPath>
+    </text>
+  </svg>
+</div>
+
+  <div class="scroll-area">
+    <div class="sticky-frame">
+      <main class="hero-content">
+        <div class="hero-text">
+          <p class="greeting"><span class="badge">नमस्ते</span>, I'm</p>
+          <h1 class="hero-name">Noopur<br/>Kashyap</h1>
+          <p class="hero-sub">UX Designer and Illustrator</p>
         </div>
-    </main>
+        
+        <div class="illustration-wrapper">
+          <img src="images/hero_illustration.gif" class="hero-illustration" alt="UX Illustration">
+        </div>
+      </main>
 
-    <nav class="bottom-nav">
+      <nav class="bottom-nav">
         <div class="nav-group">
-            <a href="about.html" class="nav-button">About</a>
-            <a href="projects.html" class="nav-button">Projects</a>
-            <a href="contact.html" class="nav-button">Contact</a>
+          <a href="about.html" class="nav-button">About</a>
+          <a href="projects.html" class="nav-button">Projects</a>
+          <a href="contact.html" class="nav-button">Contact</a>
         </div>
-    </nav>
+      </nav>
 
-    <div class="signature">© 2026 Noopur Kashyap</div>
+      <div class="signature">© 2026 Noopur Kashyap</div>
+    </div>
+  </div>
 
-    <script src="js/script.js"></script>
+
+
+  <script src="js/main.js"></script>
 </body>
 </html>
