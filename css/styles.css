@@ -1,102 +1,337 @@
-/* --- RESET --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ──────────────────────────────────────────
+   1. RESET & BASE
+   ────────────────────────────────────────── */
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
 }
 
-html, body {
-    height: 100%;
-    background-color: #fff;
-    font-family: "Montserrat", sans-serif;
-    overflow: hidden;
-    /* Force hide the default cursor */
-    cursor: none !important; 
+body {
+  background-color: #fff;
+  font-family: "Montserrat", sans-serif;
+  color: #111;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-x: hidden;
 }
 
-a, button {
-    cursor: none !important;
+body::-webkit-scrollbar { 
+  display: none; 
 }
 
-/* --- CURSOR ELEMENTS --- */
+/* Hide system cursor only when ready */
+body.cursor-ready, 
+body.cursor-ready * {
+  cursor: none !important;
+}
+
+/* ──────────────────────────────────────────
+   2. ROTATING CIRCULAR STAMP
+   ────────────────────────────────────────── */
+
+.stamp-container {
+  position: fixed;
+  top: -150px; 
+  right: -150px;
+  width: 350px;
+  height: 350px;
+  z-index: 200;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stamp-svg {
+  width: 100%;
+  height: 100%;
+  animation: rotateStamp 20s linear infinite;
+  will-change: transform;
+}
+
+.stamp-bg {
+  fill: #f9f9f9; 
+}
+
+.stamp-ring {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.06); 
+  stroke-width: 0.5px;
+}
+
+.stamp-text {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 10px;
+  fill: rgba(0, 0, 0, 0.2);
+  dominant-baseline: middle; 
+}
+
+@keyframes rotateStamp {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ──────────────────────────────────────────
+   3. CUSTOM CURSOR
+   ────────────────────────────────────────── */
+
 .cursor-dot, 
-.cursor-outline {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none; /* Allows interaction with elements underneath */
-    z-index: 999999;
-    border-radius: 50%;
-    /* Position is handled by CSS Variables updated in JS */
-    transform: translate3d(calc(var(--x) * 1px), calc(var(--y) * 1px), 0);
-    will-change: transform;
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none !important;
+  z-index: 999999;
+  will-change: transform;
+  opacity: 0;
+  transition: 
+    opacity 0.3s ease,
+    width 0.3s ease,
+    height 0.3s ease,
+    background-color 0.3s ease,
+    border 0.3s ease;
 }
 
 .cursor-dot {
-    width: 6px;
-    height: 6px;
-    background-color: #111;
-    margin-left: -3px; /* Centers the dot */
-    margin-top: -3px;
+  width: 8px;
+  height: 8px;
+  background-color: #111;
+  margin-top: -4px;
+  margin-left: -4px;
+  border-radius: 50%;
 }
 
-.cursor-outline {
-    width: 34px;
-    height: 34px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    margin-left: -17px; /* Centers the ring */
-    margin-top: -17px;
-    /* transition creates the smooth 'trailing' effect */
-    transition: transform 0.12s ease-out, width 0.3s, height 0.3s, background 0.3s;
+.cursor-follower {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(17, 17, 17, 0.4);
+  margin-top: -20px;
+  margin-left: -20px;
+  border-radius: 50%;
 }
 
-/* Hover state for links */
-.cursor-outline.active {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(0, 0, 0, 0.05);
-    border-color: transparent;
-    margin-left: -25px;
-    margin-top: -25px;
+.cursor-follower.hover-active {
+  width: 60px;
+  height: 60px;
+  margin-top: -30px;
+  margin-left: -30px;
+  background-color: rgba(17, 17, 17, 0.05);
+  border-color: transparent;
 }
 
-/* --- HERO LAYOUT --- */
-.hero-section {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* ──────────────────────────────────────────
+   4. LAYOUT & HERO
+   ────────────────────────────────────────── */
+
+.scroll-area { 
+  height: 200vh; 
+}
+
+.sticky-frame {
+  position: sticky; 
+  top: 0;
+  height: 100vh; 
+  width: 100vw;
+  overflow: hidden;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
 }
 
 .hero-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-width: 1100px;
-    width: 100%;
-    padding: 0 50px;
-    gap: 40px;
+  width: 100%; 
+  max-width: 1200px;
+  display: grid; 
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center; 
+  gap: 80px; 
+  padding: 0 60px;
+  z-index: 10;
 }
 
-.badge { background: #f0f0f0; padding: 4px 10px; border-radius: 6px; }
+.greeting { 
+  font-size: 18px; 
+  color: #6f6f6f; 
+  margin-bottom: 12px; 
+}
+
+.badge { 
+  background: #f4f4f4; 
+  padding: 4px 10px; 
+  border-radius: 6px; 
+  color: #111; 
+}
+
 .hero-name { 
-    font-family: "Playfair Display", serif; 
-    font-size: 75px; 
-    line-height: 1.1; 
-    margin: 15px 0; 
+  font-family: "Playfair Display", serif; 
+  font-size: clamp(40px, 7vw, 84px); 
+  line-height: 1.1; 
+  margin-bottom: 16px; 
 }
-.hero-sub { color: #666; font-size: 18px; font-weight: 300; }
-.hero-illustration { width: 100%; max-height: 450px; object-fit: contain; }
 
-/* --- NAVIGATION --- */
-.bottom-nav { position: fixed; bottom: 50px; left: 50%; transform: translateX(-50%); }
-.nav-group { display: flex; gap: 20px; }
+.hero-sub { 
+  font-size: 20px; 
+  font-weight: 300; 
+  color: #6f6f6f; 
+}
+
+/* ──────────────────────────────────────────
+   5. ILLUSTRATION
+   ────────────────────────────────────────── */
+
+.illustration-wrapper { 
+  will-change: transform; 
+}
+
+.hero-illustration { 
+  width: 100%; 
+  max-width: 500px;
+  animation: floatGif 6s ease-in-out infinite; 
+}
+
+@keyframes floatGif {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* ──────────────────────────────────────────
+   6. NAVIGATION & BUTTONS
+   ────────────────────────────────────────── */
+
+.bottom-nav {
+  position: absolute; 
+  bottom: 45px;
+  left: 50%; 
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.nav-group { 
+  display: flex; 
+  gap: 12px; 
+}
+
 .nav-button {
-    background: #111; color: #fff; text-decoration: none;
-    padding: 14px 28px; border-radius: 50px; font-size: 14px;
+  text-decoration: none;
+  font-size: 13px; 
+  font-weight: 600;
+  color: #fff; 
+  background: #111;
+  padding: 12px 24px; 
+  border-radius: 100px;
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: 
+    transform 0.3s ease, 
+    background-color 0.3s ease;
 }
-.signature { 
-    position: fixed; right: 30px; bottom: 30px; 
-    writing-mode: vertical-rl; transform: rotate(180deg); 
-    font-size: 10px; color: #ccc; letter-spacing: 2px; 
+
+.nav-button:hover { 
+  background-color: #222; 
+  transform: translateY(-2px); 
 }
+
+.nav-button::after {
+  content: '';
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='2' y1='22' x2='22' y2='2'%3E%3C/line%3E%3Cpolyline points='10 2 22 2 22 14'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 15px; 
+  height: 24px; 
+  margin-top: 4px; 
+  opacity: 0.45; 
+  transition: 
+    transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), 
+    opacity 0.3s ease;
+}
+
+.nav-button:hover::after { 
+  transform: translate(3px, -3px); 
+  opacity: 1; 
+}
+
+/* ──────────────────────────────────────────
+   7. SIGNATURE
+   ────────────────────────────────────────── */
+
+.signature {
+  position: absolute; 
+  right: 40px; 
+  bottom: 40px;
+  writing-mode: vertical-rl; 
+  transform: rotate(180deg);
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.1em; 
+  color: #999;
+}
+
+/* ──────────────────────────────────────────
+   8. RESPONSIVE
+   ────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+
+  .stamp-container { 
+    width: 250px; 
+    height: 250px; 
+    top: -125px; 
+    right: -125px; 
+  }
+
+  .hero-content { 
+    grid-template-columns: 1fr; 
+    text-align: center; 
+    padding: 0 30px; 
+    gap: 40px; 
+  }
+
+  .hero-illustration { 
+    max-width: 280px; 
+    margin: 0 auto; 
+  }
+
+  .signature { 
+    right: 15px; 
+    font-size: 11px; 
+  }
+
+}
+
+/* ──────────────────────────────────────────
+   9. RIPPLE EFFECT
+   ────────────────────────────────────────── */
+
+.cursor-ripple {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(17,17,17,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: ripple-animation 0.6s ease-out forwards;
+  z-index: 999998;
+}
+
+@keyframes ripple-animation {
+  0% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(3);
+  }
+}
+
