@@ -8,10 +8,11 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<div class="cursor-dot"></div>
+
+  <div class="cursor-dot"></div>
   <div class="cursor-follower"></div>
+
   <div class="scroll-area">
-    
     <div class="sticky-frame">
       
       <div class="watermark-track" id="marquee">
@@ -39,22 +40,50 @@
       </nav>
 
       <div class="signature">© 2026 Noopur Kashyap</div>
-
     </div>
   </div>
 
   <script>
-    const marquee = document.getElementById('marquee');
-    
-    window.addEventListener('scroll', () => {
-      // Multiply by 0.2 to control speed. Higher number = faster movement.
-      const scrollAmount = window.scrollY * 0.2; 
-      
-      // % 50 means when the first sentence ends, it instantly resets to 0.
-      // Because we have two identical sentences, the reset is completely invisible!
-      marquee.style.transform = `translateX(-${scrollAmount % 50}%)`;
+    document.addEventListener('DOMContentLoaded', () => {
+      const marquee = document.getElementById('marquee');
+      const cursorDot = document.querySelector('.cursor-dot');
+      const cursorFollower = document.querySelector('.cursor-follower');
+
+      // 1. SCROLLING MARQUEE
+      window.addEventListener('scroll', () => {
+        const scrollAmount = window.scrollY * 0.2; 
+        if (marquee) marquee.style.transform = `translateX(-${scrollAmount % 50}%)`;
+      });
+
+      // 2. CURSOR LOGIC
+      if (cursorDot && cursorFollower && window.matchMedia("(pointer: fine)").matches) {
+        let mouseX = -100, mouseY = -100; // Start off-screen
+        let followerX = -100, followerY = -100;
+
+        window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          // Immediate movement for the dot
+          cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+        });
+
+        function animateFollower() {
+          // Smooth easing math
+          followerX += (mouseX - followerX) * 0.15;
+          followerY += (mouseY - followerY) * 0.15;
+          cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0)`;
+          requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+
+        // Hover Detection
+        const interactives = document.querySelectorAll('a, .nav-button');
+        interactives.forEach(el => {
+          el.addEventListener('mouseenter', () => cursorFollower.classList.add('hover-active'));
+          el.addEventListener('mouseleave', () => cursorFollower.classList.remove('hover-active'));
+        });
+      }
     });
   </script>
-
 </body>
 </html>
