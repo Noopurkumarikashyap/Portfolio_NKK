@@ -1,51 +1,93 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    const rotatingText = document.getElementById('rotatingText');
+/* --- RESET --- */
+* { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important; }
 
-    let mouseX = 0, mouseY = 0;
-    let dotX = 0, dotY = 0;
-    let followerX = 0, followerY = 0;
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+html::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
-    // 1. Cursor Movement Logic
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
+body {
+  background-color: #fff;
+  font-family: "Montserrat", sans-serif;
+  color: #111;
+  min-height: 200vh; /* This is required to allow scrolling */
+  overflow-x: hidden;
+}
 
-    function render() {
-        // Smooth interpolation
-        dotX += (mouseX - dotX) * 1;
-        dotY += (mouseY - dotY) * 1;
-        followerX += (mouseX - followerX) * 0.15;
-        followerY += (mouseY - followerY) * 0.15;
+/* --- CURSOR --- */
+.cursor-dot, .cursor-follower {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 10000;
+}
+.cursor-dot { width: 6px; height: 6px; background: #111; border-radius: 50%; }
+.cursor-follower {
+  width: 40px; height: 40px; border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 50%; margin: -20px 0 0 -20px;
+  transition: width 0.3s, height 0.3s, background 0.3s;
+}
+.cursor-follower.hover-active { width: 60px; height: 60px; background: rgba(0,0,0,0.05); }
 
-        cursorDot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0)`;
-        cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0)`;
+/* --- CIRCULAR TEXT (CORNER) --- */
+.circular-text-container {
+  position: fixed;
+  bottom: -40px;
+  right: -40px;
+  width: 220px;
+  height: 220px;
+  z-index: 1000; /* High z-index to stay above content */
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+.circular-text-container svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
 
-        requestAnimationFrame(render);
-    }
-    render();
+/* --- LAYOUT --- */
+.sticky-frame {
+  position: fixed; /* Keep the hero content visible while background scrolls */
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  z-index: 10;
+}
 
-    // 2. Scroll Rotation Logic
-    window.addEventListener('scroll', () => {
-        const rotation = window.scrollY * 0.15;
-        if (rotatingText) {
-            rotatingText.style.transform = `rotate(${rotation}deg)`;
-        }
-    });
+.hero-content {
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  width: 100%; max-width: 1100px;
+  padding: 0 40px; align-items: center;
+  gap: 40px;
+}
 
-    // 3. Hover States
-    document.querySelectorAll('a, .nav-button').forEach(el => {
-        el.addEventListener('mouseenter', () => cursorFollower.classList.add('hover-active'));
-        el.addEventListener('mouseleave', () => cursorFollower.classList.remove('hover-active'));
-    });
+.hero-name { font-family: "Playfair Display", serif; font-size: clamp(40px, 6vw, 80px); line-height: 1.1; margin: 10px 0; }
+.hero-sub { color: #666; font-size: 18px; font-weight: 300; }
+.badge { background: #f4f4f4; padding: 4px 10px; border-radius: 6px; font-size: 14px; color: #111; }
 
-    // 4. Force Hide System Arrow
-    const hideCursor = () => {
-        document.documentElement.style.cursor = 'none';
-        document.body.style.cursor = 'none';
-    };
-    window.addEventListener('focus', hideCursor);
-    hideCursor();
-});
+.hero-illustration { width: 100%; max-height: 450px; object-fit: contain; }
+
+/* --- NAVIGATION --- */
+.bottom-nav { position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); z-index: 2000; }
+.nav-group { display: flex; gap: 15px; }
+.nav-button {
+  background: #111; color: #fff; text-decoration: none;
+  padding: 14px 28px; border-radius: 50px; font-size: 14px;
+  display: flex; align-items: center; gap: 10px; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.nav-button:hover { background: #333; transform: translateY(-3px); }
+.nav-button::after {
+  content: '↗'; font-size: 14px; opacity: 0.7;
+}
+
+.signature {
+  position: absolute; right: 30px; bottom: 30px;
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  font-size: 10px; color: #bbb; letter-spacing: 2px;
+}
