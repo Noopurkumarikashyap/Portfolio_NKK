@@ -1,26 +1,28 @@
-/* --- RESET --- */
+/* --- 1. GLOBAL RESET --- */
 * { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important; }
 
 html {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-html::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+html::-webkit-scrollbar { display: none; }
 
 body {
   background-color: #fff;
   font-family: "Montserrat", sans-serif;
   color: #111;
-  min-height: 200vh; /* This is required to allow scrolling */
+  /* Adjust this to 300vh or 400vh to make the scroll longer/slower */
+  height: 300vh; 
   overflow-x: hidden;
 }
 
-/* --- CURSOR --- */
+/* --- 2. CURSOR (Must be top level) --- */
 .cursor-dot, .cursor-follower {
   position: fixed;
   top: 0; left: 0;
   pointer-events: none;
-  z-index: 10000;
+  z-index: 99999; /* Higher than sticky frame */
+  will-change: transform;
 }
 .cursor-dot { width: 6px; height: 6px; background: #111; border-radius: 50%; }
 .cursor-follower {
@@ -30,29 +32,25 @@ body {
 }
 .cursor-follower.hover-active { width: 60px; height: 60px; background: rgba(0,0,0,0.05); }
 
-/* --- CIRCULAR TEXT (CORNER) --- */
+/* --- 3. CIRCULAR TEXT --- */
 .circular-text-container {
   position: fixed;
-  bottom: -40px;
-  right: -40px;
-  width: 220px;
-  height: 220px;
-  z-index: 1000; /* High z-index to stay above content */
+  bottom: -50px;
+  right: -50px;
+  width: 240px;
+  height: 240px;
+  z-index: 5000;
   pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
   will-change: transform;
 }
-.circular-text-container svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
+.circular-text-container svg { width: 100%; height: 100%; overflow: visible; }
 
-/* --- LAYOUT --- */
+/* --- 4. LAYOUT --- */
 .sticky-frame {
-  position: fixed; /* Keep the hero content visible while background scrolls */
+  position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100vh;
   display: flex; flex-direction: column;
@@ -67,24 +65,21 @@ body {
   gap: 40px;
 }
 
-.hero-name { font-family: "Playfair Display", serif; font-size: clamp(40px, 6vw, 80px); line-height: 1.1; margin: 10px 0; }
+.hero-name { font-family: "Playfair Display", serif; font-size: clamp(40px, 6vw, 80px); line-height: 1.1; }
 .hero-sub { color: #666; font-size: 18px; font-weight: 300; }
-.badge { background: #f4f4f4; padding: 4px 10px; border-radius: 6px; font-size: 14px; color: #111; }
-
+.badge { background: #f4f4f4; padding: 4px 10px; border-radius: 6px; font-size: 14px; }
 .hero-illustration { width: 100%; max-height: 450px; object-fit: contain; }
 
-/* --- NAVIGATION --- */
+/* --- 5. NAVIGATION --- */
 .bottom-nav { position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); z-index: 2000; }
 .nav-group { display: flex; gap: 15px; }
 .nav-button {
   background: #111; color: #fff; text-decoration: none;
   padding: 14px 28px; border-radius: 50px; font-size: 14px;
-  display: flex; align-items: center; gap: 10px; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex; align-items: center; gap: 10px; transition: 0.3s;
 }
 .nav-button:hover { background: #333; transform: translateY(-3px); }
-.nav-button::after {
-  content: '↗'; font-size: 14px; opacity: 0.7;
-}
+.nav-button::after { content: '↗'; font-size: 14px; opacity: 0.7; }
 
 .signature {
   position: absolute; right: 30px; bottom: 30px;
