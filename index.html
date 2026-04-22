@@ -1,62 +1,523 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Noopur Kashyap — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+/* ──────────────────────────────────────────
+   1. RESET & BASE
+   ────────────────────────────────────────── */
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
 
-  <div class="cursor-dot"></div>
-  <div class="cursor-follower"></div>
+body {
+  background-color: #fff;
+  font-family: "Montserrat", sans-serif;
+  color: #111;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-x: hidden;
+}
 
-<div class="stamp-container">
-  <svg viewBox="0 0 200 200" class="stamp-svg">
-    <circle cx="100" cy="100" r="92" class="stamp-bg" />
-    
-    <circle cx="100" cy="100" r="92" class="stamp-ring" />
-    
-    <circle cx="100" cy="100" r="68" class="stamp-ring" />
+body::-webkit-scrollbar { 
+  display: none; 
+}
 
-    <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="transparent" />
-    <text>
-      <textPath href="#circlePath" class="stamp-text">
-        Illustration ★ Service Design ★ UX Design ★ Illustration ★ Service Design ★ UX Design ★
-      </textPath>
-    </text>
-  </svg>
-</div>
+/* Hide system cursor only when ready */
+body.cursor-ready, 
+body.cursor-ready * {
+  cursor: none !important;
+}
 
-  <div class="scroll-area">
-    <div class="sticky-frame">
-      <main class="hero-content">
-        <div class="hero-text">
-          <p class="greeting"><span class="badge">नमस्ते</span>, I'm</p>
-          <h1 class="hero-name">Noopur<br/>Kashyap</h1>
-          <p class="hero-sub">UX Designer and Illustrator</p>
-        </div>
-        
-        <div class="illustration-wrapper">
-          <img src="images/hero_illustration.gif" class="hero-illustration" alt="UX Illustration">
-        </div>
-      </main>
+/* ──────────────────────────────────────────
+   2. ROTATING CIRCULAR STAMP
+   ────────────────────────────────────────── */
 
-      <nav class="bottom-nav">
-        <div class="nav-group">
-          <a href="about.html" class="nav-button">About</a>
-          <a href="projects.html" class="nav-button">Projects</a>
-          <a href="contact.html" class="nav-button">Contact</a>
-        </div>
-      </nav>
+/* ──────────────────────────────────────────
+   RUBBER STAMP EFFECT (REALISTIC)
+────────────────────────────────────────── */
 
-      <div class="signature">© 2026 Noopur Kashyap</div>
-    </div>
-  </div>
+.stamp-container {
+  position: fixed;
+  top: -150px;
+  right: -150px;
+  width: 350px;
+  height: 350px;
+  z-index: 200;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* slight distortion = human stamp feel */
+  transform: rotate(-8deg);
+}
+
+.stamp-svg {
+  width: 100%;
+  height: 100%;
+
+  /* IMPORTANT: enable proper transform origin for SVG */
+  transform-origin: center center;
+  transform-box: fill-box;
+
+  animation: rotateStamp 20s linear infinite;
+}
+
+/* 🔴 IMPORTANT: inner circle blends with background */
+.stamp-bg {
+  fill: #ffffff;   /* matches page background */
+}
+
+/* ink bleed / imperfect rubber edge */
+.stamp-ring {
+  fill: none;
+  stroke: #000; /* solid stamp ink black */
+  stroke-width: 1.2px;
+}
+
+/* TEXT — stamped ink look */
+.stamp-text {
+  font-family: "Special Elite", monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  fill: #000;;
+
+  /* stamp ink imperfection */
+  filter: contrast(1.2);
+}
+
+@keyframes rotateStamp {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ──────────────────────────────────────────
+   3. CUSTOM CURSOR
+   ────────────────────────────────────────── */
+
+.cursor-dot, 
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none !important;
+  z-index: 999999;
+  will-change: transform;
+  opacity: 0;
+  transition: 
+    opacity 0.3s ease,
+    width 0.3s ease,
+    height 0.3s ease,
+    background-color 0.3s ease,
+    border 0.3s ease;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #111;
+  margin-top: -4px;
+  margin-left: -4px;
+  border-radius: 50%;
+}
+
+.cursor-follower {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(17, 17, 17, 0.4);
+  margin-top: -20px;
+  margin-left: -20px;
+  border-radius: 50%;
+}
+
+.cursor-follower.hover-active {
+  width: 60px;
+  height: 60px;
+  margin-top: -30px;
+  margin-left: -30px;
+  background-color: rgba(17, 17, 17, 0.05);
+  border-color: transparent;
+}
+
+/* ──────────────────────────────────────────
+   4. LAYOUT & HERO
+   ────────────────────────────────────────── */
+
+.scroll-area { 
+  height: 200vh; 
+}
+
+.sticky-frame {
+  position: sticky; 
+  top: 0;
+  height: 100vh; 
+  width: 100vw;
+  overflow: hidden;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.hero-content {
+    position: relative;
+  z-index: 3;
+  width: 100%; 
+  max-width: 1200px;
+  display: grid; 
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center; 
+  gap: 80px; 
+  padding: 0 60px;
+  z-index: 10;
+}
+
+.greeting { 
+  font-size: 18px; 
+  color: #6f6f6f; 
+  margin-bottom: 12px; 
+}
+
+.badge { 
+  background: #f4f4f4; 
+  padding: 4px 10px; 
+  border-radius: 6px; 
+  color: #111; 
+}
+
+.hero-name { 
+  font-family: "Playfair Display", serif; 
+  font-size: clamp(40px, 7vw, 84px); 
+  line-height: 1.1; 
+  margin-bottom: 16px; 
+}
+
+.hero-sub { 
+  font-size: 20px; 
+  font-weight: 300; 
+  color: #6f6f6f; 
+}
+
+
+/* ──────────────────────────────────────────
+   5. ILLUSTRATION
+   ────────────────────────────────────────── */
+
+.illustration-wrapper { 
+  will-change: transform; 
+}
+
+.hero-illustration { 
+  width: 150%; 
+  max-width: 500px;
+  animation: floatGif 6s ease-in-out infinite; 
+}
+
+@keyframes floatGif {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* ──────────────────────────────────────────
+   🌊 WAVE BASE LAYER (FIXED POSITIONING)
+   ────────────────────────────────────────── */
+
+.wave-container {
+  position: absolute;
+  left: 0;
+
+  /* sits just below hero image area */
+  top: 70%;
+
+  width: 100%;
+  height: 260px;
+
+  z-index: 1; /* behind fish */
+  pointer-events: none;
+}
+
+.wave-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wave-line {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.55); /* stronger base */
+  stroke-width: 1.3;
+}
+
+/* ──────────────────────────────────────────
+   10. SCROLL PATH + BIRD
+   ────────────────────────────────────────── */
+
+.scroll-path {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.path-line {
+  stroke: rgba(0, 0, 0, 0.18);
+  stroke-width: 3;
+  fill: none;
+
+  stroke-dasharray: 0 8;
+  stroke-linecap: round; /* 👈 makes dots circular */
+}
+.upper-line {
+  stroke: rgba(0, 0, 0, 0.10);
+  stroke-width: 1.5;
+}
+
+.path-hint {
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: lowercase;
+  fill: rgba(0, 0, 0, 0.35);
+}
+
+#bird {
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* ──────────────────────────────────────────
+   6. NAVIGATION & BUTTONS
+   ────────────────────────────────────────── */
+
+.bottom-nav {
+  position: absolute; 
+  bottom: 45px;
+  left: 50%; 
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.nav-group { 
+  display: flex; 
+  gap: 12px; 
+}
+
+.nav-button {
+  text-decoration: none;
+  font-size: 13px; 
+  font-weight: 600;
+  color: #fff; 
+  background: #111;
+  padding: 12px 24px; 
+  border-radius: 100px;
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: 
+    transform 0.3s ease, 
+    background-color 0.3s ease;
+}
+
+.nav-button:hover { 
+  background-color: #222; 
+  transform: translateY(-2px); 
+}
+
+.nav-button::after {
+  content: '';
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='2' y1='22' x2='22' y2='2'%3E%3C/line%3E%3Cpolyline points='10 2 22 2 22 14'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 15px; 
+  height: 24px; 
+  margin-top: 4px; 
+  opacity: 0.45; 
+  transition: 
+    transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), 
+    opacity 0.3s ease;
+}
+
+.nav-button:hover::after { 
+  transform: translate(3px, -3px); 
+  opacity: 1; 
+}
+
+/* ──────────────────────────────────────────
+   7. SIGNATURE
+   ────────────────────────────────────────── */
+
+.signature {
+  position: absolute; 
+  right: 40px; 
+  bottom: 40px;
+  writing-mode: vertical-rl; 
+  transform: rotate(180deg);
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.1em; 
+  color: #999;
+}
+
+/* ──────────────────────────────────────────
+   8. RESPONSIVE
+   ────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+
+  .stamp-container { 
+    width: 250px; 
+    height: 250px; 
+    top: -125px; 
+    right: -125px; 
+  }
+
+  .hero-content { 
+    grid-template-columns: 1fr; 
+    text-align: center; 
+    padding: 0 30px; 
+    gap: 40px; 
+  }
+
+  .hero-illustration { 
+    max-width: 280px; 
+    margin: 0 auto; 
+  }
+
+  .signature { 
+    right: 15px; 
+    font-size: 11px; 
+  }
+
+}
+
+/* ──────────────────────────────────────────
+   9. RIPPLE EFFECT
+   ────────────────────────────────────────── */
+
+.cursor-ripple {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(17,17,17,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: ripple-animation 0.6s ease-out forwards;
+  z-index: 999998;
+}
+
+@keyframes ripple-animation {
+  0% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(3);
+  }
+}
+
+/*fish*/
+
+.fish-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 100; /* keep subtle */
+}
+
+/* base fish style */
+.fish {
+  position: absolute;
+  width: 47px;
+  height: auto;
+  opacity: 100;
+  pointer-events: none;
+  z-index: 5; /* above water */
+  transform-origin: 20% 50%; /* 👈 IMPORTANT (head area) */
+  will-change: transform;
+}
+
+/* different speeds + positions */
+.fish-1 {
+  top: 20%;
+  left: -50px;
+  animation-duration: 35s;
+}
+
+.fish-2 {
+  top: 55%;
+  left: -80px;
+  animation-duration: 50s;
+  font-size: 20px;
+}
+
+.fish-3 {
+  top: 75%;
+  left: -60px;
+  animation-duration: 45s;
+  font-size: 26px;
+}
+
+/* movement */
+@keyframes floatFish {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(120vw);
+  }
+}
+
+.bubble {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 999999;
+
+  background: transparent;
+
+  /* thinner ring */
+  border: 1px solid rgba(0, 0, 0, 0.8);
+
+  box-shadow: none;
+
+  animation: bubbleUp 1.8s ease-out forwards;
+}
+
+@keyframes bubbleUp {
+  0% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -240%) scale(1.6);
+  }
+}
 
 
 
-  <script src="js/main.js"></script>
-</body>
-</html>
+
+
+
