@@ -30,9 +30,13 @@ body.cursor-ready * {
    2. ROTATING CIRCULAR STAMP
    ────────────────────────────────────────── */
 
+/* ──────────────────────────────────────────
+   RUBBER STAMP EFFECT (REALISTIC)
+────────────────────────────────────────── */
+
 .stamp-container {
   position: fixed;
-  top: -150px; 
+  top: -150px;
   right: -150px;
   width: 350px;
   height: 350px;
@@ -41,38 +45,54 @@ body.cursor-ready * {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* slight distortion = human stamp feel */
+  transform: rotate(-8deg);
 }
 
 .stamp-svg {
   width: 100%;
   height: 100%;
+
+  /* IMPORTANT: enable proper transform origin for SVG */
+  transform-origin: center center;
+  transform-box: fill-box;
+
   animation: rotateStamp 20s linear infinite;
-  will-change: transform;
 }
 
+/* 🔴 IMPORTANT: inner circle blends with background */
 .stamp-bg {
-  fill: #f9f9f9; 
+  fill: #ffffff;   /* matches page background */
 }
 
+/* ink bleed / imperfect rubber edge */
 .stamp-ring {
   fill: none;
-  stroke: rgba(0, 0, 0, 0.06); 
-  stroke-width: 0.5px;
+  stroke: #000; /* solid stamp ink black */
+  stroke-width: 1.2px;
 }
 
+/* TEXT — stamped ink look */
 .stamp-text {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+  font-family: "Special Elite", monospace;
   font-size: 10px;
-  fill: rgba(0, 0, 0, 0.2);
-  dominant-baseline: middle; 
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  fill: #000;;
+
+  /* stamp ink imperfection */
+  filter: contrast(1.2);
 }
 
 @keyframes rotateStamp {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ──────────────────────────────────────────
@@ -143,6 +163,8 @@ body.cursor-ready * {
 }
 
 .hero-content {
+    position: relative;
+  z-index: 3;
   width: 100%; 
   max-width: 1200px;
   display: grid; 
@@ -179,6 +201,7 @@ body.cursor-ready * {
   color: #6f6f6f; 
 }
 
+
 /* ──────────────────────────────────────────
    5. ILLUSTRATION
    ────────────────────────────────────────── */
@@ -188,7 +211,7 @@ body.cursor-ready * {
 }
 
 .hero-illustration { 
-  width: 100%; 
+  width: 150%; 
   max-width: 500px;
   animation: floatGif 6s ease-in-out infinite; 
 }
@@ -196,6 +219,76 @@ body.cursor-ready * {
 @keyframes floatGif {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
+}
+
+/* ──────────────────────────────────────────
+   🌊 WAVE BASE LAYER (FIXED POSITIONING)
+   ────────────────────────────────────────── */
+
+.wave-container {
+  position: absolute;
+  left: 0;
+
+  /* sits just below hero image area */
+  top: 70%;
+
+  width: 100%;
+  height: 260px;
+
+  z-index: 1; /* behind fish */
+  pointer-events: none;
+}
+
+.wave-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wave-line {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.55); /* stronger base */
+  stroke-width: 1.3;
+}
+
+/* ──────────────────────────────────────────
+   10. SCROLL PATH + BIRD
+   ────────────────────────────────────────── */
+
+.scroll-path {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.path-line {
+  stroke: rgba(0, 0, 0, 0.18);
+  stroke-width: 3;
+  fill: none;
+
+  stroke-dasharray: 0 8;
+  stroke-linecap: round; /* 👈 makes dots circular */
+}
+.upper-line {
+  stroke: rgba(0, 0, 0, 0.10);
+  stroke-width: 1.5;
+}
+
+.path-hint {
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: lowercase;
+  fill: rgba(0, 0, 0, 0.35);
+}
+
+#bird {
+  transform-origin: center;
+  will-change: transform;
 }
 
 /* ──────────────────────────────────────────
@@ -334,4 +427,97 @@ body.cursor-ready * {
     transform: translate(-50%, -50%) scale(3);
   }
 }
+
+/*fish*/
+
+.fish-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 100; /* keep subtle */
+}
+
+/* base fish style */
+.fish {
+  position: absolute;
+  width: 47px;
+  height: auto;
+  opacity: 100;
+  pointer-events: none;
+  z-index: 5; /* above water */
+  transform-origin: 20% 50%; /* 👈 IMPORTANT (head area) */
+  will-change: transform;
+}
+
+/* different speeds + positions */
+.fish-1 {
+  top: 20%;
+  left: -50px;
+  animation-duration: 35s;
+}
+
+.fish-2 {
+  top: 55%;
+  left: -80px;
+  animation-duration: 50s;
+  font-size: 20px;
+}
+
+.fish-3 {
+  top: 75%;
+  left: -60px;
+  animation-duration: 45s;
+  font-size: 26px;
+}
+
+/* movement */
+@keyframes floatFish {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(120vw);
+  }
+}
+
+.bubble {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 999999;
+
+  background: transparent;
+
+  /* thinner ring */
+  border: 1px solid rgba(0, 0, 0, 0.8);
+
+  box-shadow: none;
+
+  animation: bubbleUp 1.8s ease-out forwards;
+}
+
+@keyframes bubbleUp {
+  0% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -240%) scale(1.6);
+  }
+}
+
+
+
+
+
 
