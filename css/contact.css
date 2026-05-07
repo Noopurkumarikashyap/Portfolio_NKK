@@ -6,6 +6,10 @@
 }
 
 body {
+  background: red;
+}
+
+body {
   font-family: "Montserrat", sans-serif;
   background: #fff;
   color: #111;
