@@ -7,65 +7,62 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
-  <!-- ICONS -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
   <link rel="stylesheet" href="css/contact.css">
 </head>
 
 <body>
 
-<!-- TOP NAV -->
+<!-- NAVBAR -->
 <header class="top-nav">
-  <div class="nav-left">Noopur</div>
-  <div class="nav-right">
-    <a href="index.html">Home</a>
+
+  <a href="index.html" class="logo">
+    Noopur
+  </a>
+
+  <nav class="nav-links">
     <a href="about.html">About</a>
     <a href="projects.html">Projects</a>
-  </div>
+    <a href="contact.html">Contact</a>
+  </nav>
+
 </header>
 
-<!-- MAIN -->
-<section class="contact-container">
+<!-- CONTACT SECTION -->
+<section class="contact-section">
 
-  <!-- LEFT -->
-  <div class="contact-left">
-    <h1>Let’s connect</h1>
+  <div class="contact-content">
 
-    <!-- ICONS -->
-    <div class="social-icons">
-      <a href="#" target="_blank"><i data-lucide="linkedin"></i></a>
-      <a href="#" target="_blank"><i data-lucide="instagram"></i></a>
-      <a href="mailto:hello@noopurkashyap.com"><i data-lucide="mail"></i></a>
-    </div>
+    <p class="small-text">Have something in mind?</p>
+
+    <h1>
+      Let’s connect
+    </h1>
+
+    <p class="sub-text">
+      Whether it’s design, illustration, collaboration, 
+      or simply a hello — I’d love to hear from you.
+    </p>
+
+    <!-- EMAIL -->
+    <a href="mailto:hello@noopurkashyap.com" class="email-link">
+      hello@noopurkashyap.com
+    </a>
 
     <!-- RESUME -->
-    <a href="#" class="resume-btn">Download Resume</a>
-  </div>
+    <a href="#" class="resume-button">
+      Download Resume
+    </a>
 
-  <!-- RIGHT -->
-  <div class="contact-right">
-    <form class="contact-form">
+    <!-- SOCIAL LINKS -->
+    <div class="social-links">
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+      <a href="#">Behance</a>
+    </div>
 
-      <div class="row">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-      </div>
-
-      <input type="text" placeholder="Subject">
-
-      <textarea placeholder="Message" rows="5" required></textarea>
-
-      <button type="submit">Start a conversation</button>
-
-    </form>
   </div>
 
 </section>
-
-<script>
-  lucide.createIcons();
-</script>
 
 </body>
 </html>
