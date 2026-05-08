@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Contact — Noopur </title>
+  <title>Contact — Noopur</title>
 
   <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -38,50 +38,93 @@
 
     <div class="contact-content">
 
+      <!-- TITLE -->
       <h1 class="hero-title">
         Let’s connect
       </h1>
 
+      <!-- SUBTEXT -->
       <p class="hero-sub">
         Open to design conversations, collaborations, research, and opportunities.
       </p>
 
+      <!-- EMAIL -->
       <div class="email-wrapper">
 
-  <button 
-    class="email-link" 
-    id="copyEmail"
-    data-email="hello@noopurkashyap.com"
-  >
-    hello@noopurkashyap.com
-  </button>
+        <button 
+          class="email-link" 
+          id="copyEmail"
+          data-email="hello@noopurkashyap.com"
+        >
+          hello@noopurkashyap.com
+        </button>
 
-  <span class="email-tooltip" id="emailTooltip">
-    Click to copy
-  </span>
+        <span class="email-tooltip" id="emailTooltip">
+          Click to copy
+        </span>
 
-</div>
+      </div>
 
+      <!-- BOTTOM -->
       <div class="bottom-row">
 
         <!-- SOCIALS -->
         <div class="social-links">
 
-  <a href="#" class="linkedin">
-    <img src="images/linkedin.png" alt="LinkedIn">
-  </a>
+          <!-- LINKEDIN -->
+          <a href="#" class="social-icon">
 
-  <a href="#" class="instagram">
-    <img src="images/instagram.png" alt="Instagram">
-  </a>
+            <img 
+              src="images/linkedin.png"
+              class="icon-default"
+              alt="LinkedIn"
+            >
 
-  <a href="#" class="medium">
-    <img src="images/medium.png" alt="Medium">
-  </a>
+            <img 
+              src="images/linkedin_hover.png"
+              class="icon-hover"
+              alt="LinkedIn Hover"
+            >
 
-</div>
+          </a>
 
-        <!-- BUTTON -->
+          <!-- INSTAGRAM -->
+          <a href="#" class="social-icon">
+
+            <img 
+              src="images/instagram.png"
+              class="icon-default"
+              alt="Instagram"
+            >
+
+            <img 
+              src="images/instagram_hover.png"
+              class="icon-hover"
+              alt="Instagram Hover"
+            >
+
+          </a>
+
+          <!-- MEDIUM -->
+          <a href="#" class="social-icon">
+
+            <img 
+              src="images/medium.png"
+              class="icon-default"
+              alt="Medium"
+            >
+
+            <img 
+              src="images/medium_hover.png"
+              class="icon-hover"
+              alt="Medium Hover"
+            >
+
+          </a>
+
+        </div>
+
+        <!-- RESUME -->
         <a href="#" class="resume-btn">
           Download Resume
         </a>
@@ -91,33 +134,36 @@
     </div>
 
   </main>
-<script>
 
-const emailButton = document.getElementById("copyEmail");
-const tooltip = document.getElementById("emailTooltip");
+  <!-- JS -->
+  <script>
 
-emailButton.addEventListener("click", async () => {
+    const emailButton = document.getElementById("copyEmail");
+    const tooltip = document.getElementById("emailTooltip");
 
-  const email = emailButton.dataset.email;
+    emailButton.addEventListener("click", async () => {
 
-  try {
+      const email = emailButton.dataset.email;
 
-    await navigator.clipboard.writeText(email);
+      try {
 
-    tooltip.textContent = "Copied to clipboard";
+        await navigator.clipboard.writeText(email);
 
-    setTimeout(() => {
-      tooltip.textContent = "Click to copy";
-    }, 2000);
+        tooltip.textContent = "Copied to clipboard";
 
-  } catch (err) {
+        setTimeout(() => {
+          tooltip.textContent = "Click to copy";
+        }, 2000);
 
-    tooltip.textContent = "Failed to copy";
+      } catch (err) {
 
-  }
+        tooltip.textContent = "Failed to copy";
 
-});
+      }
 
-</script>
+    });
+
+  </script>
+
 </body>
 </html>
