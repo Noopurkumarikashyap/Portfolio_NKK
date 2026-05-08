@@ -91,6 +91,33 @@
     </div>
 
   </main>
+<script>
 
+const emailButton = document.getElementById("copyEmail");
+const tooltip = document.getElementById("emailTooltip");
+
+emailButton.addEventListener("click", async () => {
+
+  const email = emailButton.dataset.email;
+
+  try {
+
+    await navigator.clipboard.writeText(email);
+
+    tooltip.textContent = "Copied to clipboard";
+
+    setTimeout(() => {
+      tooltip.textContent = "Click to copy";
+    }, 2000);
+
+  } catch (err) {
+
+    tooltip.textContent = "Failed to copy";
+
+  }
+
+});
+
+</script>
 </body>
 </html>
