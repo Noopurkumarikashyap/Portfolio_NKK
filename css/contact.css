@@ -454,3 +454,54 @@ body{
   }
 
 }
+
+/* ─────────────────────────────
+   BOAT
+───────────────────────────── */
+
+.boat-image{
+  position:fixed;
+
+  right:48px;
+  bottom:36px;
+
+  width:220px;
+  height:auto;
+
+  z-index:1;
+
+  pointer-events:none;
+
+  opacity:.95;
+
+  animation:floatBoat 5s ease-in-out infinite;
+}
+
+/* FLOATING ANIMATION */
+
+@keyframes floatBoat{
+
+  0%,100%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-10px);
+  }
+
+}
+
+/* RESPONSIVE */
+
+@media (max-width:768px){
+
+  .boat-image{
+    width:140px;
+
+    right:16px;
+    bottom:20px;
+
+    opacity:.75;
+  }
+
+}
