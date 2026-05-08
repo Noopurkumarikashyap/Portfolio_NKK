@@ -59,7 +59,9 @@ body{
   display:block;
 }
 
-/* NAV LINKS */
+/* ─────────────────────────────
+   NAV LINKS
+───────────────────────────── */
 
 .nav-links{
   display:flex;
@@ -78,7 +80,7 @@ body{
   transition:opacity .3s ease;
 }
 
-/* NAV UNDERLINE */
+/* UNDERLINE */
 
 .nav-links a::after{
   content:"";
@@ -127,7 +129,7 @@ body{
    TYPOGRAPHY
 ───────────────────────────── */
 
-/* HEADING */
+/* TITLE */
 
 .hero-title{
   font-family:"Playfair Display",serif;
@@ -154,7 +156,7 @@ body{
 }
 
 /* ─────────────────────────────
-   EMAIL COPY INTERACTION
+   EMAIL
 ───────────────────────────── */
 
 .email-wrapper{
@@ -165,6 +167,7 @@ body{
 
   margin-bottom:52px;
 }
+
 /* EMAIL BUTTON */
 
 .email-link{
@@ -282,7 +285,7 @@ body{
   gap:16px;
 }
 
-/* ICON CONTAINER */
+/* ICON WRAPPER */
 
 .social-icon{
   position:relative;
@@ -296,10 +299,10 @@ body{
 }
 
 .social-icon:hover{
-  transform:translateY(-2px);
+  transform:translateY(-3px);
 }
 
-/* IMAGES */
+/* ICON IMAGES */
 
 .social-icon img{
   position:absolute;
@@ -315,19 +318,19 @@ body{
     transform .35s ease;
 }
 
-/* DEFAULT */
+/* DEFAULT STATE */
 
 .icon-default{
   opacity:1;
 }
 
-/* HOVER */
+/* HOVER STATE */
 
 .icon-hover{
   opacity:0;
 }
 
-/* TRANSITION */
+/* SMOOTH TRANSITION */
 
 .social-icon:hover .icon-default{
   opacity:0;
@@ -338,7 +341,7 @@ body{
 }
 
 /* ─────────────────────────────
-   BUTTON
+   RESUME BUTTON
 ───────────────────────────── */
 
 .resume-btn{
