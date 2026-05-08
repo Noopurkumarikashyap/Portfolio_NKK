@@ -347,37 +347,67 @@ body{
   opacity:.65;
 }
 
-/* TOOLTIP */
+/* ─────────────────────────────
+   TOOLTIP
+───────────────────────────── */
 
 .email-tooltip{
   position:absolute;
 
-  top:-42px;
-  left:0;
+  left:calc(100% + 18px);
+  top:50%;
+
+  transform:translateY(-50%) translateX(-6px);
 
   background:#111;
   color:#fff;
 
   font-size:13px;
   font-weight:500;
+  line-height:1;
 
-  padding:10px 14px;
+  padding:12px 16px;
 
-  border-radius:10px;
+  border-radius:14px;
+
+  white-space:nowrap;
 
   opacity:0;
-  transform:translateY(6px);
-
   pointer-events:none;
 
   transition:
     opacity .25s ease,
     transform .25s ease;
+
+  z-index:20;
+}
+
+/* TRIANGLE */
+
+.email-tooltip::before{
+  content:"";
+
+  position:absolute;
+
+  left:-7px;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:0;
+  height:0;
+
+  border-top:7px solid transparent;
+  border-bottom:7px solid transparent;
+  border-right:8px solid #111;
 }
 
 /* SHOW */
 
 .email-wrapper:hover .email-tooltip{
   opacity:1;
-  transform:translateY(0);
+
+  transform:
+    translateY(-50%)
+    translateX(0);
 }
