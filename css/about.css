@@ -51,7 +51,7 @@ body{
   padding:42px 60px;
 
   position:relative;
-  z-index:10;
+  z-index:20;
 }
 
 /* LOGO */
@@ -169,7 +169,7 @@ body{
   width:52%;
 
   position:relative;
-  z-index:2;
+  z-index:5;
 }
 
 /* YEAR */
@@ -336,7 +336,7 @@ body{
 
   position:relative;
 
-  z-index:2;
+  z-index:4;
 }
 
 /* IMAGE */
@@ -377,47 +377,55 @@ body{
 .floating-tag{
   position:absolute;
 
-  background:rgba(255,255,255,0.28);
+  background:rgba(255,255,255,0.24);
 
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
 
-  border:1px solid rgba(255,255,255,0.38);
+  border:1px solid rgba(255,255,255,0.35);
 
   border-radius:999px;
 
   padding:18px 28px;
 
-  font-size:18px;
+  font-size:17px;
   font-weight:600;
 
   color:#111;
 
   box-shadow:
-    0 12px 30px rgba(0,0,0,0.06);
+    0 12px 30px rgba(0,0,0,0.08);
 
-  z-index:3;
+  z-index:6;
 
-  animation:floatTag 5s ease-in-out infinite;
+  animation:floatTag 6s ease-in-out infinite;
 }
 
-/* TAG POSITIONS */
+/* FLOATING AROUND EDGES */
+
+/* TOP RIGHT */
 
 .tag-ux{
-  top:130px;
-  right:260px;
+  top:90px;
+  right:80px;
 }
+
+/* LEFT CENTER */
 
 .tag-illustrator{
-  top:260px;
-  left:-40px;
+  left:40px;
+  top:50%;
 
-  animation-delay:1s;
+  transform:translateY(-50%);
+
+  animation-delay:1.2s;
 }
 
+/* BOTTOM RIGHT */
+
 .tag-service{
-  bottom:120px;
-  right:240px;
+  right:110px;
+  bottom:90px;
 
   animation-delay:2s;
 }
@@ -431,7 +439,121 @@ body{
   }
 
   50%{
-    transform:translateY(-10px);
+    transform:translateY(-12px);
+  }
+
+}
+
+/* preserve left-center translate */
+
+.tag-illustrator{
+  animation:floatTagLeft 6s ease-in-out infinite;
+}
+
+@keyframes floatTagLeft{
+
+  0%,100%{
+    transform:translateY(-50%);
+  }
+
+  50%{
+    transform:translateY(calc(-50% - 12px));
+  }
+
+}
+
+/* ─────────────────────────────
+   FLOATING STARS
+───────────────────────────── */
+
+.star{
+  position:absolute;
+
+  width:28px;
+  height:28px;
+
+  opacity:.7;
+
+  z-index:2;
+
+  animation:starFloat 5s ease-in-out infinite;
+}
+
+/* vertical line */
+.star::before{
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+  top:0;
+
+  width:2px;
+  height:100%;
+
+  background:#111;
+
+  transform:translateX(-50%);
+}
+
+/* horizontal line */
+.star::after{
+  content:"";
+
+  position:absolute;
+
+  top:50%;
+  left:0;
+
+  width:100%;
+  height:2px;
+
+  background:#111;
+
+  transform:translateY(-50%);
+}
+
+/* POSITIONS */
+
+.star-1{
+  top:120px;
+  left:48%;
+}
+
+.star-2{
+  bottom:120px;
+  left:12%;
+
+  width:18px;
+  height:18px;
+
+  opacity:.5;
+
+  animation-delay:1.5s;
+}
+
+.star-3{
+  right:14%;
+  top:46%;
+
+  width:22px;
+  height:22px;
+
+  opacity:.45;
+
+  animation-delay:2s;
+}
+
+/* FLOAT */
+
+@keyframes starFloat{
+
+  0%,100%{
+    transform:translateY(0px) rotate(0deg);
+  }
+
+  50%{
+    transform:translateY(-8px) rotate(8deg);
   }
 
 }
@@ -475,7 +597,8 @@ body{
     width:100%;
   }
 
-  .floating-tag{
+  .floating-tag,
+  .star{
     display:none;
   }
 
