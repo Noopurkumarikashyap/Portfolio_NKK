@@ -423,10 +423,9 @@ body{
 
 /* BOTTOM RIGHT */
 
-/* SERVICE DESIGN */
 .tag-service{
-  bottom:70px;
-  right:40px;
+  bottom:185px;
+  right:-18px;
 
   animation-delay:2s;
 }
@@ -470,17 +469,18 @@ body{
 .star{
   position:absolute;
 
-  width:34px;
-  height:34px;
+  width:30px;
+  height:30px;
 
   z-index:2;
 
-  opacity:.55;
+  opacity:.9;
 
   animation:starFloat 5s ease-in-out infinite;
 }
 
 /* VERTICAL LINE */
+
 .star::before{
   content:"";
 
@@ -492,12 +492,15 @@ body{
   width:2px;
   height:100%;
 
-  background:#111;
+  background:white;
+
+  border-radius:999px;
 
   transform:translateX(-50%);
 }
 
 /* HORIZONTAL LINE */
+
 .star::after{
   content:"";
 
@@ -509,7 +512,9 @@ body{
   width:100%;
   height:2px;
 
-  background:#111;
+  background:white;
+
+  border-radius:999px;
 
   transform:translateY(-50%);
 }
@@ -519,8 +524,8 @@ body{
 .star span{
   position:absolute;
 
-  width:10px;
-  height:10px;
+  width:4px;
+  height:4px;
 
   background:#f3ecb0;
 
