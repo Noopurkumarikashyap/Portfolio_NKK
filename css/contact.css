@@ -278,3 +278,33 @@ body{
   }
 
 }
+/* ─────────────────────────────
+   SOCIAL ICON HOVER SWAP
+───────────────────────────── */
+
+/* default smooth effect */
+.social-links img{
+  transition:
+    transform .3s ease,
+    opacity .3s ease;
+}
+
+/* hover lift */
+.social-links a:hover img{
+  transform: translateY(-3px);
+}
+
+/* LINKEDIN */
+.social-links a.linkedin:hover img{
+  content: url("../images/linkedin_hover.png");
+}
+
+/* INSTAGRAM */
+.social-links a.instagram:hover img{
+  content: url("../images/instagram_hover.png");
+}
+
+/* MEDIUM */
+.social-links a.medium:hover img{
+  content: url("../images/medium_hover.png");
+}
