@@ -405,27 +405,28 @@ body{
 
 /* TOP RIGHT */
 
+/* UX DESIGNER */
 .tag-ux{
-  top:90px;
-  right:80px;
+  top:40px;
+  right:-30px;
 }
 
 /* LEFT CENTER */
 
+/* ILLUSTRATOR */
 .tag-illustrator{
-  left:40px;
-  top:50%;
+  left:-60px;
+  top:52%;
 
-  transform:translateY(-50%);
-
-  animation-delay:1.2s;
+  animation:floatTagLeft 6s ease-in-out infinite;
 }
 
 /* BOTTOM RIGHT */
 
+/* SERVICE DESIGN */
 .tag-service{
-  right:110px;
-  bottom:90px;
+  bottom:70px;
+  right:40px;
 
   animation-delay:2s;
 }
@@ -469,17 +470,17 @@ body{
 .star{
   position:absolute;
 
-  width:28px;
-  height:28px;
-
-  opacity:.7;
+  width:34px;
+  height:34px;
 
   z-index:2;
+
+  opacity:.55;
 
   animation:starFloat 5s ease-in-out infinite;
 }
 
-/* vertical line */
+/* VERTICAL LINE */
 .star::before{
   content:"";
 
@@ -496,7 +497,7 @@ body{
   transform:translateX(-50%);
 }
 
-/* horizontal line */
+/* HORIZONTAL LINE */
 .star::after{
   content:"";
 
@@ -513,33 +514,53 @@ body{
   transform:translateY(-50%);
 }
 
+/* SMALL CENTER GAP */
+
+.star span{
+  position:absolute;
+
+  width:10px;
+  height:10px;
+
+  background:#f3ecb0;
+
+  left:50%;
+  top:50%;
+
+  transform:translate(-50%,-50%);
+
+  border-radius:50%;
+
+  z-index:3;
+}
+
 /* POSITIONS */
 
 .star-1{
-  top:120px;
-  left:48%;
+  top:110px;
+  left:47%;
 }
 
 .star-2{
-  bottom:120px;
+  bottom:110px;
   left:12%;
-
-  width:18px;
-  height:18px;
-
-  opacity:.5;
-
-  animation-delay:1.5s;
-}
-
-.star-3{
-  right:14%;
-  top:46%;
 
   width:22px;
   height:22px;
 
-  opacity:.45;
+  opacity:.4;
+
+  animation-delay:1.2s;
+}
+
+.star-3{
+  top:38%;
+  right:29%;
+
+  width:18px;
+  height:18px;
+
+  opacity:.35;
 
   animation-delay:2s;
 }
