@@ -308,3 +308,76 @@ body{
 .social-links a.medium:hover img{
   content: url("../images/medium_hover.png");
 }
+/* ─────────────────────────────
+   EMAIL COPY INTERACTION
+───────────────────────────── */
+
+.email-wrapper{
+  position:relative;
+  display:inline-block;
+
+  margin-bottom:48px;
+}
+
+/* EMAIL BUTTON */
+
+.email-link{
+  background:none;
+  border:none;
+  padding:0;
+
+  cursor:pointer;
+
+  display:inline-block;
+
+  font-size:44px;
+  font-weight:500;
+
+  font-family:"Montserrat",sans-serif;
+
+  color:#111;
+
+  text-decoration:underline;
+  text-underline-offset:8px;
+
+  transition:opacity .3s ease;
+}
+
+.email-link:hover{
+  opacity:.65;
+}
+
+/* TOOLTIP */
+
+.email-tooltip{
+  position:absolute;
+
+  top:-42px;
+  left:0;
+
+  background:#111;
+  color:#fff;
+
+  font-size:13px;
+  font-weight:500;
+
+  padding:10px 14px;
+
+  border-radius:10px;
+
+  opacity:0;
+  transform:translateY(6px);
+
+  pointer-events:none;
+
+  transition:
+    opacity .25s ease,
+    transform .25s ease;
+}
+
+/* SHOW */
+
+.email-wrapper:hover .email-tooltip{
+  opacity:1;
+  transform:translateY(0);
+}
