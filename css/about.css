@@ -11,17 +11,19 @@ body{
   font-family:"Montserrat",sans-serif;
 }
 
+/* NAVBAR */
+
 .navbar{
   width:100%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:42px 60px;
+  padding:36px 60px;
   position:fixed;
   top:0;
   left:0;
   z-index:100;
-  background:rgba(246,243,234,0.72);
+  background:rgba(246,243,234,0.8);
   backdrop-filter:blur(12px);
 }
 
@@ -38,16 +40,15 @@ body{
   text-decoration:none;
   color:#111;
   font-size:18px;
-  padding:10px 16px;
-  border-radius:10px;
   position:relative;
+  padding:10px 16px;
 }
 
 .nav-links a::after{
   content:"";
   position:absolute;
   inset:0;
-  border:1.5px dashed rgba(17,17,17,0.4);
+  border:1px dashed rgba(0,0,0,0.4);
   border-radius:10px;
   opacity:0;
   transition:.3s ease;
@@ -57,7 +58,358 @@ body{
   opacity:1;
 }
 
+/* HERO */
+
 .hero-journal{
-  padding:160px 60px 120px;
+  padding:160px 60px 100px;
 }
+
+.journal-paper{
+  max-width:1300px;
+  margin:auto;
+  background:#efe3b5;
+  border-radius:40px;
+  padding:90px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-layout{
+  display:grid;
+  grid-template-columns:1fr 500px;
+  gap:80px;
+  align-items:center;
+}
+
+.mini-note{
+  font-family:"Caveat",cursive;
+  font-size:30px;
+  color:#7a6630;
+  margin-bottom:20px;
+}
+
+.hero-title{
+  font-size:clamp(70px,8vw,140px);
+  line-height:.92;
+  margin-bottom:30px;
+}
+
+.hero-title span{
+  font-family:"Playfair Display",serif;
+}
+
+.hero-description{
+  font-size:20px;
+  line-height:1.8;
+  color:#555;
+  max-width:620px;
+}
+
+/* TAGS */
+
+.journal-tags{
+  margin-top:40px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+}
+
+.journal-tag{
+  background:rgba(255,255,255,0.35);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.5);
+  border-radius:999px;
+  padding:16px 24px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.05);
+  animation:floatTag 5s ease-in-out infinite;
+}
+
+.journal-tag:nth-child(2){
+  animation-delay:1s;
+}
+
+.journal-tag:nth-child(3){
+  animation-delay:2s;
+}
+
+@keyframes floatTag{
+
+  0%,100%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-8px);
+  }
+
+}
+
+/* PHOTO */
+
+.photo-wrapper{
+  position:relative;
+  transform:rotate(-4deg);
+  transition:transform .2s ease;
+}
+
+.profile-photo{
+  width:100%;
+  border-radius:28px;
+  display:block;
+  box-shadow:0 20px 60px rgba(0,0,0,0.12);
+}
+
+/* NOTES */
+
+.photo-note{
+  position:absolute;
+  background:#fff;
+  padding:12px 18px;
+  border-radius:14px;
+  font-family:"Caveat",cursive;
+  font-size:24px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+
+.note-1{
+  top:-20px;
+  right:-20px;
+}
+
+.note-2{
+  bottom:-20px;
+  left:-20px;
+}
+
+/* TAPE */
+
+.masking-tape{
+  position:absolute;
+  width:120px;
+  height:34px;
+  background:rgba(255,255,255,0.4);
+}
+
+.tape-1{
+  top:40px;
+  left:120px;
+  transform:rotate(-8deg);
+}
+
+.tape-2{
+  right:160px;
+  bottom:50px;
+  transform:rotate(10deg);
+}
+
+/* STARS */
+
+.star{
+  position:absolute;
+  width:24px;
+  height:24px;
+}
+
+.star::before,
+.star::after{
+  content:"";
+  position:absolute;
+  background:#fff;
+  border-radius:999px;
+}
+
+.star::before{
+  width:100%;
+  height:4px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.star::after{
+  width:4px;
+  height:100%;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.star-1{
+  top:120px;
+  right:100px;
+}
+
+.star-2{
+  bottom:100px;
+  left:120px;
+}
+
+.star-3{
+  top:50%;
+  right:42%;
+}
+
+/* SECTION */
+
+.timeline-section,
+.education-section,
+.skills-section{
+  padding:100px 60px;
+}
+
+.section-heading{
+  font-size:54px;
+  font-family:"Playfair Display",serif;
+  margin-bottom:50px;
+}
+
+/* TIMELINE */
+
+.timeline-wrapper{
+  display:flex;
+  gap:30px;
+  overflow-x:auto;
+  padding-bottom:20px;
+}
+
+.timeline-wrapper::-webkit-scrollbar{
+  display:none;
+}
+
+.timeline-card{
+  min-width:380px;
+  background:#fff;
+  padding:36px;
+  border-radius:28px;
+  box-shadow:0 18px 50px rgba(0,0,0,0.06);
+}
+
+.timeline-year{
+  font-family:"Caveat",cursive;
+  font-size:32px;
+}
+
+.timeline-card h3{
+  margin:20px 0;
+  font-size:30px;
+}
+
+.timeline-card p{
+  line-height:1.8;
+  color:#555;
+  margin-bottom:20px;
+}
+
+/* EDUCATION */
+
+.education-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+.edu-card{
+  background:#fff;
+  padding:40px;
+  border-radius:28px;
+  position:relative;
+  box-shadow:0 18px 50px rgba(0,0,0,0.06);
+}
+
+.rotate-left{
+  transform:rotate(-3deg);
+}
+
+.rotate-right{
+  transform:rotate(3deg);
+}
+
+.rotate-left-2{
+  transform:rotate(-2deg);
+}
+
+.paper-clip{
+  width:24px;
+  height:60px;
+  border:3px solid #bbb;
+  border-radius:999px;
+  position:absolute;
+  top:-20px;
+  right:30px;
+}
+
+/* SKILLS */
+
+.skills-cloud{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.skill-pill{
+  background:#fff;
+  padding:18px 28px;
+  border-radius:999px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.05);
+  transition:.3s ease;
+}
+
+.skill-pill:hover{
+  transform:translateY(-4px) rotate(-2deg);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1024px){
+
+  .hero-layout{
+    grid-template-columns:1fr;
+  }
+
+  .education-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .navbar{
+    padding:24px;
+  }
+
+  .nav-links{
+    gap:18px;
+  }
+
+  .nav-links a{
+    font-size:14px;
+  }
+
+  .hero-journal,
+  .timeline-section,
+  .education-section,
+  .skills-section{
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .journal-paper{
+    padding:40px 24px;
+  }
+
+  .hero-title{
+    font-size:68px;
+  }
+
+  .hero-description{
+    font-size:17px;
+  }
+
+  .timeline-card{
+    min-width:82vw;
+  }
+
+  .section-heading{
+    font-size:42px;
+  }
+
 }
