@@ -246,15 +246,11 @@ body{
    LETTER
 ───────────────────────────── */
 
-/* LETTER */
-
-/* LETTER */
-
 .letter{
   position:absolute;
 
-  left:92px;
-  top:120px;
+  left:100px;
+  top:78px;
 
   width:310px;
   height:360px;
@@ -265,7 +261,7 @@ body{
 
   padding:34px;
 
-  z-index:4;
+  z-index:2;
 
   box-shadow:
     0 20px 45px rgba(0,0,0,.08);
@@ -338,7 +334,7 @@ body{
 
   padding:14px;
 
-  z-index:4;
+  z-index:7;
 
   box-shadow:
     0 24px 60px rgba(0,0,0,.14);
@@ -377,8 +373,6 @@ body{
    OPEN ENVELOPE
 ───────────────────────────── */
 
-/* ENVELOPE */
-
 .envelope{
   position:absolute;
 
@@ -388,7 +382,7 @@ body{
   width:370px;
   height:235px;
 
-  z-index:3;
+  z-index:5;
 }
 
 /* MAIN BODY */
@@ -407,7 +401,6 @@ body{
   box-shadow:
     0 20px 45px rgba(0,0,0,.08);
 }
-
 
 /* INSIDE SHADOW */
 
@@ -467,7 +460,7 @@ body{
   );
 }
 
-/* BOTTOM FOLD */
+/* FRONT POCKET */
 
 .envelope-bottom{
   position:absolute;
@@ -486,19 +479,19 @@ body{
     100% 100%
   );
 
-  z-index:5;
+  z-index:6;
 }
 
-/* OPEN TOP FLAP */
+/* TOP FLAP */
 
 .envelope-top{
   position:absolute;
 
-  top:-1px;
+  top:-2px;
   left:0;
 
   width:100%;
-  height:122px;
+  height:124px;
 
   background:#d5c3a5;
 
@@ -513,19 +506,7 @@ body{
   transform:
     rotateX(180deg);
 
-  z-index:6;
-}
-
-/* front fold stays above letter */
-
-.envelope-bottom{
-  z-index:5;
-}
-
-/* top flap */
-
-.envelope-top{
-  z-index:6;
+  z-index:8;
 }
 
 /* ─────────────────────────────
@@ -559,7 +540,7 @@ body{
 
   transform:rotate(-12deg);
 
-  z-index:7;
+  z-index:9;
 }
 
 /* ─────────────────────────────
@@ -569,53 +550,18 @@ body{
 .sparkle{
   position:absolute;
 
-  width:34px;
-  height:34px;
+  width:30px;
+  height:30px;
 
-  z-index:6;
+  z-index:10;
 
   animation:starFloat 4s ease-in-out infinite;
 }
 
+/* ALL 4 LINES */
+
 .sparkle::before,
-.sparkle::after{
-  content:"";
-
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  background:#fff;
-
-  border-radius:999px;
-
-  transform:
-    translate(-50%,-50%);
-}
-
-/* vertical */
-
-.sparkle::before{
-  width:5px;
-  height:34px;
-}
-
-/* horizontal */
-
-.sparkle::after{
-  width:34px;
-  height:5px;
-}
-
-/* diagonal line 1 */
-
-.sparkle span{
-  position:absolute;
-
-  inset:0;
-}
-
+.sparkle::after,
 .sparkle span::before,
 .sparkle span::after{
   content:"";
@@ -625,25 +571,48 @@ body{
   left:50%;
   top:50%;
 
-  width:5px;
-  height:30px;
-
   background:#fff;
 
   border-radius:999px;
 }
 
-/* diagonal */
+/* VERTICAL */
+
+.sparkle::before{
+  width:4px;
+  height:28px;
+
+  transform:
+    translate(-50%,-50%);
+}
+
+/* HORIZONTAL */
+
+.sparkle::after{
+  width:28px;
+  height:4px;
+
+  transform:
+    translate(-50%,-50%);
+}
+
+/* DIAGONAL 1 */
 
 .sparkle span::before{
+  width:4px;
+  height:24px;
+
   transform:
     translate(-50%,-50%)
     rotate(45deg);
 }
 
-/* opposite diagonal */
+/* DIAGONAL 2 */
 
 .sparkle span::after{
+  width:4px;
+  height:24px;
+
   transform:
     translate(-50%,-50%)
     rotate(-45deg);
@@ -652,7 +621,7 @@ body{
 /* POSITIONS */
 
 .star-1{
-  top:40px;
+  top:36px;
   right:130px;
 }
 
@@ -775,8 +744,8 @@ body{
     width:220px;
     height:auto;
 
-    left:10px;
-    top:20px;
+    left:18px;
+    top:50px;
 
     padding:24px;
   }
