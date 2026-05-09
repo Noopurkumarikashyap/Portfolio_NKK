@@ -1,92 +1,46 @@
-// ─────────────────────────────
-// TAB SWITCHING
-// ─────────────────────────────
+const photoWrapper = document.querySelector('.photo-wrapper');
 
-const tabs = document.querySelectorAll(".tab");
+window.addEventListener('mousemove', (e) => {
 
-tabs.forEach(tab => {
+  const x = (window.innerWidth / 2 - e.clientX) / 40;
+  const y = (window.innerHeight / 2 - e.clientY) / 40;
 
-  tab.addEventListener("click", () => {
-
-    // remove active from all
-    tabs.forEach(item => {
-      item.classList.remove("active");
-    });
-
-    // add active to clicked
-    tab.classList.add("active");
-
-  });
-
-});
-
-
-// ─────────────────────────────
-// PARALLAX FLOAT EFFECT
-// ─────────────────────────────
-
-const imageCard = document.querySelector(".image-card");
-
-document.addEventListener("mousemove", (e) => {
-
-  const x = (window.innerWidth / 2 - e.clientX) / 45;
-  const y = (window.innerHeight / 2 - e.clientY) / 45;
-
-  imageCard.style.transform =
+  photoWrapper.style.transform =
     `rotate(-4deg) translate(${x}px, ${y}px)`;
 
 });
 
 
-// ─────────────────────────────
-// SUBTLE STAR MOVEMENT
-// ─────────────────────────────
+const observer = new IntersectionObserver((entries) => {
 
-const stars = document.querySelectorAll(".star");
+  entries.forEach(entry => {
 
-stars.forEach((star, index) => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show-item');
+    }
 
-  setInterval(() => {
+  });
 
-    const randomX = Math.random() * 8 - 4;
-    const randomY = Math.random() * 8 - 4;
+},{
+  threshold:0.2
+});
 
-    star.style.transform =
-      `translate(${randomX}px, ${randomY}px)`;
 
-  }, 2500 + index * 500);
+const cards = document.querySelectorAll(
+  '.timeline-card, .edu-card, .skill-pill'
+);
+
+cards.forEach(card => {
+
+  card.style.opacity = '0';
+  card.style.transform += ' translateY(40px)';
+  card.style.transition = '.8s ease';
+
+  observer.observe(card);
 
 });
 
 
-// ─────────────────────────────
-// CARD HOVER TILT
-// ─────────────────────────────
-
-const aboutCard = document.querySelector(".about-card");
-
-aboutCard.addEventListener("mousemove", (e) => {
-
-  const rect = aboutCard.getBoundingClientRect();
-
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  const rotateX = ((y / rect.height) - 0.5) * -2;
-  const rotateY = ((x / rect.width) - 0.5) * 2;
-
-  aboutCard.style.transform =
-    `perspective(1400px)
-     rotateX(${rotateX}deg)
-     rotateY(${rotateY}deg)`;
-
-});
-
-aboutCard.addEventListener("mouseleave", () => {
-
-  aboutCard.style.transform =
-    `perspective(1400px)
-     rotateX(0deg)
-     rotateY(0deg)`;
-
+document.querySelectorAll('.show-item').forEach(item => {
+  item.style.opacity = '1';
 });
