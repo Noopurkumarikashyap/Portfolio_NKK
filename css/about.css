@@ -248,6 +248,8 @@ body{
 
 /* LETTER */
 
+/* LETTER */
+
 .letter{
   position:absolute;
 
@@ -263,16 +265,14 @@ body{
 
   padding:34px;
 
-  z-index:2;
+  z-index:4;
 
   box-shadow:
     0 20px 45px rgba(0,0,0,.08);
 
-  transform:
-    rotate(-5deg);
+  transform:rotate(-5deg);
 
-  transition:
-    transform .45s ease;
+  transition:transform .45s ease;
 }
 
 /* PAPER TEXTURE */
@@ -377,6 +377,8 @@ body{
    OPEN ENVELOPE
 ───────────────────────────── */
 
+/* ENVELOPE */
+
 .envelope{
   position:absolute;
 
@@ -386,7 +388,7 @@ body{
   width:370px;
   height:235px;
 
-  z-index:4;
+  z-index:3;
 }
 
 /* MAIN BODY */
@@ -484,7 +486,7 @@ body{
     100% 100%
   );
 
-  z-index:3;
+  z-index:5;
 }
 
 /* OPEN TOP FLAP */
@@ -511,7 +513,19 @@ body{
   transform:
     rotateX(180deg);
 
+  z-index:6;
+}
+
+/* front fold stays above letter */
+
+.envelope-bottom{
   z-index:5;
+}
+
+/* top flap */
+
+.envelope-top{
+  z-index:6;
 }
 
 /* ─────────────────────────────
