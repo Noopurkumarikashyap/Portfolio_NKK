@@ -1,42 +1,40 @@
-const photoWrapper = document.querySelector(".photo-wrapper");
+const scene = document.querySelector(".envelope-scene");
 
-document.addEventListener("mousemove", (e) => {
+const photo = document.querySelector(".photo-card");
+const letter = document.querySelector(".letter");
 
-  const x = (window.innerWidth / 2 - e.clientX) / 45;
-  const y = (window.innerHeight / 2 - e.clientY) / 45;
+scene.addEventListener("mousemove", (e) => {
 
-  photoWrapper.style.transform =
-    `rotate(-4deg) translate(${x}px, ${y}px)`;
+  const rect = scene.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const moveX = (x - rect.width / 2) / 28;
+  const moveY = (y - rect.height / 2) / 28;
+
+  photo.style.transform = `
+    rotate(8deg)
+    translate(${moveX}px, ${moveY}px)
+  `;
+
+  letter.style.transform = `
+    rotate(-4deg)
+    translate(${moveX * 0.6}px, ${moveY * 0.6}px)
+  `;
 
 });
 
+scene.addEventListener("mouseleave", () => {
 
-/* REVEAL ANIMATION */
+  photo.style.transform = `
+    rotate(8deg)
+    translate(0px,0px)
+  `;
 
-const revealItems = document.querySelectorAll(
-  ".timeline-card, .edu-card, .skill-pill"
-);
-
-const observer = new IntersectionObserver((entries) => {
-
-  entries.forEach(entry => {
-
-    if(entry.isIntersecting){
-
-      entry.target.classList.add("show-item");
-
-    }
-
-  });
-
-},{
-  threshold:0.2
-});
-
-revealItems.forEach(item => {
-
-  item.classList.add("hidden-item");
-
-  observer.observe(item);
+  letter.style.transform = `
+    rotate(-4deg)
+    translate(0px,0px)
+  `;
 
 });
