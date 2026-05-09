@@ -1,9 +1,9 @@
-const photoWrapper = document.querySelector('.photo-wrapper');
+const photoWrapper = document.querySelector(".photo-wrapper");
 
-window.addEventListener('mousemove', (e) => {
+document.addEventListener("mousemove", (e) => {
 
-  const x = (window.innerWidth / 2 - e.clientX) / 40;
-  const y = (window.innerHeight / 2 - e.clientY) / 40;
+  const x = (window.innerWidth / 2 - e.clientX) / 45;
+  const y = (window.innerHeight / 2 - e.clientY) / 45;
 
   photoWrapper.style.transform =
     `rotate(-4deg) translate(${x}px, ${y}px)`;
@@ -11,12 +11,20 @@ window.addEventListener('mousemove', (e) => {
 });
 
 
+/* REVEAL ANIMATION */
+
+const revealItems = document.querySelectorAll(
+  ".timeline-card, .edu-card, .skill-pill"
+);
+
 const observer = new IntersectionObserver((entries) => {
 
   entries.forEach(entry => {
 
     if(entry.isIntersecting){
-      entry.target.classList.add('show-item');
+
+      entry.target.classList.add("show-item");
+
     }
 
   });
@@ -25,22 +33,10 @@ const observer = new IntersectionObserver((entries) => {
   threshold:0.2
 });
 
+revealItems.forEach(item => {
 
-const cards = document.querySelectorAll(
-  '.timeline-card, .edu-card, .skill-pill'
-);
+  item.classList.add("hidden-item");
 
-cards.forEach(card => {
+  observer.observe(item);
 
-  card.style.opacity = '0';
-  card.style.transform += ' translateY(40px)';
-  card.style.transition = '.8s ease';
-
-  observer.observe(card);
-
-});
-
-
-document.querySelectorAll('.show-item').forEach(item => {
-  item.style.opacity = '1';
 });
