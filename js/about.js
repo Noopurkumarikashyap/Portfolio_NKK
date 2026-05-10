@@ -95,3 +95,19 @@ function updateTransforms(){
   `;
 
 }
+
+/* =========================================================
+HORIZONTAL PHOTO REEL SCROLL
+========================================================= */
+
+const reelTrack = document.querySelector(".reel-track");
+
+window.addEventListener("scroll", () => {
+
+  const scrollY = window.scrollY;
+
+  reelTrack.style.transform = `
+    translateX(-${scrollY * 0.45}px)
+  `;
+
+});
