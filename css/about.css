@@ -1,6 +1,6 @@
-/* ─────────────────────────────
-   RESET
-───────────────────────────── */
+/* =========================================================
+RESET
+========================================================= */
 
 *{
   margin:0;
@@ -8,9 +8,13 @@
   box-sizing:border-box;
 }
 
-/* ─────────────────────────────
-   BODY
-───────────────────────────── */
+html{
+  scroll-behavior:smooth;
+}
+
+/* =========================================================
+BODY
+========================================================= */
 
 body{
   background:#f5f5f1;
@@ -21,9 +25,9 @@ body{
   overflow-x:hidden;
 }
 
-/* ─────────────────────────────
-   NAVBAR
-───────────────────────────── */
+/* =========================================================
+NAVBAR
+========================================================= */
 
 .navbar{
   width:100%;
@@ -90,15 +94,15 @@ body{
   transform:scale(1);
 }
 
-/* ─────────────────────────────
-   HERO
-───────────────────────────── */
+/* =========================================================
+HERO SECTION
+========================================================= */
 
 .about-hero{
   width:100%;
   min-height:calc(100vh - 120px);
 
-  padding:40px 80px 100px;
+  padding:40px 80px 140px;
 
   display:flex;
   align-items:center;
@@ -107,9 +111,9 @@ body{
   gap:80px;
 }
 
-/* ─────────────────────────────
-   LEFT
-───────────────────────────── */
+/* =========================================================
+LEFT SIDE
+========================================================= */
 
 .hero-left{
   width:48%;
@@ -119,7 +123,6 @@ body{
 
 .mini-tag{
   font-size:14px;
-
   letter-spacing:.08em;
   text-transform:uppercase;
 
@@ -154,12 +157,13 @@ body{
   margin-bottom:42px;
 }
 
-/* FLOATING TAGS */
+/* =========================================================
+FLOATING TAGS
+========================================================= */
 
 .floating-tags{
   display:flex;
   flex-wrap:wrap;
-
   gap:16px;
 
   margin-bottom:42px;
@@ -196,6 +200,8 @@ body{
   animation-delay:2s;
 }
 
+/* FLOAT */
+
 @keyframes floatTag{
 
   0%,100%{
@@ -218,9 +224,9 @@ body{
   color:#444;
 }
 
-/* ─────────────────────────────
-   RIGHT
-───────────────────────────── */
+/* =========================================================
+RIGHT SIDE
+========================================================= */
 
 .hero-right{
   width:46%;
@@ -230,84 +236,164 @@ body{
   align-items:center;
 }
 
-/* ─────────────────────────────
-   ENVELOPE SCENE
-───────────────────────────── */
+/* =========================================================
+ENVELOPE SCENE
+========================================================= */
 
 .envelope-scene{
   position:relative;
 
-  width:620px;
-  height:620px;
+  width:560px;
+  height:560px;
 }
 
-/* ─────────────────────────────
-   ENVELOPE BASE IMAGE
-───────────────────────────── */
+/* =========================================================
+ENVELOPE IMAGES
+========================================================= */
 
 .envelope-base-img{
   position:absolute;
 
-  width:420px;
+  left:60px;
+  bottom:20px;
 
-  left:80px;
-  bottom:80px;
+  width:380px;
 
   z-index:1;
-
-  display:block;
-
-  filter:
-    drop-shadow(0 18px 40px rgba(0,0,0,.08));
 }
 
-/* ─────────────────────────────
-   LETTER
-───────────────────────────── */
+.envelope-front-img{
+  position:absolute;
+
+  left:60px;
+  bottom:20px;
+
+  width:380px;
+
+  z-index:5;
+
+  pointer-events:none;
+}
+
+/* =========================================================
+LETTER
+========================================================= */
 
 .letter{
   position:absolute;
 
-  left:125px;
-  top:80px;
+  left:115px;
+  top:40px;
 
-  width:320px;
-  height:370px;
+  width:300px;
+  height:360px;
 
   background:#fffdf8;
 
-  padding:36px;
+  padding:34px;
 
-  z-index:2;
+  z-index:3;
 
-  border-radius:6px;
+  overflow:hidden;
 
   box-shadow:
-    0 22px 50px rgba(0,0,0,.10);
+    0 20px 40px rgba(0,0,0,.08);
 
   transform:
     rotate(-4deg);
 
+  cursor:pointer;
+
   transition:
-    transform .4s ease;
+    transform .7s cubic-bezier(.22,1,.36,1);
 }
 
-/* PAPER TEXTURE */
+/* LETTER POP */
 
-.letter::before{
-  content:"";
+.letter.pop-out{
+  animation:letterPop 2.8s ease;
+}
 
+@keyframes letterPop{
+
+  0%{
+    transform:
+      rotate(-4deg)
+      translateY(0px);
+  }
+
+  30%{
+    transform:
+      rotate(-2deg)
+      translateY(-90px);
+  }
+
+  65%{
+    transform:
+      rotate(-2deg)
+      translateY(-90px);
+  }
+
+  100%{
+    transform:
+      rotate(-4deg)
+      translateY(0px);
+  }
+
+}
+
+/* SHINE */
+
+.letter-shine{
   position:absolute;
-  inset:0;
+
+  top:-120%;
+  left:-40%;
+
+  width:60%;
+  height:250%;
 
   background:
     linear-gradient(
-      to bottom,
-      rgba(0,0,0,.02),
-      transparent
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,.2) 35%,
+      rgba(255,255,255,.8) 50%,
+      rgba(255,255,255,.2) 65%,
+      transparent 100%
     );
 
+  transform:
+    rotate(18deg);
+
+  opacity:0;
+
   pointer-events:none;
+}
+
+/* SHINE ACTIVE */
+
+.letter.pop-out .letter-shine{
+  animation:shineMove 1.2s ease;
+  animation-delay:.4s;
+}
+
+@keyframes shineMove{
+
+  0%{
+    left:-50%;
+    opacity:0;
+  }
+
+  20%{
+    opacity:1;
+  }
+
+  100%{
+    left:140%;
+    opacity:0;
+  }
+
 }
 
 /* LETTER CONTENT */
@@ -321,15 +407,13 @@ body{
 
   color:#888;
 
-  margin-bottom:24px;
+  margin-bottom:22px;
 }
 
 .letter-content h3{
-  font-size:60px;
+  font-size:62px;
 
-  margin-bottom:18px;
-
-  font-family:"Playfair Display",serif;
+  margin-bottom:20px;
 }
 
 .letter-content p{
@@ -339,34 +423,15 @@ body{
   color:#555;
 }
 
-/* ─────────────────────────────
-   ENVELOPE FRONT IMAGE
-───────────────────────────── */
-
-.envelope-front-img{
-  position:absolute;
-
-  width:420px;
-
-  left:80px;
-  bottom:80px;
-
-  z-index:4;
-
-  display:block;
-
-  pointer-events:none;
-}
-
-/* ─────────────────────────────
-   PHOTO CARD
-───────────────────────────── */
+/* =========================================================
+PHOTO CARD
+========================================================= */
 
 .photo-card{
   position:absolute;
 
-  right:15px;
-  top:140px;
+  right:10px;
+  top:110px;
 
   width:240px;
 
@@ -384,8 +449,7 @@ body{
   transform:
     rotate(8deg);
 
-  transition:
-    transform .4s ease;
+  transition:.4s ease;
 }
 
 .photo-card img{
@@ -411,15 +475,15 @@ body{
   color:#666;
 }
 
-/* ─────────────────────────────
-   STAMP
-───────────────────────────── */
+/* =========================================================
+STAMP
+========================================================= */
 
 .stamp{
   position:absolute;
 
-  right:35px;
-  bottom:100px;
+  right:20px;
+  bottom:60px;
 
   width:72px;
   height:72px;
@@ -443,9 +507,9 @@ body{
   z-index:20;
 }
 
-/* ─────────────────────────────
-   STARS
-───────────────────────────── */
+/* =========================================================
+STARS
+========================================================= */
 
 .sparkle{
   position:absolute;
@@ -474,8 +538,6 @@ body{
   border-radius:999px;
 }
 
-/* vertical */
-
 .sparkle::before{
   width:4px;
   height:28px;
@@ -484,8 +546,6 @@ body{
     translate(-50%,-50%);
 }
 
-/* horizontal */
-
 .sparkle::after{
   width:28px;
   height:4px;
@@ -493,8 +553,6 @@ body{
   transform:
     translate(-50%,-50%);
 }
-
-/* diagonal 1 */
 
 .sparkle span::before{
   width:4px;
@@ -505,8 +563,6 @@ body{
     rotate(45deg);
 }
 
-/* diagonal 2 */
-
 .sparkle span::after{
   width:4px;
   height:24px;
@@ -516,23 +572,23 @@ body{
     rotate(-45deg);
 }
 
-/* STAR POSITIONS */
+/* POSITIONS */
 
 .star-1{
   top:40px;
-  right:130px;
+  right:120px;
 }
 
 .star-2{
-  left:30px;
-  bottom:180px;
+  left:10px;
+  bottom:120px;
 
   animation-delay:1s;
 }
 
 .star-3{
-  right:30px;
-  top:300px;
+  right:10px;
+  top:260px;
 
   animation-delay:2s;
 }
@@ -551,32 +607,262 @@ body{
 
 }
 
-/* ─────────────────────────────
-   HOVER
-───────────────────────────── */
+/* =========================================================
+EXPERIENCE SECTION
+========================================================= */
 
-.envelope-scene:hover .photo-card{
-  transform:
-    rotate(10deg)
-    translateY(-10px);
+.experience-section{
+  width:100%;
+
+  padding:180px 80px 220px;
+
+  position:relative;
 }
 
-.envelope-scene:hover .letter{
-  transform:
-    rotate(-2deg)
-    translateY(-12px);
+/* TITLE */
+
+.experience-left{
+  margin-bottom:120px;
 }
 
-/* ─────────────────────────────
-   RESPONSIVE
-───────────────────────────── */
+.experience-title{
+  font-family:"Playfair Display",serif;
+
+  font-size:92px;
+
+  line-height:.92;
+
+  margin-bottom:20px;
+}
+
+.experience-text{
+  font-size:18px;
+  line-height:1.8;
+
+  color:#555;
+
+  max-width:500px;
+}
+
+/* =========================================================
+EXPERIENCE LAYOUT
+========================================================= */
+
+.experience-right{
+  position:relative;
+
+  width:100%;
+  height:900px;
+}
+
+/* =========================================================
+CARDS
+========================================================= */
+
+.exp-card{
+  position:absolute;
+
+  width:320px;
+
+  background:#fff;
+
+  padding:14px;
+
+  border-radius:28px;
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.08);
+
+  transition:
+    transform .45s ease,
+    box-shadow .45s ease;
+}
+
+/* IMAGE */
+
+.exp-card img{
+  width:100%;
+  height:380px;
+
+  object-fit:cover;
+
+  border-radius:22px;
+
+  margin-bottom:18px;
+}
+
+/* CONTENT */
+
+.exp-content{
+  padding:6px 8px 12px;
+}
+
+.exp-content h3{
+  font-size:28px;
+
+  margin-bottom:12px;
+}
+
+.exp-content p{
+  font-size:15px;
+  line-height:1.8;
+
+  color:#555;
+}
+
+.exp-year{
+  display:inline-block;
+
+  margin-bottom:12px;
+
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+
+  color:#777;
+}
+
+/* =========================================================
+CARD POSITIONS
+========================================================= */
+
+/* CENTER */
+
+.exp-card:nth-child(1){
+  left:30%;
+  top:260px;
+
+  transform:
+    rotate(-8deg);
+
+  z-index:2;
+}
+
+/* TOP RIGHT */
+
+.exp-card:nth-child(2){
+  right:14%;
+  top:40px;
+
+  transform:
+    rotate(8deg);
+
+  z-index:4;
+}
+
+/* RIGHT OVERLAP */
+
+.exp-card:nth-child(3){
+  right:8%;
+  top:360px;
+
+  transform:
+    rotate(4deg);
+
+  z-index:3;
+}
+
+/* =========================================================
+CARD HOVER
+========================================================= */
+
+.exp-card:hover{
+  transform:
+    translateY(-14px)
+    rotate(0deg);
+
+  box-shadow:
+    0 35px 80px rgba(0,0,0,.12);
+}
+
+/* =========================================================
+HANDWRITTEN NOTES
+========================================================= */
+
+.exp-note{
+  position:absolute;
+
+  font-family:"Caveat",cursive;
+
+  color:#444;
+
+  z-index:10;
+}
+
+.exp-note p{
+  font-size:34px;
+  line-height:1.1;
+}
+
+/* NOTE POSITIONS */
+
+.note-1{
+  left:6%;
+  top:420px;
+}
+
+.note-2{
+  left:45%;
+  top:0;
+}
+
+.note-3{
+  right:0;
+  top:620px;
+}
+
+/* =========================================================
+ARROWS
+========================================================= */
+
+.arrow{
+  width:220px;
+  height:120px;
+
+  overflow:visible;
+}
+
+.arrow path{
+  fill:none;
+
+  stroke:#222;
+  stroke-width:2.2;
+
+  stroke-linecap:round;
+
+  stroke-dasharray:1;
+  stroke-dashoffset:1;
+
+  animation:
+    drawArrow 3s ease forwards infinite;
+}
+
+@keyframes drawArrow{
+
+  0%{
+    stroke-dashoffset:1;
+  }
+
+  45%{
+    stroke-dashoffset:0;
+  }
+
+  100%{
+    stroke-dashoffset:0;
+  }
+
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
 
 @media (max-width:1024px){
 
   .about-hero{
     flex-direction:column;
 
-    gap:90px;
+    gap:80px;
   }
 
   .hero-left,
@@ -584,8 +870,20 @@ body{
     width:100%;
   }
 
-  .hero-right{
-    justify-content:flex-start;
+  .experience-right{
+    height:1200px;
+  }
+
+  .exp-card:nth-child(1){
+    left:10%;
+  }
+
+  .exp-card:nth-child(2){
+    right:4%;
+  }
+
+  .exp-card:nth-child(3){
+    right:0;
   }
 
 }
@@ -606,27 +904,15 @@ body{
   }
 
   .about-hero{
-    padding:30px 24px 80px;
-
-    gap:60px;
+    padding:30px 24px 100px;
   }
 
   .hero-title{
-    font-size:62px;
+    font-size:58px;
   }
 
   .hero-description{
     font-size:18px;
-    line-height:1.7;
-  }
-
-  .floating-tags{
-    gap:12px;
-  }
-
-  .floating-tags span{
-    font-size:13px;
-    padding:12px 18px;
   }
 
   .handwritten-note{
@@ -638,474 +924,40 @@ body{
     height:520px;
   }
 
-  .envelope-base-img,
-  .envelope-front-img{
-    width:290px;
-
-    left:20px;
-    bottom:40px;
-  }
-
-  .letter{
-    width:220px;
-    height:auto;
-
-    left:40px;
-    top:70px;
-
-    padding:24px;
-  }
-
-  .letter-content h3{
-    font-size:42px;
-  }
-
-  .letter-content p{
-    font-size:15px;
-    line-height:1.7;
-  }
-
-  .photo-card{
-    width:180px;
-
-    right:0;
-    top:140px;
-  }
-
-  .photo-card img{
-    height:220px;
-  }
-
-  .stamp{
-    width:56px;
-    height:56px;
-
-    font-size:20px;
-
-    right:10px;
-    bottom:70px;
-  }
-
-  .sparkle{
-    transform:scale(.75);
-  }
-
-}
-
-/* ─────────────────────────────
-   LETTER INTERACTION
-───────────────────────────── */
-
-.letter{
-  cursor:pointer;
-
-  overflow:hidden;
-
-  transform:
-    rotate(-4deg)
-    translateY(0);
-
-  transition:
-    transform .8s cubic-bezier(.22,1,.36,1),
-    box-shadow .6s ease;
-}
-
-/* SHINE EFFECT */
-
-.letter::after{
-  content:"";
-
-  position:absolute;
-
-  top:-120%;
-  left:-40%;
-
-  width:55%;
-  height:260%;
-
-  background:
-    linear-gradient(
-      120deg,
-      transparent 0%,
-      rgba(255,255,255,.15) 35%,
-      rgba(255,255,255,.75) 50%,
-      rgba(255,255,255,.15) 65%,
-      transparent 100%
-    );
-
-  transform:
-    rotate(18deg)
-    translateX(-260px);
-
-  opacity:0;
-
-  pointer-events:none;
-}
-
-/* POPPED STATE */
-
-.letter.pop-out{
-  transform:
-    rotate(-2deg)
-    translateY(-130px)
-    scale(1.02);
-
-  box-shadow:
-    0 40px 90px rgba(0,0,0,.16);
-
-  z-index:30;
-}
-
-/* SHINE ANIMATION */
-
-.letter.pop-out::after{
-  animation:letterShine 1.2s ease forwards;
-}
-
-/* LETTER FLOAT */
-
-@keyframes letterLift{
-
-  0%{
-    transform:
-      rotate(-4deg)
-      translateY(0px)
-      scale(1);
-  }
-
-  60%{
-    transform:
-      rotate(-1deg)
-      translateY(-145px)
-      scale(1.03);
-  }
-
-  100%{
-    transform:
-      rotate(-2deg)
-      translateY(-130px)
-      scale(1.02);
-  }
-
-}
-
-/* SHINE */
-
-@keyframes letterShine{
-
-  0%{
-    opacity:0;
-    transform:
-      rotate(18deg)
-      translateX(-260px);
-  }
-
-  20%{
-    opacity:1;
-  }
-
-  100%{
-    opacity:1;
-    transform:
-      rotate(18deg)
-      translateX(520px);
-  }
-
-}
-
-/* =========================================================
-EXPERIENCE SECTION
-========================================================= */
-
-.experience-section{
-  width:100%;
-
-  padding:140px 80px;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-
-  gap:80px;
-
-  overflow:hidden;
-
-  position:relative;
-}
-
-/* LEFT */
-
-.experience-left{
-  width:28%;
-
-  position:sticky;
-  top:120px;
-}
-
-.experience-mini{
-  font-size:14px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-
-  color:#777;
-
-  margin-bottom:20px;
-}
-
-.experience-title{
-  font-family:"Playfair Display",serif;
-
-  font-size:72px;
-  line-height:.95;
-
-  margin-bottom:26px;
-}
-
-.experience-text{
-  font-size:18px;
-  line-height:1.9;
-
-  color:#555;
-
-  max-width:300px;
-}
-
-/* RIGHT */
-
-.experience-right{
-  width:72%;
-
-  overflow:hidden;
-}
-
-/* =========================================================
-PHOTO REEL
-========================================================= */
-
-.photo-reel{
-  width:100%;
-
-  overflow:hidden;
-
-  position:relative;
-}
-
-/* TRACK */
-
-.reel-track{
-  display:flex;
-  gap:40px;
-
-  width:max-content;
-
-  transition:transform .1s linear;
-}
-
-/* =========================================================
-EXPERIENCE CARD
-========================================================= */
-
-.exp-card{
-  position:relative;
-
-  width:360px;
-
-  background:#f5e5c8;
-
-  border-radius:26px;
-
-  padding:28px 22px 34px;
-
-  flex-shrink:0;
-
-  box-shadow:
-    0 24px 50px rgba(0,0,0,.08);
-
-  transform:
-    rotate(-2deg);
-
-  transition:
-    transform .35s ease;
-}
-
-.exp-card:nth-child(2){
-  transform:
-    rotate(2deg);
-}
-
-.exp-card:nth-child(3){
-  transform:
-    rotate(-3deg);
-}
-
-.exp-card:hover{
-  transform:
-    translateY(-10px)
-    rotate(0deg);
-}
-
-/* IMAGE */
-
-.exp-card img{
-  width:100%;
-  height:420px;
-
-  object-fit:cover;
-
-  border-radius:18px;
-
-  margin-bottom:24px;
-}
-
-/* CONTENT */
-
-.exp-content h3{
-  font-size:28px;
-
-  margin-bottom:12px;
-}
-
-.exp-content p{
-  font-size:16px;
-  line-height:1.8;
-
-  color:#555;
-}
-
-.exp-year{
-  display:inline-block;
-
-  margin-bottom:14px;
-
-  font-size:13px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-
-  color:#777;
-}
-
-/* =========================================================
-FILM HOLES
-========================================================= */
-
-.film-holes{
-  position:absolute;
-
-  left:16px;
-  right:16px;
-
-  height:14px;
-
-  display:flex;
-  justify-content:space-between;
-
-  z-index:3;
-}
-
-.film-holes.top{
-  top:10px;
-}
-
-.film-holes.bottom{
-  bottom:10px;
-}
-
-/* HOLES */
-
-.film-holes::before{
-  content:"";
-  display:none;
-}
-
-/* generate holes */
-
-.film-holes{
-  background-image:
-    repeating-linear-gradient(
-      to right,
-      transparent 0px,
-      transparent 18px,
-      #f5f5f1 18px,
-      #f5f5f1 30px
-    );
-
-  border-radius:20px;
-}
-
-/* =========================================================
-FLOATING FEEL
-========================================================= */
-
-.exp-card{
-  animation:floatCard 5s ease-in-out infinite;
-}
-
-.exp-card:nth-child(2){
-  animation-delay:1s;
-}
-
-.exp-card:nth-child(3){
-  animation-delay:2s;
-}
-
-@keyframes floatCard{
-
-  0%,100%{
-    transform:
-      translateY(0px)
-      rotate(-2deg);
-  }
-
-  50%{
-    transform:
-      translateY(-8px)
-      rotate(-1deg);
-  }
-
-}
-
-/* =========================================================
-RESPONSIVE
-========================================================= */
-
-@media (max-width:1024px){
-
   .experience-section{
-    flex-direction:column;
-
-    gap:60px;
-
-    padding:120px 40px;
-  }
-
-  .experience-left,
-  .experience-right{
-    width:100%;
-  }
-
-  .experience-left{
-    position:relative;
-    top:auto;
-  }
-
-}
-
-@media (max-width:768px){
-
-  .experience-section{
-    padding:100px 24px;
+    padding:120px 24px;
   }
 
   .experience-title{
-    font-size:54px;
+    font-size:58px;
+  }
+
+  .experience-right{
+    height:auto;
+
+    display:flex;
+    flex-direction:column;
+    gap:50px;
   }
 
   .exp-card{
-    width:280px;
+    position:relative !important;
+
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+
+    transform:none !important;
+
+    width:100%;
   }
 
   .exp-card img{
-    height:340px;
+    height:320px;
+  }
+
+  .exp-note{
+    display:none;
   }
 
 }
