@@ -691,3 +691,124 @@ body{
   }
 
 }
+
+/* ─────────────────────────────
+   LETTER INTERACTION
+───────────────────────────── */
+
+.letter{
+  cursor:pointer;
+
+  overflow:hidden;
+
+  transform:
+    rotate(-4deg)
+    translateY(0);
+
+  transition:
+    transform .8s cubic-bezier(.22,1,.36,1),
+    box-shadow .6s ease;
+}
+
+/* SHINE EFFECT */
+
+.letter::after{
+  content:"";
+
+  position:absolute;
+
+  top:-120%;
+  left:-40%;
+
+  width:55%;
+  height:260%;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,.15) 35%,
+      rgba(255,255,255,.75) 50%,
+      rgba(255,255,255,.15) 65%,
+      transparent 100%
+    );
+
+  transform:
+    rotate(18deg)
+    translateX(-260px);
+
+  opacity:0;
+
+  pointer-events:none;
+}
+
+/* POPPED STATE */
+
+.letter.pop-out{
+  transform:
+    rotate(-2deg)
+    translateY(-130px)
+    scale(1.02);
+
+  box-shadow:
+    0 40px 90px rgba(0,0,0,.16);
+
+  z-index:30;
+}
+
+/* SHINE ANIMATION */
+
+.letter.pop-out::after{
+  animation:letterShine 1.2s ease forwards;
+}
+
+/* LETTER FLOAT */
+
+@keyframes letterLift{
+
+  0%{
+    transform:
+      rotate(-4deg)
+      translateY(0px)
+      scale(1);
+  }
+
+  60%{
+    transform:
+      rotate(-1deg)
+      translateY(-145px)
+      scale(1.03);
+  }
+
+  100%{
+    transform:
+      rotate(-2deg)
+      translateY(-130px)
+      scale(1.02);
+  }
+
+}
+
+/* SHINE */
+
+@keyframes letterShine{
+
+  0%{
+    opacity:0;
+    transform:
+      rotate(18deg)
+      translateX(-260px);
+  }
+
+  20%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:1;
+    transform:
+      rotate(18deg)
+      translateX(520px);
+  }
+
+}
