@@ -15,7 +15,9 @@
 body{
   background:#f7f7f2;
   color:#111;
+
   font-family:"Montserrat",sans-serif;
+
   overflow-x:hidden;
 }
 
@@ -43,7 +45,7 @@ body{
   display:block;
 }
 
-/* NAV */
+/* NAV LINKS */
 
 .nav-links{
   display:flex;
@@ -67,8 +69,6 @@ body{
     transform .3s ease,
     opacity .3s ease;
 }
-
-/* DOTTED HOVER */
 
 .nav-links a::after{
   content:"";
@@ -99,7 +99,7 @@ body{
 }
 
 /* ─────────────────────────────
-   HERO
+   HERO SECTION
 ───────────────────────────── */
 
 .about-hero{
@@ -116,7 +116,7 @@ body{
 }
 
 /* ─────────────────────────────
-   LEFT
+   LEFT CONTENT
 ───────────────────────────── */
 
 .hero-left{
@@ -216,16 +216,18 @@ body{
 
 }
 
-/* HANDWRITTEN */
+/* HANDWRITTEN NOTE */
 
 .handwritten-note{
   font-family:"Caveat",cursive;
+
   font-size:36px;
+
   color:#444;
 }
 
 /* ─────────────────────────────
-   RIGHT
+   RIGHT SECTION
 ───────────────────────────── */
 
 .hero-right{
@@ -248,39 +250,29 @@ body{
 }
 
 /* ─────────────────────────────
-   ENVELOPE BASE
+   BASE PENTAGON
 ───────────────────────────── */
 
 .envelope{
   position:absolute;
 
-  left:40px;
-  bottom:10px;
+  left:90px;
+  bottom:45px;
 
-  width:460px;
+  width:430px;
   height:340px;
 
+  background:#dcc9aa;
+
   z-index:1;
-}
-
-/* MAIN BASE */
-
-.envelope-base{
-  position:absolute;
-  inset:0;
-
-  background:#e5d4b6;
 
   clip-path:polygon(
-    0% 24%,
-    50% 0%,
-    100% 24%,
-    100% 100%,
-    0% 100%
+    0% 0%,
+    100% 0%,
+    100% 72%,
+    50% 100%,
+    0% 72%
   );
-
-  box-shadow:
-    0 30px 70px rgba(0,0,0,.12);
 }
 
 /* ─────────────────────────────
@@ -290,23 +282,26 @@ body{
 .envelope-left{
   position:absolute;
 
-  left:-6px;
-  top:88px;
+  left:90px;
+  top:190px;
 
-  width:220px;
-  height:180px;
+  width:240px;
+  height:190px;
 
-  background:#d8c3a2;
+  background:#c9a774;
 
-  z-index:2;
+  z-index:6;
 
   clip-path:polygon(
     0% 0%,
-    28% 0%,
+    22% 0%,
     100% 50%,
-    28% 100%,
+    22% 100%,
     0% 100%
   );
+
+  border-top-right-radius:70px;
+  border-bottom-right-radius:70px;
 }
 
 /* ─────────────────────────────
@@ -316,23 +311,26 @@ body{
 .envelope-right{
   position:absolute;
 
-  right:-6px;
-  top:88px;
+  right:100px;
+  top:190px;
 
-  width:220px;
-  height:180px;
+  width:240px;
+  height:190px;
 
-  background:#cfb794;
+  background:#c9a774;
 
-  z-index:2;
+  z-index:6;
 
   clip-path:polygon(
-    72% 0%,
+    78% 0%,
     100% 0%,
     100% 100%,
-    72% 100%,
+    78% 100%,
     0% 50%
   );
+
+  border-top-left-radius:70px;
+  border-bottom-left-radius:70px;
 }
 
 /* ─────────────────────────────
@@ -342,44 +340,29 @@ body{
 .envelope-bottom{
   position:absolute;
 
-  left:0;
-  bottom:0;
+  left:145px;
+  bottom:45px;
 
-  width:100%;
-  height:185px;
+  width:320px;
+  height:190px;
 
-  background:#ead9bf;
+  background:#be9457;
 
-  z-index:4;
+  z-index:7;
 
   clip-path:polygon(
     0% 100%,
-    0% 74%,
-    36% 18%,
-    46% 18%,
-    54% 18%,
-    64% 18%,
-    100% 74%,
+    0% 82%,
+    26% 24%,
+    42% 0%,
+    58% 0%,
+    74% 24%,
+    100% 82%,
     100% 100%
   );
-}
 
-/* INNER SHADE */
-
-.envelope-bottom::before{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  background:
-    linear-gradient(
-      to top,
-      rgba(0,0,0,.05),
-      transparent 40%
-    );
-
-  mix-blend-mode:multiply;
+  border-top-left-radius:80px;
+  border-top-right-radius:80px;
 }
 
 /* ─────────────────────────────
@@ -389,25 +372,22 @@ body{
 .letter{
   position:absolute;
 
-  left:110px;
-  top:55px;
+  left:125px;
+  top:70px;
 
   width:320px;
   height:370px;
 
   background:#fffef9;
 
-  padding:34px;
+  padding:36px;
 
   z-index:3;
 
+  transform:rotate(-4deg);
+
   box-shadow:
-    0 22px 50px rgba(0,0,0,.08);
-
-  transform:rotate(-5deg);
-
-  transition:
-    transform .4s ease;
+    0 25px 50px rgba(0,0,0,.08);
 }
 
 /* PAPER TEXTURE */
@@ -421,12 +401,14 @@ body{
   background:
     linear-gradient(
       to bottom,
-      rgba(0,0,0,.015),
+      rgba(0,0,0,.02),
       transparent
     );
 
   pointer-events:none;
 }
+
+/* LETTER TEXT */
 
 .letter-date{
   display:block;
@@ -435,9 +417,9 @@ body{
   letter-spacing:.08em;
   text-transform:uppercase;
 
-  color:#888;
+  color:#777;
 
-  margin-bottom:22px;
+  margin-bottom:20px;
 }
 
 .letter-content h3{
@@ -460,31 +442,34 @@ body{
 .photo-card{
   position:absolute;
 
-  right:-10px;
-  top:105px;
+  right:15px;
+  top:115px;
 
-  width:250px;
+  width:240px;
 
   background:#fff;
 
+  border-radius:24px;
+
   padding:14px;
 
-  z-index:5;
-
-  box-shadow:
-    0 24px 60px rgba(0,0,0,.14);
+  z-index:10;
 
   transform:rotate(8deg);
 
-  transition:
-    transform .4s ease;
+  box-shadow:
+    0 30px 60px rgba(0,0,0,.14);
+
+  transition:transform .4s ease;
 }
 
 .photo-card img{
   width:100%;
-  height:300px;
+  height:285px;
 
   object-fit:cover;
+
+  border-radius:18px;
 
   margin-bottom:14px;
 }
@@ -502,60 +487,25 @@ body{
 }
 
 /* ─────────────────────────────
-   STAMP
+   STAR
 ───────────────────────────── */
 
 .stamp{
   position:absolute;
 
-  right:40px;
-  bottom:90px;
+  left:45px;
+  bottom:155px;
 
-  width:74px;
-  height:74px;
+  width:34px;
+  height:34px;
 
-  border-radius:50%;
-
-  border:2px dashed rgba(0,0,0,.45);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:26px;
-
-  color:#444;
-
-  background:rgba(255,255,255,.45);
-
-  backdrop-filter:blur(10px);
-
-  transform:rotate(-12deg);
-
-  z-index:6;
+  z-index:20;
 }
 
-/* ─────────────────────────────
-   FLOATING STARS
-───────────────────────────── */
-
-.sparkle{
-  position:absolute;
-
-  width:30px;
-  height:30px;
-
-  z-index:8;
-
-  animation:starFloat 4s ease-in-out infinite;
-}
-
-/* STAR LINES */
-
-.sparkle::before,
-.sparkle::after,
-.sparkle span::before,
-.sparkle span::after{
+.stamp::before,
+.stamp::after,
+.stamp span::before,
+.stamp span::after{
   content:"";
 
   position:absolute;
@@ -570,9 +520,9 @@ body{
 
 /* vertical */
 
-.sparkle::before{
-  width:4px;
-  height:30px;
+.stamp::before{
+  width:5px;
+  height:34px;
 
   transform:
     translate(-50%,-50%);
@@ -580,73 +530,38 @@ body{
 
 /* horizontal */
 
-.sparkle::after{
-  width:30px;
-  height:4px;
+.stamp::after{
+  width:34px;
+  height:5px;
 
   transform:
     translate(-50%,-50%);
 }
 
-/* diagonal */
+/* diagonal 1 */
 
-.sparkle span::before{
-  width:4px;
-  height:26px;
+.stamp span::before{
+  width:5px;
+  height:30px;
 
   transform:
     translate(-50%,-50%)
     rotate(45deg);
 }
 
-/* opposite diagonal */
+/* diagonal 2 */
 
-.sparkle span::after{
-  width:4px;
-  height:26px;
+.stamp span::after{
+  width:5px;
+  height:30px;
 
   transform:
     translate(-50%,-50%)
     rotate(-45deg);
 }
 
-/* POSITIONS */
-
-.star-1{
-  top:35px;
-  right:120px;
-}
-
-.star-2{
-  left:20px;
-  bottom:120px;
-
-  animation-delay:1s;
-}
-
-.star-3{
-  right:20px;
-  top:260px;
-
-  animation-delay:2s;
-}
-
-/* FLOAT */
-
-@keyframes starFloat{
-
-  0%,100%{
-    transform:translateY(0px);
-  }
-
-  50%{
-    transform:translateY(-8px);
-  }
-
-}
-
 /* ─────────────────────────────
-   HOVER
+   HOVER EFFECT
 ───────────────────────────── */
 
 .envelope-scene:hover .photo-card{
@@ -669,6 +584,7 @@ body{
 
   .about-hero{
     flex-direction:column;
+
     gap:90px;
   }
 
@@ -700,6 +616,7 @@ body{
 
   .about-hero{
     padding:30px 24px 80px;
+
     gap:60px;
   }
 
@@ -727,22 +644,47 @@ body{
 
   .envelope-scene{
     width:100%;
-    height:500px;
+    height:520px;
   }
 
   .envelope{
-    width:320px;
-    height:230px;
+    width:300px;
+    height:240px;
 
-    left:10px;
-    bottom:10px;
+    left:20px;
+    bottom:40px;
+  }
+
+  .envelope-left{
+    width:170px;
+    height:140px;
+
+    left:20px;
+    top:220px;
+  }
+
+  .envelope-right{
+    width:170px;
+    height:140px;
+
+    right:20px;
+    top:220px;
+  }
+
+  .envelope-bottom{
+    width:220px;
+    height:130px;
+
+    left:60px;
+    bottom:40px;
   }
 
   .letter{
     width:220px;
+    height:auto;
 
-    left:10px;
-    top:40px;
+    left:35px;
+    top:60px;
 
     padding:24px;
   }
@@ -757,28 +699,14 @@ body{
   }
 
   .photo-card{
-    width:180px;
+    width:170px;
 
     right:0;
-    top:100px;
+    top:120px;
   }
 
   .photo-card img{
-    height:220px;
-  }
-
-  .stamp{
-    width:56px;
-    height:56px;
-
-    font-size:20px;
-
-    right:12px;
-    bottom:40px;
-  }
-
-  .sparkle{
-    transform:scale(.75);
+    height:210px;
   }
 
 }
