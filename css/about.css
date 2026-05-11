@@ -519,9 +519,9 @@ body{
   position:relative;
   min-height:320px;
 
-  background:rgba(230,197,196,.82);
+  background:rgb(246 213 212 / 82%);
 
-  border:2.5px dashed #c99695;
+  border:2px dashed #e6adac;
 
   border-radius:2px;
 
