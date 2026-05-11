@@ -17,6 +17,53 @@ body{
   color:#111;
   font-family:"Montserrat",sans-serif;
   overflow-x:hidden;
+  position:relative;
+}
+
+/* ─────────────────────────────
+   FLOATING STAR STAMPS
+───────────────────────────── */
+
+.star-stamp{
+  position:absolute;
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  border:1px dashed rgba(0,0,0,.22);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  color:#7c6c6c;
+  background:rgba(255,255,255,.28);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  z-index:2;
+  box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.stamp-a{
+  top:140px;
+  left:40px;
+  transform:rotate(-10deg);
+}
+
+.stamp-b{
+  top:980px;
+  right:60px;
+  transform:rotate(8deg);
+}
+
+.stamp-c{
+  top:1850px;
+  left:80px;
+  transform:rotate(-6deg);
+}
+
+.stamp-d{
+  bottom:220px;
+  right:90px;
+  transform:rotate(12deg);
 }
 
 /* ─────────────────────────────
@@ -108,6 +155,8 @@ body{
   align-items:center;
   justify-content:space-between;
   gap:80px;
+  position:relative;
+  z-index:3;
 }
 
 /* LEFT */
@@ -249,8 +298,10 @@ body{
   margin-bottom:20px;
 }
 
+/* REDUCED HELLO SIZE */
+
 .letter-content h3{
-  font-size:54px;
+  font-size:42px;
   margin-bottom:14px;
   font-family:"Playfair Display",serif;
 }
@@ -269,6 +320,8 @@ body{
   z-index:4;
 }
 
+/* PHOTO CARD */
+
 .photo-card{
   position:absolute;
   right:15px;
@@ -276,7 +329,7 @@ body{
   width:230px;
   background:white;
   padding:12px;
-  border-radius:18px;
+  border-radius:10px;
   z-index:10;
   box-shadow:0 20px 42px rgba(0,0,0,.12);
   transform:rotate(8deg);
@@ -286,7 +339,7 @@ body{
   width:100%;
   height:280px;
   object-fit:cover;
-  border-radius:14px;
+  border-radius:8px;
   margin-bottom:12px;
 }
 
@@ -398,12 +451,30 @@ body{
 }
 
 /* ─────────────────────────────
+   SECTION HEADINGS
+───────────────────────────── */
+
+.abc-heading,
+.hobbies-heading{
+  display:inline-block;
+  padding:24px 34px;
+  border-radius:22px;
+  border:1px dashed rgba(0,0,0,.22);
+  background:rgba(255,255,255,.32);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 10px 30px rgba(0,0,0,.04);
+}
+
+/* ─────────────────────────────
    ABC SECTION
 ───────────────────────────── */
 
 .abc-section{
   width:100%;
   padding:120px 80px;
+  position:relative;
+  z-index:3;
 }
 
 .abc-heading{
@@ -418,11 +489,13 @@ body{
   margin-bottom:16px;
 }
 
+/* SAME SIZE AS HELLO */
+
 .abc-title{
   font-family:"Playfair Display",serif;
-  font-size:clamp(52px,6vw,96px);
-  line-height:.95;
-  letter-spacing:-0.05em;
+  font-size:42px;
+  line-height:1;
+  letter-spacing:-0.04em;
 }
 
 /* CARDS */
@@ -448,6 +521,13 @@ body{
 
 .abc-card:hover{
   transform:translateY(-8px);
+}
+
+/* WORK EXPERIENCE + EDUCATION COLOR */
+
+.education-card,
+.abc-card{
+  background:#E6C5C4;
 }
 
 /* GRID */
@@ -541,10 +621,14 @@ body{
 .hobbies-section{
   width:100%;
   padding:120px 80px 160px;
+  position:relative;
 }
 
 .hobbies-heading{
-  margin-bottom:60px;
+  margin-bottom:-50px;
+  position:relative;
+  z-index:10;
+  margin-left:40px;
 }
 
 .hobbies-mini{
@@ -555,10 +639,12 @@ body{
   margin-bottom:16px;
 }
 
+/* SAME SIZE AS HELLO */
+
 .hobbies-title{
   font-family:"Playfair Display",serif;
-  font-size:clamp(52px,6vw,96px);
-  line-height:.95;
+  font-size:42px;
+  line-height:1;
 }
 
 /* BOARD */
@@ -711,7 +797,7 @@ body{
 
   .peg-board{
     height:auto;
-    padding:40px;
+    padding:100px 40px 40px;
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:24px;
@@ -750,10 +836,13 @@ body{
     padding:30px 24px 80px;
   }
 
-  .hero-title,
+  .hero-title{
+    font-size:58px;
+  }
+
   .abc-title,
   .hobbies-title{
-    font-size:58px;
+    font-size:36px;
   }
 
   .hero-description{
@@ -794,7 +883,7 @@ body{
   }
 
   .letter-content h3{
-    font-size:42px;
+    font-size:36px;
   }
 
   .letter-content p{
@@ -809,6 +898,10 @@ body{
 
   .photo-card img{
     height:220px;
+  }
+
+  .star-stamp{
+    display:none;
   }
 
 }
