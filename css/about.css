@@ -1185,3 +1185,238 @@ RESPONSIVE
 
 }
 
+/* =========================================================
+SECTION 3 — ABC
+========================================================= */
+
+.abc-section{
+
+  width:100%;
+
+  padding:140px 80px;
+
+  position:relative;
+}
+
+/* =========================================================
+HEADING
+========================================================= */
+
+.abc-heading{
+
+  margin-bottom:70px;
+}
+
+.abc-mini{
+
+  font-size:14px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+
+  color:#7a7a7a;
+
+  margin-bottom:18px;
+}
+
+.abc-title{
+
+  font-family:"Playfair Display",serif;
+
+  font-size:clamp(58px,7vw,110px);
+
+  line-height:.95;
+  letter-spacing:-0.05em;
+}
+
+/* =========================================================
+CARDS LAYOUT
+========================================================= */
+
+.abc-cards{
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  gap:34px;
+}
+
+/* =========================================================
+CARD
+========================================================= */
+
+.abc-card{
+
+  position:relative;
+
+  min-height:320px;
+
+  border:2px dashed #e7bfd0;
+
+  border-radius:28px;
+
+  background:#f7e4ec;
+
+  overflow:hidden;
+
+  transition:.4s ease;
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.04);
+}
+
+/* HOVER */
+
+.abc-card:hover{
+
+  transform:
+    translateY(-10px)
+    rotate(-1deg);
+
+  box-shadow:
+    0 24px 50px rgba(0,0,0,.08);
+}
+
+/* =========================================================
+GRID BACKGROUND
+========================================================= */
+
+.abc-grid{
+
+  position:absolute;
+  inset:0;
+
+  background-image:
+
+    linear-gradient(
+      rgba(0,0,0,.05) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.05) 1px,
+      transparent 1px
+    );
+
+  background-size:36px 36px;
+
+  opacity:.45;
+
+  pointer-events:none;
+}
+
+/* =========================================================
+INNER CONTENT
+========================================================= */
+
+.abc-inner{
+
+  position:relative;
+  z-index:2;
+
+  padding:42px 38px;
+}
+
+/* COMPANY */
+
+.abc-company{
+
+  display:inline-block;
+
+  font-size:14px;
+  font-weight:600;
+
+  letter-spacing:.08em;
+  text-transform:uppercase;
+
+  color:#5b5b5b;
+
+  margin-bottom:14px;
+}
+
+/* DURATION */
+
+.abc-duration{
+
+  display:block;
+
+  font-size:15px;
+
+  color:#666;
+
+  margin-bottom:24px;
+}
+
+/* TITLE */
+
+.abc-inner h3{
+
+  font-size:42px;
+
+  line-height:1.05;
+
+  margin-bottom:24px;
+
+  font-weight:700;
+}
+
+/* DESCRIPTION */
+
+.abc-inner p{
+
+  font-size:18px;
+  line-height:1.8;
+
+  color:#444;
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media (max-width:1100px){
+
+  .abc-cards{
+
+    grid-template-columns:1fr;
+
+    gap:26px;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .abc-section{
+
+    padding:100px 24px;
+  }
+
+  .abc-title{
+
+    font-size:62px;
+  }
+
+  .abc-card{
+
+    min-height:auto;
+  }
+
+  .abc-inner{
+
+    padding:34px 26px;
+  }
+
+  .abc-inner h3{
+
+    font-size:32px;
+  }
+
+  .abc-inner p{
+
+    font-size:16px;
+    line-height:1.7;
+  }
+
+}
+
