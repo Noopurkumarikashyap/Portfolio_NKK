@@ -20,6 +20,7 @@ body{
   position:relative;
 }
 
+
 /* ─────────────────────────────
    FLOATING STAR STAMPS
 ───────────────────────────── */
@@ -31,108 +32,143 @@ body{
   align-items:center;
   justify-content:center;
 
-  color:rgba(124,108,108,.22);
+  color:rgba(124,108,108,.16);
 
   background:none;
   border:none;
   box-shadow:none;
-  backdrop-filter:none;
-  -webkit-backdrop-filter:none;
 
   z-index:1;
 
-  animation:floatStar 7s ease-in-out infinite;
   pointer-events:none;
+
+  filter:blur(.2px);
 }
 
-/* DIFFERENT SIZES */
+/* SIZE VARIATIONS */
 
-.star-stamp.small{
+.star-stamp.tiny{
   font-size:18px;
 }
 
+.star-stamp.small{
+  font-size:34px;
+}
+
 .star-stamp.medium{
-  font-size:28px;
+  font-size:56px;
 }
 
 .star-stamp.large{
-  font-size:42px;
+  font-size:88px;
 }
 
-/* SPREAD ACROSS PAGE */
+.star-stamp.xl{
+  font-size:130px;
+}
+
+/* ─────────────────────────────
+   CLUSTER 1 — HERO AREA
+───────────────────────────── */
 
 .stamp-a{
   top:120px;
-  left:6%;
-  transform:rotate(-12deg);
+  left:4%;
+  transform:rotate(-10deg);
 }
 
 .stamp-b{
-  top:420px;
-  right:8%;
+  top:170px;
+  left:10%;
   transform:rotate(8deg);
 }
 
 .stamp-c{
-  top:820px;
-  left:18%;
+  top:250px;
+  left:7%;
   transform:rotate(-6deg);
 }
 
+/* ─────────────────────────────
+   CLUSTER 2 — EXPERIENCE
+───────────────────────────── */
+
 .stamp-d{
-  top:1180px;
-  right:20%;
-  transform:rotate(14deg);
+  top:880px;
+  right:4%;
+  transform:rotate(12deg);
 }
 
 .stamp-e{
-  top:1520px;
-  left:8%;
-  transform:rotate(-10deg);
-}
-
-.stamp-f{
-  top:1850px;
-  right:10%;
-  transform:rotate(7deg);
-}
-
-.stamp-g{
-  bottom:520px;
-  left:24%;
+  top:980px;
+  right:12%;
   transform:rotate(-8deg);
 }
 
+.stamp-f{
+  top:1120px;
+  right:8%;
+  transform:rotate(5deg);
+}
+
+/* ─────────────────────────────
+   CLUSTER 3 — HOBBIES TOP
+───────────────────────────── */
+
+.stamp-g{
+  top:1650px;
+  left:5%;
+  transform:rotate(-10deg);
+}
+
 .stamp-h{
-  bottom:240px;
-  right:6%;
+  top:1750px;
+  left:16%;
   transform:rotate(10deg);
 }
 
 .stamp-i{
-  top:2350px;
-  left:48%;
+  top:1850px;
+  left:10%;
   transform:rotate(-4deg);
 }
 
+/* ─────────────────────────────
+   CLUSTER 4 — BELOW PEG BOARD
+───────────────────────────── */
+
 .stamp-j{
-  top:680px;
-  left:72%;
-  transform:rotate(12deg);
+  bottom:220px;
+  right:6%;
+  transform:rotate(8deg);
 }
 
-/* FLOATING MOTION */
+.stamp-k{
+  bottom:130px;
+  right:16%;
+  transform:rotate(-10deg);
+}
 
-@keyframes floatStar{
+.stamp-l{
+  bottom:320px;
+  right:22%;
+  transform:rotate(4deg);
+}
 
-  0%,100%{
-    transform:translateY(0px);
-  }
+/* ─────────────────────────────
+   CENTER FLOATERS
+───────────────────────────── */
 
-  50%{
-    transform:translateY(-10px);
-  }
+.stamp-m{
+  top:1380px;
+  left:48%;
+  transform:rotate(-6deg);
+}
 
+.stamp-n{
+  top:2280px;
+  left:42%;
+  transform:rotate(8deg);
 }
 /* ─────────────────────────────
    NAVBAR
