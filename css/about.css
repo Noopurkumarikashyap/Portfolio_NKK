@@ -31,7 +31,7 @@ body{
   align-items:center;
   justify-content:center;
 
-  color:rgba(124,108,108,.10);
+  color:rgba(124,108,108,.08);
 
   background:none;
   border:none;
@@ -55,20 +55,18 @@ body{
 }
 
 .star-stamp.medium{
-  font-size:56px;
+  font-size:58px;
 }
 
 .star-stamp.large{
-  font-size:88px;
+  font-size:92px;
 }
 
 .star-stamp.xl{
-  font-size:130px;
+  font-size:140px;
 }
 
-/* ─────────────────────────────
-   HERO STAR CLUSTER
-───────────────────────────── */
+/* HERO CLUSTER */
 
 .stamp-a{
   top:140px;
@@ -83,24 +81,20 @@ body{
 }
 
 .stamp-c{
-  top:310px;
+  top:320px;
   left:5%;
   transform:rotate(-6deg);
 }
 
-/* FIXED TOP CENTER STAR */
-
 .stamp-top-center{
-  top:120px;
+  top:110px;
   left:48%;
   transform:rotate(8deg);
-  color:rgba(124,108,108,.05);
-  font-size:42px;
+  color:rgba(124,108,108,.04);
+  font-size:44px;
 }
 
-/* ─────────────────────────────
-   EXPERIENCE CLUSTER
-───────────────────────────── */
+/* EXPERIENCE */
 
 .stamp-d{
   top:940px;
@@ -120,9 +114,7 @@ body{
   transform:rotate(5deg);
 }
 
-/* ─────────────────────────────
-   CENTER FLOATERS
-───────────────────────────── */
+/* CENTER */
 
 .stamp-g{
   top:1380px;
@@ -136,9 +128,7 @@ body{
   transform:rotate(12deg);
 }
 
-/* ─────────────────────────────
-   HOBBIES CLUSTER
-───────────────────────────── */
+/* HOBBIES */
 
 .stamp-i{
   top:1900px;
@@ -158,9 +148,7 @@ body{
   transform:rotate(-4deg);
 }
 
-/* ─────────────────────────────
-   BELOW PEG BOARD
-───────────────────────────── */
+/* BELOW PEG BOARD */
 
 .stamp-l{
   bottom:380px;
@@ -290,7 +278,7 @@ body{
 }
 
 /* ─────────────────────────────
-   GLASSMORPHISM TAGS
+   STATIC GLASS TAGS
 ───────────────────────────── */
 
 .floating-tags{
@@ -301,73 +289,56 @@ body{
 }
 
 .floating-tags span{
+
   position:relative;
 
-  background:rgba(255,255,255,.22);
-
-  border:1.5px solid rgba(255,255,255,.45);
-
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-
-  padding:14px 22px;
+  padding:14px 24px;
 
   border-radius:999px;
 
   font-size:13px;
   font-weight:600;
-  letter-spacing:.02em;
+  letter-spacing:.04em;
 
-  color:#111;
+  color:#222;
+
+  background:rgba(255,255,255,.28);
+
+  border:1.8px dashed rgba(0,0,0,.24);
+
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
 
   box-shadow:
-    0 10px 30px rgba(0,0,0,.06),
+    0 10px 30px rgba(0,0,0,.04),
     inset 0 1px 1px rgba(255,255,255,.45);
 
   overflow:hidden;
-
-  animation:floatTag 5s ease-in-out infinite;
 }
+
+/* SHINE */
 
 .floating-tags span::before{
   content:"";
 
   position:absolute;
-  top:-30%;
-  left:-40%;
+  top:-40%;
+  left:-50%;
 
   width:70%;
-  height:180%;
+  height:200%;
 
   background:linear-gradient(
     to right,
     transparent,
-    rgba(255,255,255,.45),
+    rgba(255,255,255,.55),
     transparent
   );
 
   transform:rotate(18deg);
 }
 
-.floating-tags span:nth-child(2){
-  animation-delay:1s;
-}
-
-.floating-tags span:nth-child(3){
-  animation-delay:2s;
-}
-
-@keyframes floatTag{
-
-  0%,100%{
-    transform:translateY(0px);
-  }
-
-  50%{
-    transform:translateY(-6px);
-  }
-
-}
+/* NO FLOAT ANIMATION */
 
 .handwritten-note{
   font-family:"Caveat",cursive;
@@ -392,6 +363,32 @@ body{
   height:620px;
 }
 
+/* CONTINUOUS FLOAT */
+
+@keyframes gentleFloat{
+
+  0%,100%{
+    transform:translateY(0px) rotate(-4deg);
+  }
+
+  50%{
+    transform:translateY(-10px) rotate(-2deg);
+  }
+
+}
+
+@keyframes gentlePhotoFloat{
+
+  0%,100%{
+    transform:translateY(0px) rotate(8deg);
+  }
+
+  50%{
+    transform:translateY(-12px) rotate(10deg);
+  }
+
+}
+
 .envelope-base-img{
   position:absolute;
   width:420px;
@@ -412,7 +409,8 @@ body{
   z-index:2;
   border-radius:4px;
   box-shadow:0 20px 46px rgba(0,0,0,.08);
-  transform:rotate(-4deg);
+
+  animation:gentleFloat 6s ease-in-out infinite;
 }
 
 .letter::before{
@@ -467,7 +465,8 @@ body{
   border-radius:10px;
   z-index:10;
   box-shadow:0 20px 42px rgba(0,0,0,.12);
-  transform:rotate(8deg);
+
+  animation:gentlePhotoFloat 7s ease-in-out infinite;
 }
 
 .photo-card img{
@@ -721,6 +720,7 @@ body{
   line-height:1.8;
   color:#444;
 }
+
 /* ─────────────────────────────
    HOBBIES
 ───────────────────────────── */
@@ -880,9 +880,7 @@ body{
   transform:rotate(-5deg);
 }
 
-/* ─────────────────────────────
-   EMOJIS
-───────────────────────────── */
+/* EMOJIS */
 
 .peg-emoji{
   position:absolute;
