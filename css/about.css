@@ -61,32 +61,6 @@ body{
 }
 
 /* ─────────────────────────────
-   GLOBAL TYPOGRAPHY
-───────────────────────────── */
-
-.section-mini{
-  font-size:12px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:#7b7b7b;
-  margin-bottom:18px;
-}
-
-.section-title{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(52px,6vw,96px);
-  line-height:.95;
-  letter-spacing:-0.05em;
-  color:#111;
-}
-
-.section-description{
-  font-size:16px;
-  line-height:1.8;
-  color:#5f5f5f;
-}
-
-/* ─────────────────────────────
    NAVBAR
 ───────────────────────────── */
 
@@ -292,8 +266,6 @@ body{
   margin-bottom:20px;
 }
 
-/* REDUCED HELLO SIZE */
-
 .letter-content h3{
   font-size:42px;
   margin-bottom:14px;
@@ -347,24 +319,6 @@ body{
   color:#666;
 }
 
-.stamp{
-  position:absolute;
-  right:35px;
-  bottom:100px;
-  width:64px;
-  height:64px;
-  border-radius:50%;
-  border:1px dashed rgba(0,0,0,.4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  color:#444;
-  background:rgba(255,255,255,.45);
-  backdrop-filter:blur(10px);
-  z-index:20;
-}
-
 /* SPARKLES */
 
 .sparkle{
@@ -402,22 +356,13 @@ body{
 .sparkle span::before{
   width:3px;
   height:20px;
-  transform:
-    translate(-50%,-50%)
-    rotate(45deg);
+  transform:translate(-50%,-50%) rotate(45deg);
 }
 
 .sparkle span::after{
   width:3px;
   height:20px;
-  transform:
-    translate(-50%,-50%)
-    rotate(-45deg);
-}
-
-.star-1{
-  top:40px;
-  right:130px;
+  transform:translate(-50%,-50%) rotate(-45deg);
 }
 
 .star-2{
@@ -496,8 +441,6 @@ body{
   margin-bottom:16px;
 }
 
-/* SAME SIZE AS HELLO */
-
 .abc-title{
   font-family:"Playfair Display",serif;
   font-size:42px;
@@ -512,8 +455,6 @@ body{
   grid-template-columns:repeat(3,1fr);
   gap:26px;
 }
-
-/* CARD */
 
 .abc-card{
   position:relative;
@@ -536,8 +477,6 @@ body{
   transform:translateY(-8px);
 }
 
-/* GRID */
-
 .abc-grid{
   position:absolute;
   inset:0;
@@ -550,8 +489,6 @@ body{
   background-size:32px 32px;
   opacity:.20;
 }
-
-/* CORNER SQUARES */
 
 .corner{
   position:absolute;
@@ -581,8 +518,6 @@ body{
   bottom:-6px;
   right:-6px;
 }
-
-/* CONTENT */
 
 .abc-inner{
   position:relative;
@@ -643,8 +578,6 @@ body{
   color:#7b7b7b;
   margin-bottom:16px;
 }
-
-/* SAME SIZE AS HELLO */
 
 .hobbies-title{
   font-family:"Playfair Display",serif;
@@ -782,6 +715,57 @@ body{
 }
 
 /* ─────────────────────────────
+   EMOJIS
+───────────────────────────── */
+
+.peg-emoji{
+  position:absolute;
+  font-size:42px;
+  z-index:3;
+  filter:drop-shadow(0 8px 12px rgba(0,0,0,.08));
+  animation:floatEmoji 5s ease-in-out infinite;
+  opacity:.95;
+}
+
+@keyframes floatEmoji{
+
+  0%,100%{
+    transform:translateY(0px) rotate(0deg);
+  }
+
+  50%{
+    transform:translateY(-10px) rotate(4deg);
+  }
+
+}
+
+/* SPREAD ACROSS BOARD */
+
+.emoji-1{
+  top:110px;
+  left:70px;
+  animation-delay:0s;
+}
+
+.emoji-2{
+  top:120px;
+  right:120px;
+  animation-delay:1s;
+}
+
+.emoji-3{
+  bottom:160px;
+  left:180px;
+  animation-delay:2s;
+}
+
+.emoji-4{
+  bottom:130px;
+  right:130px;
+  animation-delay:3s;
+}
+
+/* ─────────────────────────────
    RESPONSIVE
 ───────────────────────────── */
 
@@ -818,6 +802,16 @@ body{
     transform:none;
     width:100%;
     max-width:none;
+  }
+
+  .peg-emoji{
+    position:relative;
+    top:auto !important;
+    left:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    justify-self:center;
+    margin:auto;
   }
 
 }
