@@ -20,14 +20,12 @@ body{
   position:relative;
 }
 
-
 /* ─────────────────────────────
    FLOATING STAR STAMPS
 ───────────────────────────── */
 
 .star-stamp{
   position:absolute;
-
   display:flex;
   align-items:center;
   justify-content:center;
@@ -67,9 +65,7 @@ body{
   font-size:130px;
 }
 
-/* ─────────────────────────────
-   CLUSTER 1 — HERO AREA
-───────────────────────────── */
+/* HERO CLUSTER */
 
 .stamp-a{
   top:120px;
@@ -89,9 +85,7 @@ body{
   transform:rotate(-6deg);
 }
 
-/* ─────────────────────────────
-   CLUSTER 2 — EXPERIENCE
-───────────────────────────── */
+/* EXPERIENCE CLUSTER */
 
 .stamp-d{
   top:880px;
@@ -111,9 +105,7 @@ body{
   transform:rotate(5deg);
 }
 
-/* ─────────────────────────────
-   CLUSTER 3 — HOBBIES TOP
-───────────────────────────── */
+/* HOBBIES CLUSTER */
 
 .stamp-g{
   top:1650px;
@@ -133,9 +125,7 @@ body{
   transform:rotate(-4deg);
 }
 
-/* ─────────────────────────────
-   CLUSTER 4 — BELOW PEG BOARD
-───────────────────────────── */
+/* BELOW BOARD */
 
 .stamp-j{
   bottom:220px;
@@ -155,9 +145,7 @@ body{
   transform:rotate(4deg);
 }
 
-/* ─────────────────────────────
-   CENTER FLOATERS
-───────────────────────────── */
+/* CENTER FLOATERS */
 
 .stamp-m{
   top:1380px;
@@ -170,6 +158,7 @@ body{
   left:42%;
   transform:rotate(8deg);
 }
+
 /* ─────────────────────────────
    NAVBAR
 ───────────────────────────── */
@@ -277,16 +266,28 @@ body{
 }
 
 .floating-tags span{
-  background:rgba(255,255,255,.75);
-  border:1px solid rgba(255,255,255,.5);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  padding:12px 18px;
+
+  background:rgba(255,255,255,.22);
+
+  border:1.5px solid rgba(255,255,255,.38);
+
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.06),
+    inset 0 1px 1px rgba(255,255,255,.28);
+
+  padding:13px 22px;
+
   border-radius:999px;
+
   font-size:13px;
   font-weight:500;
-  color:#111;
-  box-shadow:0 10px 24px rgba(0,0,0,.06);
+  letter-spacing:.02em;
+
+  color:#222;
+
   animation:floatTag 5s ease-in-out infinite;
 }
 
@@ -419,16 +420,6 @@ body{
   margin-bottom:12px;
 }
 
-.photo-info h4{
-  font-size:18px;
-  margin-bottom:4px;
-}
-
-.photo-info p{
-  font-size:13px;
-  color:#666;
-}
-
 /* SPARKLES */
 
 .sparkle{
@@ -447,8 +438,18 @@ body{
   position:absolute;
   left:50%;
   top:50%;
-  background:#fff;
+
+  background:rgba(255,255,255,.28);
+
   border-radius:999px;
+
+  filter:blur(.4px);
+}
+
+/* REMOVE TOP STAR */
+
+.star-1{
+  display:none;
 }
 
 .sparkle::before{
@@ -495,522 +496,6 @@ body{
 
   50%{
     transform:translateY(-8px);
-  }
-
-}
-
-/* ─────────────────────────────
-   SECTION HEADINGS
-───────────────────────────── */
-
-.abc-heading,
-.hobbies-heading{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-
-  width:fit-content;
-  margin-left:auto;
-  margin-right:auto;
-
-  padding:24px 38px;
-
-  border-radius:22px;
-  border:1.8px dashed rgba(0,0,0,.24);
-
-  background:rgba(255,255,255,.24);
-
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-
-  box-shadow:0 10px 30px rgba(0,0,0,.04);
-}
-
-/* ─────────────────────────────
-   ABC SECTION
-───────────────────────────── */
-
-.abc-section{
-  width:100%;
-  padding:120px 80px;
-  position:relative;
-  z-index:3;
-}
-
-.abc-heading{
-  margin-bottom:60px;
-}
-
-.abc-mini{
-  font-size:12px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:#7b7b7b;
-  margin-bottom:16px;
-}
-
-.abc-title{
-  font-family:"Playfair Display",serif;
-  font-size:42px;
-  line-height:1;
-  letter-spacing:-0.04em;
-}
-
-/* CARDS */
-
-.abc-cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:26px;
-}
-
-.abc-card{
-  position:relative;
-  min-height:320px;
-
-  background:rgb(246 213 212 / 82%);
-
-  border:2px dashed #e6adac;
-
-  border-radius:2px;
-
-  overflow:visible;
-
-  transition:.35s ease;
-
-  box-shadow:0 14px 34px rgba(0,0,0,.04);
-}
-
-.abc-card:hover{
-  transform:translateY(-8px);
-}
-
-.abc-grid{
-  position:absolute;
-  inset:0;
-  border-radius:2px;
-
-  background-image:
-    linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,.05) 1px, transparent 1px);
-
-  background-size:32px 32px;
-  opacity:.20;
-}
-
-.corner{
-  position:absolute;
-  width:12px;
-  height:12px;
-  background:#f5f5f1;
-  border:1.5px solid #c99695;
-  z-index:10;
-}
-
-.corner.tl{
-  top:-6px;
-  left:-6px;
-}
-
-.corner.tr{
-  top:-6px;
-  right:-6px;
-}
-
-.corner.bl{
-  bottom:-6px;
-  left:-6px;
-}
-
-.corner.br{
-  bottom:-6px;
-  right:-6px;
-}
-
-.abc-inner{
-  position:relative;
-  z-index:2;
-  padding:34px 30px;
-}
-
-.abc-company{
-  display:inline-block;
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  color:#555;
-  margin-bottom:10px;
-}
-
-.abc-duration{
-  display:block;
-  font-size:13px;
-  color:#666;
-  margin-bottom:22px;
-}
-
-.abc-inner h3{
-  font-size:34px;
-  line-height:1.05;
-  margin-bottom:18px;
-  color:#111;
-}
-
-.abc-inner p{
-  font-size:15px;
-  line-height:1.8;
-  color:#444;
-}
-
-/* ─────────────────────────────
-   HOBBIES
-───────────────────────────── */
-
-.hobbies-section{
-  width:100%;
-  padding:120px 80px 160px;
-  position:relative;
-}
-
-.hobbies-heading{
-  margin-bottom:-50px;
-  position:relative;
-  z-index:10;
-}
-
-.hobbies-mini{
-  font-size:12px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:#7b7b7b;
-  margin-bottom:16px;
-}
-
-.hobbies-title{
-  font-family:"Playfair Display",serif;
-  font-size:42px;
-  line-height:1;
-}
-
-/* BOARD */
-
-.peg-board{
-  position:relative;
-  width:100%;
-  max-width:1300px;
-  height:900px;
-  margin:auto;
-  background:#b9c68f;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.peg-board::before{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background-image:
-    linear-gradient(rgba(255,255,255,.4) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(255,255,255,.4) 2px, transparent 2px);
-
-  background-size:70px 70px;
-}
-
-/* IMAGES */
-
-.peg-photo{
-  position:absolute;
-  width:210px;
-  height:210px;
-  background:#fff;
-  padding:10px;
-  border-radius:14px;
-  box-shadow:0 16px 36px rgba(0,0,0,.10);
-}
-
-.peg-photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:10px;
-}
-
-/* NOTES */
-
-.peg-note{
-  position:absolute;
-  background:#fffdf5;
-  padding:22px 24px;
-  border-radius:12px;
-  max-width:300px;
-  font-size:15px;
-  line-height:1.8;
-  color:#444;
-  box-shadow:0 14px 30px rgba(0,0,0,.06);
-}
-
-/* PHOTO POSITIONS */
-
-.photo-1{
-  top:90px;
-  left:120px;
-  transform:rotate(-6deg);
-}
-
-.photo-2{
-  top:140px;
-  left:430px;
-  transform:rotate(4deg);
-}
-
-.photo-3{
-  top:110px;
-  right:140px;
-  transform:rotate(-4deg);
-}
-
-.photo-4{
-  top:390px;
-  left:80px;
-  transform:rotate(5deg);
-}
-
-.photo-5{
-  top:430px;
-  left:420px;
-  transform:rotate(-6deg);
-}
-
-.photo-6{
-  top:410px;
-  right:380px;
-  transform:rotate(5deg);
-}
-
-.photo-7{
-  top:460px;
-  right:80px;
-  transform:rotate(-5deg);
-}
-
-/* NOTES */
-
-.note-1{
-  top:60px;
-  right:340px;
-  transform:rotate(4deg);
-}
-
-.note-2{
-  top:340px;
-  left:300px;
-  transform:rotate(-4deg);
-}
-
-.note-3{
-  bottom:120px;
-  left:140px;
-  background:#efe6bc;
-  transform:rotate(3deg);
-}
-
-.note-4{
-  bottom:100px;
-  right:180px;
-  transform:rotate(-5deg);
-}
-
-/* ─────────────────────────────
-   EMOJIS
-───────────────────────────── */
-
-.peg-emoji{
-  position:absolute;
-  font-size:42px;
-  z-index:3;
-  filter:drop-shadow(0 8px 12px rgba(0,0,0,.08));
-  animation:floatEmoji 5s ease-in-out infinite;
-  opacity:.95;
-}
-
-@keyframes floatEmoji{
-
-  0%,100%{
-    transform:translateY(0px) rotate(0deg);
-  }
-
-  50%{
-    transform:translateY(-10px) rotate(4deg);
-  }
-
-}
-
-/* SPREAD ACROSS BOARD */
-
-.emoji-1{
-  top:110px;
-  left:70px;
-  animation-delay:0s;
-}
-
-.emoji-2{
-  top:120px;
-  right:120px;
-  animation-delay:1s;
-}
-
-.emoji-3{
-  bottom:160px;
-  left:180px;
-  animation-delay:2s;
-}
-
-.emoji-4{
-  bottom:130px;
-  right:130px;
-  animation-delay:3s;
-}
-
-/* ─────────────────────────────
-   RESPONSIVE
-───────────────────────────── */
-
-@media (max-width:1100px){
-
-  .about-hero{
-    flex-direction:column;
-  }
-
-  .hero-left,
-  .hero-right{
-    width:100%;
-  }
-
-  .abc-cards{
-    grid-template-columns:1fr;
-  }
-
-  .peg-board{
-    height:auto;
-    padding:100px 40px 40px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:24px;
-  }
-
-  .peg-photo,
-  .peg-note{
-    position:relative;
-    top:auto;
-    left:auto;
-    right:auto;
-    bottom:auto;
-    transform:none;
-    width:100%;
-    max-width:none;
-  }
-
-  .peg-emoji{
-    position:relative;
-    top:auto !important;
-    left:auto !important;
-    right:auto !important;
-    bottom:auto !important;
-    justify-self:center;
-    margin:auto;
-  }
-
-}
-
-@media (max-width:768px){
-
-  .navbar{
-    padding:24px;
-  }
-
-  .nav-links{
-    gap:18px;
-  }
-
-  .nav-links a{
-    font-size:14px;
-    padding:6px 10px;
-  }
-
-  .about-hero{
-    padding:30px 24px 80px;
-  }
-
-  .hero-title{
-    font-size:58px;
-  }
-
-  .abc-title,
-  .hobbies-title{
-    font-size:36px;
-  }
-
-  .hero-description{
-    font-size:16px;
-  }
-
-  .abc-section,
-  .hobbies-section{
-    padding:100px 24px;
-  }
-
-  .peg-board{
-    grid-template-columns:1fr;
-  }
-
-  .peg-photo{
-    height:260px;
-  }
-
-  .envelope-scene{
-    width:100%;
-    height:520px;
-  }
-
-  .envelope-base-img,
-  .envelope-front-img{
-    width:290px;
-    left:20px;
-    bottom:40px;
-  }
-
-  .letter{
-    width:220px;
-    height:auto;
-    left:40px;
-    top:70px;
-    padding:24px;
-  }
-
-  .letter-content h3{
-    font-size:36px;
-  }
-
-  .letter-content p{
-    font-size:14px;
-  }
-
-  .photo-card{
-    width:180px;
-    right:0;
-    top:140px;
-  }
-
-  .photo-card img{
-    height:220px;
-  }
-
-  .star-stamp{
-    display:none;
   }
 
 }
