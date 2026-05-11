@@ -1185,6 +1185,7 @@ RESPONSIVE
 
 }
 
+
 /* =========================================================
 SECTION 3 — ABC
 ========================================================= */
@@ -1192,7 +1193,6 @@ SECTION 3 — ABC
 .abc-section{
 
   width:100%;
-
   padding:140px 80px;
 
   position:relative;
@@ -1213,7 +1213,7 @@ HEADING
   letter-spacing:.08em;
   text-transform:uppercase;
 
-  color:#7a7a7a;
+  color:#7d7d7d;
 
   margin-bottom:18px;
 }
@@ -1226,16 +1226,20 @@ HEADING
 
   line-height:.95;
   letter-spacing:-0.05em;
+
+  color:#111;
 }
 
 /* =========================================================
-CARDS LAYOUT
+CARDS CONTAINER
 ========================================================= */
 
 .abc-cards{
 
+  width:100%;
+
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(3, 1fr);
 
   gap:34px;
 }
@@ -1248,23 +1252,104 @@ CARD
 
   position:relative;
 
-  min-height:320px;
+  min-height:340px;
 
-  border:2px dashed #e7bfd0;
+  background:#f7e3eb;
 
-  border-radius:28px;
+  border:2px dashed #e6bfd0;
 
-  background:#f7e4ec;
+  border-radius:30px;
 
-  overflow:hidden;
+  overflow:visible;
 
   transition:.4s ease;
 
   box-shadow:
-    0 18px 40px rgba(0,0,0,.04);
+    0 18px 40px rgba(0,0,0,.05);
 }
 
-/* HOVER */
+/* =========================================================
+CORNER SQUARES
+========================================================= */
+
+.abc-card::before,
+.abc-card::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:22px;
+  height:22px;
+
+  background:#f5f5f1;
+
+  border:2px solid #e6bfd0;
+
+  z-index:5;
+}
+
+/* TOP LEFT */
+
+.abc-card::before{
+
+  top:-12px;
+  left:-12px;
+}
+
+/* TOP RIGHT */
+
+.abc-card::after{
+
+  top:-12px;
+  right:-12px;
+}
+
+/* BOTTOM LEFT */
+
+.abc-inner::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:22px;
+  height:22px;
+
+  background:#f5f5f1;
+
+  border:2px solid #e6bfd0;
+
+  bottom:-12px;
+  left:-12px;
+
+  z-index:5;
+}
+
+/* BOTTOM RIGHT */
+
+.abc-inner::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:22px;
+  height:22px;
+
+  background:#f5f5f1;
+
+  border:2px solid #e6bfd0;
+
+  bottom:-12px;
+  right:-12px;
+
+  z-index:5;
+}
+
+/* =========================================================
+HOVER
+========================================================= */
 
 .abc-card:hover{
 
@@ -1273,7 +1358,7 @@ CARD
     rotate(-1deg);
 
   box-shadow:
-    0 24px 50px rgba(0,0,0,.08);
+    0 26px 60px rgba(0,0,0,.08);
 }
 
 /* =========================================================
@@ -1298,15 +1383,19 @@ GRID BACKGROUND
       transparent 1px
     );
 
-  background-size:36px 36px;
+  background-size:38px 38px;
 
-  opacity:.45;
+  opacity:.4;
+
+  z-index:1;
 
   pointer-events:none;
+
+  border-radius:30px;
 }
 
 /* =========================================================
-INNER CONTENT
+CONTENT
 ========================================================= */
 
 .abc-inner{
@@ -1315,6 +1404,8 @@ INNER CONTENT
   z-index:2;
 
   padding:42px 38px;
+
+  height:100%;
 }
 
 /* COMPANY */
@@ -1329,9 +1420,9 @@ INNER CONTENT
   letter-spacing:.08em;
   text-transform:uppercase;
 
-  color:#5b5b5b;
+  color:#555;
 
-  margin-bottom:14px;
+  margin-bottom:12px;
 }
 
 /* DURATION */
@@ -1344,20 +1435,19 @@ INNER CONTENT
 
   color:#666;
 
-  margin-bottom:24px;
+  margin-bottom:26px;
 }
 
-/* TITLE */
+/* ROLE */
 
 .abc-inner h3{
 
   font-size:42px;
-
   line-height:1.05;
 
-  margin-bottom:24px;
+  margin-bottom:22px;
 
-  font-weight:700;
+  color:#111;
 }
 
 /* DESCRIPTION */
@@ -1380,7 +1470,7 @@ RESPONSIVE
 
     grid-template-columns:1fr;
 
-    gap:26px;
+    gap:28px;
   }
 
 }
@@ -1395,11 +1485,6 @@ RESPONSIVE
   .abc-title{
 
     font-size:62px;
-  }
-
-  .abc-card{
-
-    min-height:auto;
   }
 
   .abc-inner{
