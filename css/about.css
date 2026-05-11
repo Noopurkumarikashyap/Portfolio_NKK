@@ -820,299 +820,168 @@ EXPERIENCE SECTION
 .experience-section{
   width:100%;
 
-  padding:140px 80px;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-
-  gap:80px;
-
-  overflow:hidden;
+  padding:140px 80px 180px;
 
   position:relative;
 }
 
-/* LEFT */
+/* =========================================================
+HEADER
+========================================================= */
 
-.experience-left{
-  width:28%;
-
-  position:sticky;
-  top:120px;
+.experience-header{
+  margin-bottom:90px;
 }
 
 .experience-mini{
   font-size:14px;
-  letter-spacing:.08em;
+
   text-transform:uppercase;
+
+  letter-spacing:.08em;
 
   color:#777;
 
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
 .experience-title{
   font-family:"Playfair Display",serif;
 
-  font-size:72px;
+  font-size:clamp(54px,6vw,96px);
+
   line-height:.95;
-
-  margin-bottom:26px;
-}
-
-.experience-text{
-  font-size:18px;
-  line-height:1.9;
-
-  color:#555;
-
-  max-width:300px;
-}
-
-/* RIGHT */
-
-.experience-right{
-  width:72%;
-
-  overflow:hidden;
-}
-
-/* =========================================================
-PHOTO REEL
-========================================================= */
-
-.photo-reel{
-  width:100%;
-
-  overflow:hidden;
-
-  position:relative;
-}
-
-/* TRACK */
-
-.reel-track{
-  display:flex;
-  gap:40px;
-
-  width:max-content;
-
-  transition:transform .1s linear;
-}
-
-/* =========================================================
-EXPERIENCE CARD
-========================================================= */
-
-.exp-card{
-  position:relative;
-
-  width:360px;
-
-  background:#f5e5c8;
-
-  border-radius:26px;
-
-  padding:28px 22px 34px;
-
-  flex-shrink:0;
-
-  box-shadow:
-    0 24px 50px rgba(0,0,0,.08);
-
-  transform:
-    rotate(-2deg);
-
-  transition:
-    transform .35s ease;
-}
-
-.exp-card:nth-child(2){
-  transform:
-    rotate(2deg);
-}
-
-.exp-card:nth-child(3){
-  transform:
-    rotate(-3deg);
-}
-
-.exp-card:hover{
-  transform:
-    translateY(-10px)
-    rotate(0deg);
-}
-
-/* IMAGE */
-
-.exp-card img{
-  width:100%;
-  height:420px;
-
-  object-fit:cover;
-
-  border-radius:18px;
 
   margin-bottom:24px;
 }
 
-/* CONTENT */
+.experience-description{
+  max-width:520px;
 
-.exp-content h3{
-  font-size:28px;
+  font-size:20px;
 
-  margin-bottom:12px;
-}
-
-.exp-content p{
-  font-size:16px;
   line-height:1.8;
 
-  color:#555;
-}
-
-.exp-year{
-  display:inline-block;
-
-  margin-bottom:14px;
-
-  font-size:13px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-
-  color:#777;
+  color:#666;
 }
 
 /* =========================================================
-FILM HOLES
+SCENE
 ========================================================= */
 
-.film-holes{
+.experience-scene{
+  position:relative;
+
+  width:100%;
+
+  height:760px;
+}
+
+/* =========================================================
+CARD BASE
+========================================================= */
+
+.experience-card{
   position:absolute;
 
-  left:16px;
-  right:16px;
+  width:320px;
 
-  height:14px;
+  background:#ffffff;
 
-  display:flex;
-  justify-content:space-between;
+  border-radius:34px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 24px 60px rgba(0,0,0,.08);
+
+  transition:
+    transform .45s ease;
+}
+
+/* =========================================================
+CARD POSITIONS
+========================================================= */
+
+/* CENTER */
+
+.card-center{
+  left:18%;
+
+  top:220px;
+
+  transform:rotate(-8deg);
+
+  z-index:2;
+}
+
+/* TOP */
+
+.card-top{
+  left:42%;
+
+  top:60px;
+
+  transform:rotate(8deg);
+
+  z-index:4;
+}
+
+/* RIGHT */
+
+.card-right{
+  left:56%;
+
+  top:260px;
+
+  transform:rotate(5deg);
 
   z-index:3;
 }
 
-.film-holes.top{
-  top:10px;
-}
+/* =========================================================
+IMAGES
+========================================================= */
 
-.film-holes.bottom{
-  bottom:10px;
-}
+.experience-card img{
+  width:100%;
 
-/* HOLES */
+  height:240px;
 
-.film-holes::before{
-  content:"";
-  display:none;
-}
+  object-fit:cover;
 
-/* generate holes */
-
-.film-holes{
-  background-image:
-    repeating-linear-gradient(
-      to right,
-      transparent 0px,
-      transparent 18px,
-      #f5f5f1 18px,
-      #f5f5f1 30px
-    );
-
-  border-radius:20px;
+  display:block;
 }
 
 /* =========================================================
-FLOATING FEEL
+CONTENT
 ========================================================= */
 
-.exp-card{
-  animation:floatCard 5s ease-in-out infinite;
+.experience-content{
+  padding:26px;
 }
 
-.exp-card:nth-child(2){
-  animation-delay:1s;
+.experience-year{
+  display:block;
+
+  font-size:13px;
+
+  letter-spacing:.08em;
+
+  text-transform:uppercase;
+
+  color:#777;
+
+  margin-bottom:14px;
 }
 
-.exp-card:nth-child(3){
-  animation-delay:2s;
+.experience-content h3{
+  font-size:36px;
+
+  line-height:1.05;
+
+  margin-bottom:10px;
 }
-
-@keyframes floatCard{
-
-  0%,100%{
-    transform:
-      translateY(0px)
-      rotate(-2deg);
-  }
-
-  50%{
-    transform:
-      translateY(-8px)
-      rotate(-1deg);
-  }
-
-}
-
-/* =========================================================
-RESPONSIVE
-========================================================= */
-
-@media (max-width:1024px){
-
-  .experience-section{
-    flex-direction:column;
-
-    gap:60px;
-
-    padding:120px 40px;
-  }
-
-  .experience-left,
-  .experience-right{
-    width:100%;
-  }
-
-  .experience-left{
-    position:relative;
-    top:auto;
-  }
-
-}
-
-@media (max-width:768px){
-
-  .experience-section{
-    padding:100px 24px;
-  }
-
-  .experience-title{
-    font-size:54px;
-  }
-
-  .exp-card{
-    width:280px;
-  }
-
-  .exp-card img{
-    height:340px;
-  }
-
-}
-
-/* =========================================================
-COMPANY NAME
-========================================================= */
 
 .company-name{
   font-size:14px;
@@ -1121,9 +990,46 @@ COMPANY NAME
 
   color:#777;
 
-  margin-bottom:14px;
+  margin-bottom:16px;
+}
 
-  letter-spacing:.03em;
+.experience-content p{
+  font-size:16px;
+
+  line-height:1.7;
+
+  color:#555;
+}
+
+/* =========================================================
+FILM STRIPS
+========================================================= */
+
+.film-strip{
+  position:absolute;
+
+  left:0;
+
+  width:100%;
+
+  height:16px;
+
+  background:
+    repeating-linear-gradient(
+      to right,
+      #111 0px,
+      #111 14px,
+      transparent 14px,
+      transparent 28px
+    );
+}
+
+.film-strip.top{
+  top:0;
+}
+
+.film-strip.bottom{
+  bottom:0;
 }
 
 /* =========================================================
@@ -1131,9 +1037,9 @@ CREATIVE CARD
 ========================================================= */
 
 .creative-card{
-  padding:18px;
+  background:#f6f2e8;
 
-  background:#f7f5ef;
+  padding:18px;
 }
 
 /* GRID */
@@ -1149,28 +1055,29 @@ CREATIVE CARD
 /* BLOCKS */
 
 .creative-block{
-  border-radius:20px;
-
   min-height:120px;
+
+  border-radius:24px;
 }
 
 .soft-green{
-  background:#cfd6a7;
+  background:#c8cf9e;
 }
 
 .olive{
-  background:#b9c58c;
+  background:#b7c38a;
 }
 
 /* IMAGE */
 
 .creative-image img{
   width:100%;
+
   height:120px;
 
   object-fit:cover;
 
-  border-radius:20px;
+  border-radius:24px;
 }
 
 /* QUOTE */
@@ -1178,16 +1085,145 @@ CREATIVE CARD
 .creative-quote{
   grid-column:span 2;
 
-  background:#f4edc7;
+  background:#efe5b9;
 
-  border-radius:20px;
+  border-radius:24px;
 
-  padding:20px;
+  padding:24px;
 
   font-size:18px;
-  line-height:1.6;
+
+  line-height:1.7;
 
   font-weight:500;
 
   color:#444;
+}
+
+/* =========================================================
+LABELS
+========================================================= */
+
+.experience-label{
+  position:absolute;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+
+  z-index:10;
+}
+
+/* LINE */
+
+.label-line{
+  width:90px;
+
+  height:2px;
+
+  background:#111;
+
+  position:relative;
+}
+
+/* ARROW */
+
+.label-line::after{
+  content:"";
+
+  position:absolute;
+
+  right:-2px;
+  top:-4px;
+
+  width:10px;
+  height:10px;
+
+  border-top:2px solid #111;
+  border-right:2px solid #111;
+
+  transform:rotate(45deg);
+}
+
+/* TEXT */
+
+.experience-label p{
+  font-size:15px;
+
+  line-height:1.5;
+
+  color:#444;
+
+  max-width:220px;
+}
+
+/* =========================================================
+LABEL POSITIONS
+========================================================= */
+
+.label-center{
+  left:2%;
+
+  top:340px;
+}
+
+.label-top{
+  right:0;
+
+  top:120px;
+}
+
+.label-right{
+  right:2%;
+
+  top:500px;
+}
+
+/* =========================================================
+HOVER
+========================================================= */
+
+.experience-card:hover{
+  transform:
+    translateY(-12px)
+    rotate(0deg);
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media (max-width:1100px){
+
+  .experience-scene{
+    height:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:40px;
+  }
+
+  .experience-card{
+    position:relative;
+
+    left:auto !important;
+    top:auto !important;
+
+    transform:none !important;
+
+    width:100%;
+
+    max-width:420px;
+
+    margin:auto;
+  }
+
+  .experience-label{
+    display:none;
+  }
+
 }
