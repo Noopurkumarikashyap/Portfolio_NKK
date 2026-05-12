@@ -60,62 +60,44 @@ document.addEventListener("DOMContentLoaded", () => {
   let popAmount = 0;
 
   /* =========================================================
-     LETTER CLICK
-  ========================================================= */
+   LETTER CLICK
+========================================================= */
 
-  letter.addEventListener("click", () => {
+let isAnimating = false;
 
-    if(isAnimating) return;
+letter.addEventListener("click", () => {
 
-    isAnimating = true;
+  if(isAnimating) return;
 
-    /*
-      RESET SHINE
-    */
+  isAnimating = true;
+
+  /*
+    RESET
+  */
+
+  letter.classList.remove("pop-out");
+
+  void letter.offsetWidth;
+
+  /*
+    START ANIMATION
+  */
+
+  letter.classList.add("pop-out");
+
+  /*
+    END
+  */
+
+  setTimeout(() => {
 
     letter.classList.remove("pop-out");
 
-    void letter.offsetWidth;
+    isAnimating = false;
 
-    /*
-      START POP
-    */
+  }, 2900);
 
-    isPopped = true;
-
-    /*
-      GLOW AFTER EMERGING
-    */
-
-    setTimeout(() => {
-
-      letter.classList.add("pop-out");
-
-    }, 500);
-
-    /*
-      STAY OPEN
-    */
-
-    setTimeout(() => {
-
-      isPopped = false;
-
-    }, 3200);
-
-    /*
-      REMOVE SHINE
-    */
-
-    setTimeout(() => {
-
-      letter.classList.remove("pop-out");
-
-      isAnimating = false;
-
-    }, 4200);
-
-  });
+});
 
   /* =========================================================
      ANIMATION LOOP
