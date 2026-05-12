@@ -1,113 +1,124 @@
-const scene = document.querySelector(".envelope-scene");
+document.addEventListener("DOMContentLoaded", () => {
 
-const photo = document.querySelector(".photo-card");
-const letter = document.querySelector(".letter");
+  const scene = document.querySelector(".envelope-scene");
 
-/* ─────────────────────────────
-   MOUSE PARALLAX
-───────────────────────────── */
+  const photo = document.querySelector(".photo-card");
+  const letter = document.querySelector(".letter");
 
-let mouseX = 0;
-let mouseY = 0;
+  if(!scene || !photo || !letter) return;
 
-scene.addEventListener("mousemove", (e) => {
+  let mouseX = 0;
+  let mouseY = 0;
 
-  const rect = scene.getBoundingClientRect();
+  let currentX = 0;
+  let currentY = 0;
 
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+  /* ─────────────────────────────
+     MOUSE PARALLAX
+  ───────────────────────────── */
 
-  mouseX = (x - rect.width / 2) / 28;
-  mouseY = (y - rect.height / 2) / 28;
+  scene.addEventListener("mousemove", (e) => {
 
-  updateTransforms();
+    const rect = scene.getBoundingClientRect();
 
-});
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-scene.addEventListener("mouseleave", () => {
+    mouseX = (x - rect.width / 2) / 25;
+    mouseY = (y - rect.height / 2) / 25;
 
-  mouseX = 0;
-  mouseY = 0;
+  });
 
-  updateTransforms();
+  scene.addEventListener("mouseleave", () => {
 
-});
+    mouseX = 0;
+    mouseY = 0;
 
-/* ─────────────────────────────
-   LETTER CLICK POP
-───────────────────────────── */
+  });
 
-let isPopped = false;
-let isAnimating = false;
+  /* ─────────────────────────────
+     LETTER POP
+  ───────────────────────────── */
 
-letter.addEventListener("click", () => {
+  let isPopped = false;
+  let isAnimating = false;
 
-  if(isAnimating) return;
+  letter.addEventListener("click", () => {
 
-  isAnimating = true;
+    if(isAnimating) return;
 
-  isPopped = true;
+    isAnimating = true;
 
-  letter.classList.add("pop-out");
+    isPopped = true;
 
-  updateTransforms();
+    setTimeout(() => {
 
-  setTimeout(() => {
+      isPopped = false;
+      isAnimating = false;
 
-    letter.classList.remove("pop-out");
+    }, 2200);
 
-    isPopped = false;
+  });
 
-    updateTransforms();
+  /* ─────────────────────────────
+     ANIMATION LOOP
+  ───────────────────────────── */
 
-    isAnimating = false;
+  function animate(){
 
-  }, 2600);
+    currentX += (mouseX - currentX) * 0.08;
+    currentY += (mouseY - currentY) * 0.08;
 
-});
+    const time = Date.now() * 0.001;
 
-/* ─────────────────────────────
-   UPDATE TRANSFORMS
-───────────────────────────── */
+    const letterFloat = Math.sin(time * 1.2) * 8;
+    const photoFloat = Math.sin(time * 1.1) * 10;
 
-function updateTransforms(){
+    /* PHOTO */
 
-  /* PHOTO */
+    photo.style.transform = `
+      translate(${currentX}px, ${currentY + photoFloat}px)
+      rotate(8deg)
+    `;
 
-  photo.style.transform = `
-    rotate(8deg)
-    translate(${mouseX}px, ${mouseY}px)
-  `;
+    /* LETTER */
 
-  /* LETTER */
+    const popY = isPopped ? -130 : 0;
+    const popScale = isPopped ? 1.03 : 1;
 
-  const popY = isPopped ? -130 : 0;
-  const popScale = isPopped ? 1.02 : 1;
-  const popRotate = isPopped ? -2 : -4;
+    letter.style.transform = `
+      translate(
+        ${currentX * 0.6}px,
+        ${currentY * 0.6 + letterFloat + popY}px
+      )
+      rotate(-4deg)
+      scale(${popScale})
+    `;
 
-  letter.style.transform = `
-    rotate(${popRotate}deg)
-    translate(
-      ${mouseX * 0.6}px,
-      ${mouseY * 0.6 + popY}px
-    )
-    scale(${popScale})
-  `;
+    requestAnimationFrame(animate);
 
-}
+  }
 
-/* =========================================================
-HORIZONTAL PHOTO REEL SCROLL
-========================================================= */
+  animate();
 
-const reelTrack = document.querySelector(".reel-track");
+  /* =========================================================
+     OPTIONAL REEL
+  ========================================================= */
 
-window.addEventListener("scroll", () => {
+  const reelTrack = document.querySelector(".reel-track");
 
-  const scrollY = window.scrollY;
+  if(reelTrack){
 
-  reelTrack.style.transform = `
-    translateX(-${scrollY * 0.45}px)
-  `;
+    window.addEventListener("scroll", () => {
+
+      const scrollY = window.scrollY;
+
+      reelTrack.style.transform = `
+        translateX(-${scrollY * 0.45}px)
+      `;
+
+    });
+
+  }
 
 });
