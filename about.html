@@ -1,48 +1,257 @@
-<!-- UPDATED: Section 1 (Hero / Envelope) -->
-<main class="about-hero">
-  <section class="hero-left">
-    <p class="mini-tag">A little note about me</p>
-    <h1 class="hero-title">
-      Designing<br>stories,<br>systems, and<br>services.
-    </h1>
-    <!-- Removed original floating-tags from here -->
-  </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Noopur Kashyap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&family=Caveat:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/about.css">
+</head>
+<body>
 
-  <section class="hero-right">
-    <div class="envelope-scene">
-      <img src="images/envelope_base.svg" alt="Envelope Base" class="envelope-base-img">
-      <div class="letter">
-        <div class="letter-content">
-          <span class="letter-date">✦ 2026 ✦</span>
-          <h3>Hello,</h3>
-          <p>"I love to build castles in air with a belief to one day bring them to ground!"</p>
+  <!-- FLOATING STAR STAMPS (background decoration) -->
+  <div class="star-stamp large stamp-a">✦</div>
+  <div class="star-stamp small stamp-b">✦</div>
+  <!-- (other stamp elements unchanged) -->
+  <div class="star-stamp small stamp-l">✦</div>
+  <div class="star-stamp medium stamp-m">✦</div>
+  <div class="star-stamp large stamp-n">✦</div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="index.html" class="logo">
+      <img src="images/logo4.png" alt="Noopur Kashyap Logo">
+    </a>
+    <nav class="nav-links">
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main class="about-hero">
+    <section class="hero-left">
+      <p class="mini-tag">A little note about me</p>
+      <h1 class="hero-title">
+        Designing<br>stories,<br>systems, and<br>services.
+      </h1>
+      <!-- Removed original floating-tags from here -->
+    </section>
+
+    <section class="hero-right">
+      <div class="envelope-scene">
+        <img src="images/envelope_base.svg" alt="Envelope Base" class="envelope-base-img">
+        <div class="letter">
+          <div class="letter-content">
+            <span class="letter-date">✦ 2026 ✦</span>
+            <h3>Hello,</h3>
+            <p>"I love to build castles in air with a belief to one day bring them to ground!"</p>
+          </div>
         </div>
-      </div>
-      <img src="images/envelope_front.svg" alt="Envelope Front" class="envelope-front-img">
-      <div class="photo-card">
-        <img src="images/noopur_photo.png" alt="Noopur Kashyap">
-        <div class="photo-info">
-          <h4>Noopur Kashyap</h4>
-          <!-- Removed the text line -->
-          <p class="icon-bar">
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-comment"></i>
-            <i class="fas fa-share"></i>
-          </p>
+        <img src="images/envelope_front.svg" alt="Envelope Front" class="envelope-front-img">
+        <div class="photo-card">
+          <img src="images/noopur_photo.png" alt="Noopur Kashyap">
+          <div class="photo-info">
+            <h4>Noopur Kashyap</h4>
+            <p class="icon-bar">
+              <!-- Inline SVG icons for Like, Comment, Share -->
+              <!-- Heart icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#888" viewBox="0 0 16 16">
+                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+              </svg>
+              <!-- Comment (chat) icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#888" viewBox="0 0 16 16">
+                <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 
+                       3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362
+                       2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15"/>
+              </svg>
+              <!-- Share icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#888" viewBox="0 0 16 16">
+                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 
+                       .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 
+                       1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 
+                       2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 
+                       1.5 1.5 0 0 0 0-3"/>
+              </svg>
+            </p>
+          </div>
         </div>
+        <!-- Glassmorphic tags around the envelope/photo-card -->
+        <div class="floating-tags envelope-tags">
+          <span>UX Designer</span>
+          <span>Illustrator</span>
+          <span>Service Design</span>
+        </div>
+        <!-- Sparkle star decorations -->
+        <div class="sparkle star-1"><span></span></div>
+        <div class="sparkle star-2"><span></span></div>
+        <div class="sparkle star-3"><span></span></div>
+        <div class="sparkle star-4"><span></span></div>
+        <div class="sparkle star-5"><span></span></div>
       </div>
-      <!-- Glass-like tags around envelope -->
-      <div class="floating-tags envelope-tags">
-        <span>UX Designer</span>
-        <span>Illustrator</span>
-        <span>Service Design</span>
-      </div>
-      <!-- Additional sparkles -->
-      <div class="sparkle star-1"><span></span></div>
-      <div class="sparkle star-2"><span></span></div>
-      <div class="sparkle star-3"><span></span></div>
-      <div class="sparkle star-4"><span></span></div>
-      <div class="sparkle star-5"><span></span></div>
+    </section>
+  </main>
+
+  <!-- WORK EXPERIENCE -->
+  <section class="abc-section work-section">
+    <div class="abc-heading glass-heading">
+      <p class="abc-mini">Work Experience</p>
+      <h2 class="abc-title">Places I've Designed For</h2>
+    </div>
+    <div class="abc-cards">
+      <article class="abc-card">
+        <div class="abc-logo">
+          <img src="images/institution_1.jpg" alt="Institution Logo">
+        </div>
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="abc-grid"></div>
+        <div class="abc-inner">
+          <span class="abc-company">JP Morgan Chase & Co.</span>
+          <span class="abc-duration">2021—25</span>
+          <h3>User Experience Designer</h3>
+          <p>Designed enterprise platforms, workflows, employee systems, and scalable experiences for internal employee experience at JPMC.</p>
+        </div>
+      </article>
+      <article class="abc-card">
+        <div class="abc-logo">
+          <img src="images/institution_1.jpg" alt="Institution Logo">
+        </div>
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="abc-grid"></div>
+        <div class="abc-inner">
+          <span class="abc-company">IIT Bombay</span>
+          <span class="abc-duration">2019—21</span>
+          <h3>Teaching Assistant</h3>
+          <p>Worked on website designing.</p>
+        </div>
+      </article>
+      <article class="abc-card">
+        <div class="abc-logo">
+          <img src="images/institution_1.jpg" alt="Institution Logo">
+        </div>
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="abc-grid"></div>
+        <div class="abc-inner">
+          <span class="abc-company">Ikai Services</span>
+          <span class="abc-duration">2017—18</span>
+          <h3>Graphic Designer</h3>
+          <p>Worked on branding, storytelling, graphics, and startup communication assets.</p>
+        </div>
+      </article>
     </div>
   </section>
-</main>
+
+  <!-- EDUCATION -->
+  <section class="abc-section education-section">
+    <div class="abc-heading glass-heading">
+      <p class="abc-mini">Education</p>
+      <h2 class="abc-title">Learning &amp; Research</h2>
+    </div>
+    <div class="abc-cards">
+      <article class="abc-card">
+        <div class="abc-logo">
+          <img src="images/institution_1.jpg" alt="Institution Logo">
+        </div>
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="abc-grid"></div>
+        <div class="abc-inner">
+          <span class="abc-company">IIT Bombay</span>
+          <span class="abc-duration">Master's Degree</span>
+          <h3>Interaction Design</h3>
+          <p>Explored systems thinking, interaction design, service design, and storytelling.</p>
+        </div>
+      </article>
+      <article class="abc-card">
+        <div class="abc-logo">
+          <img src="images/institution_1.jpg" alt="Institution Logo">
+        </div>
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="abc-grid"></div>
+        <div class="abc-inner">
+          <span class="abc-company">UIET Punjab University</span>
+          <span class="abc-duration">Bachelor's Degree</span>
+          <h3>Computer Science</h3>
+          <p>Built foundations in systems, programming, logic, and problem solving.</p>
+        </div>
+      </article>
+      <article class="abc-card">
+        <div class="abc-logo">
+          <img src="images/institution_1.jpg" alt="Institution Logo">
+        </div>
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="abc-grid"></div>
+        <div class="abc-inner">
+          <span class="abc-company">Ongoing</span>
+          <span class="abc-duration">Continuous Learning</span>
+          <h3>Design Research</h3>
+          <p>Exploring accessibility, service systems, storytelling, and emerging technologies.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- HOBBIES PEGBOARD -->
+  <section class="hobbies-section">
+    <div class="hobbies-heading glass-heading">
+      <p class="hobbies-mini">Beyond work</p>
+      <h2 class="hobbies-title">Little things I enjoy ✦</h2>
+    </div>
+    <div class="peg-board">
+      <!-- Existing photos -->
+      <div class="peg-photo photo-1"><img src="images/hobby_1.jpg" alt="Sketching"></div>
+      <div class="peg-photo photo-2"><img src="images/hobby_2.jpg" alt="Illustration"></div>
+      <div class="peg-photo photo-3"><img src="images/hobby_3.gif" alt="Art"></div>
+      <div class="peg-photo photo-4"><img src="images/hobby_4.gif" alt="Cat"></div>
+      <div class="peg-photo photo-5"><img src="images/hobby_5.jpg" alt="Food"></div>
+      <div class="peg-photo photo-6"><img src="images/hobby_6.gif" alt="Photography"></div>
+      <div class="peg-photo photo-7"><img src="images/hobby_7.jpg" alt="Architecture"></div>
+      <!-- New photos -->
+      <div class="peg-photo photo-8"><img src="images/hobby_8.jpg" alt="Hobby"></div>
+      <div class="peg-photo photo-9"><img src="images/hobby_9.jpg" alt="Hobby"></div>
+
+      <!-- Existing notes -->
+      <div class="peg-note note-1"><p>I love sketching interfaces, tiny illustrations, and visual ideas.</p></div>
+      <div class="peg-note note-2"><p>Exploring cafés, observing people, and collecting inspiration ✦</p></div>
+      <div class="peg-note note-3"><p>Storytelling through layouts, motion, and playful compositions.</p></div>
+      <div class="peg-note note-4"><p>Quiet evenings, books, music, and design systems.</p></div>
+      <!-- New note -->
+      <div class="peg-note note-5"><p>New note: more adventures await!</p></div>
+
+      <!-- Pegboard decorations -->
+      <div class="peg-deco deco-1"><img src="images/board_decoration_1.png" alt="Decoration"></div>
+      <div class="peg-deco deco-2"><img src="images/board_decoration_2.png" alt="Decoration"></div>
+      <div class="peg-deco deco-3"><img src="images/board_decoration_3.png" alt="Decoration"></div>
+      <div class="peg-deco deco-4"><img src="images/board_decoration_4.png" alt="Decoration"></div>
+      <!-- Clips -->
+      <img src="images/clip.png" class="clip clip-1" alt="Clip">
+      <img src="images/clip.png" class="clip clip-2" alt="Clip">
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    © Noopur Kashyap 2026
+  </footer>
+
+  <script src="./js/about.js"></script>
+</body>
+</html>
