@@ -355,39 +355,20 @@ body{
   align-items:center;
 }
 
-/* ENVELOPE */
+/* ─────────────────────────────
+   ENVELOPE SCENE
+───────────────────────────── */
 
 .envelope-scene{
   position:relative;
   width:620px;
   height:620px;
+  perspective:1400px;
 }
 
-/* CONTINUOUS FLOAT */
-
-@keyframes gentleFloat{
-
-  0%,100%{
-    transform:translateY(0px) rotate(-4deg);
-  }
-
-  50%{
-    transform:translateY(-10px) rotate(-2deg);
-  }
-
-}
-
-@keyframes gentlePhotoFloat{
-
-  0%,100%{
-    transform:translateY(0px) rotate(8deg);
-  }
-
-  50%{
-    transform:translateY(-12px) rotate(10deg);
-  }
-
-}
+/* ─────────────────────────────
+   ENVELOPE BASE
+───────────────────────────── */
 
 .envelope-base-img{
   position:absolute;
@@ -395,138 +376,332 @@ body{
   left:80px;
   bottom:80px;
   z-index:1;
-  filter:drop-shadow(0 18px 40px rgba(0,0,0,.08));
+
+  filter:drop-shadow(
+    0 18px 40px rgba(0,0,0,.08)
+  );
 }
+
+/* ─────────────────────────────
+   LETTER
+───────────────────────────── */
 
 .letter{
+
   position:absolute;
+
   left:125px;
   top:80px;
+
   width:320px;
   height:370px;
+
   background:#fffdf8;
+
   padding:36px;
+
   z-index:2;
+
   border-radius:4px;
-  box-shadow:0 20px 46px rgba(0,0,0,.08);
+
+  overflow:hidden;
+
+  cursor:pointer;
+
+  transform-style:preserve-3d;
+  will-change:transform;
+
+  transition:
+    box-shadow .45s ease,
+    filter .45s ease;
+
+  box-shadow:
+    0 20px 46px rgba(0,0,0,.08);
+
 }
 
+/* PAPER LIGHT */
+
 .letter::before{
+
   content:"";
+
   position:absolute;
   inset:0;
+
   background:linear-gradient(
     to bottom,
     rgba(0,0,0,.02),
     transparent
   );
+
+  pointer-events:none;
+
 }
 
+/* POP STATE */
+
+.letter.pop-out{
+
+  box-shadow:
+    0 50px 100px rgba(0,0,0,.18),
+    0 0 45px rgba(255,255,255,.22);
+
+  filter:brightness(1.03);
+
+}
+
+/* DIAGONAL SHINE */
+
+.letter.pop-out::after{
+
+  content:"";
+
+  position:absolute;
+
+  top:-120%;
+  left:-60%;
+
+  width:42%;
+  height:260%;
+
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.14),
+    rgba(255,255,255,.72),
+    rgba(255,255,255,.14),
+    transparent
+  );
+
+  transform:rotate(18deg);
+
+  animation:diagonalShine 1.15s ease forwards;
+
+  pointer-events:none;
+
+}
+
+/* SHINE MOTION */
+
+@keyframes diagonalShine{
+
+  0%{
+    left:-70%;
+    opacity:0;
+  }
+
+  10%{
+    opacity:1;
+  }
+
+  100%{
+    left:140%;
+    opacity:0;
+  }
+
+}
+
+/* ─────────────────────────────
+   LETTER CONTENT
+───────────────────────────── */
+
 .letter-date{
+
   display:block;
+
   font-size:11px;
+
   letter-spacing:.1em;
+
   text-transform:uppercase;
+
   color:#888;
+
   margin-bottom:20px;
+
 }
 
 .letter-content h3{
+
   font-size:42px;
+
   margin-bottom:14px;
+
   font-family:"Playfair Display",serif;
+
 }
 
 .letter-content p{
+
   font-size:16px;
+
   line-height:1.8;
+
   color:#555;
+
 }
+
+/* ─────────────────────────────
+   ENVELOPE FRONT
+───────────────────────────── */
 
 .envelope-front-img{
+
   position:absolute;
+
   width:420px;
+
   left:80px;
   bottom:80px;
+
   z-index:4;
+
 }
 
-/* PHOTO CARD */
+/* ─────────────────────────────
+   PHOTO CARD
+───────────────────────────── */
 
 .photo-card{
+
   position:absolute;
+
   right:15px;
   top:140px;
+
   width:230px;
+
   background:white;
+
   padding:12px;
+
   border-radius:10px;
+
   z-index:10;
-  box-shadow:0 20px 42px rgba(0,0,0,.12);
+
+  will-change:transform;
+
+  box-shadow:
+    0 20px 42px rgba(0,0,0,.12);
+
+  transition:
+    box-shadow .35s ease,
+    transform .12s linear;
+
 }
 
 .photo-card img{
+
   width:100%;
   height:280px;
+
   object-fit:cover;
+
   border-radius:8px;
+
   margin-bottom:12px;
+
 }
 
 .photo-info h4{
+
   font-size:18px;
+
   margin-bottom:4px;
+
 }
 
 .photo-info p{
+
   font-size:13px;
+
   color:#666;
+
 }
 
-/* SPARKLES */
+/* ─────────────────────────────
+   SPARKLES
+───────────────────────────── */
 
 .sparkle{
+
   position:absolute;
+
   width:24px;
   height:24px;
+
   z-index:20;
-  animation:starFloat 4s ease-in-out infinite;
+
+  animation:
+    sparkleFloat 4s ease-in-out infinite,
+    sparklePulse 2.4s ease-in-out infinite;
+
 }
 
 .sparkle::before,
 .sparkle::after,
 .sparkle span::before,
 .sparkle span::after{
+
   content:"";
+
   position:absolute;
+
   left:50%;
   top:50%;
+
   background:#fff;
+
   border-radius:999px;
+
 }
 
 .sparkle::before{
+
   width:3px;
   height:24px;
+
   transform:translate(-50%,-50%);
+
 }
 
 .sparkle::after{
+
   width:24px;
   height:3px;
+
   transform:translate(-50%,-50%);
+
 }
 
 .sparkle span::before{
+
   width:3px;
   height:20px;
-  transform:translate(-50%,-50%) rotate(45deg);
+
+  transform:
+    translate(-50%,-50%)
+    rotate(45deg);
+
 }
 
 .sparkle span::after{
+
   width:3px;
   height:20px;
-  transform:translate(-50%,-50%) rotate(-45deg);
+
+  transform:
+    translate(-50%,-50%)
+    rotate(-45deg);
+
+}
+
+/* POSITIONS */
+
+.star-1{
+  top:40px;
+  left:120px;
 }
 
 .star-2{
@@ -541,7 +716,9 @@ body{
   animation-delay:2s;
 }
 
-@keyframes starFloat{
+/* FLOAT */
+
+@keyframes sparkleFloat{
 
   0%,100%{
     transform:translateY(0px);
@@ -553,6 +730,21 @@ body{
 
 }
 
+/* GLOW */
+
+@keyframes sparklePulse{
+
+  0%,100%{
+    opacity:.45;
+    filter:blur(.2px);
+  }
+
+  50%{
+    opacity:1;
+    filter:blur(0px);
+  }
+
+}
 /* ─────────────────────────────
    SECTION HEADINGS
 ───────────────────────────── */
