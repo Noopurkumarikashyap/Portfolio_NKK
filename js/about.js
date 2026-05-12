@@ -78,33 +78,33 @@ document.addEventListener("DOMContentLoaded", () => {
     void letter.offsetWidth;
 
     /*
-      POP UP
+      START POP
     */
 
     isPopped = true;
 
     /*
-      SHINE AFTER POP
+      GLOW AFTER EMERGING
     */
 
     setTimeout(() => {
 
       letter.classList.add("pop-out");
 
-    }, 180);
+    }, 500);
 
     /*
-      KEEP OPEN FOR READING
+      STAY OPEN
     */
 
     setTimeout(() => {
 
       isPopped = false;
 
-    }, 2600);
+    }, 3200);
 
     /*
-      REMOVE GLOW
+      REMOVE SHINE
     */
 
     setTimeout(() => {
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       isAnimating = false;
 
-    }, 3200);
+    }, 4200);
 
   });
 
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function animate(){
 
     /*
-      SMOOTH FOLLOW
+      SMOOTH CURSOR FOLLOW
     */
 
     currentX += (mouseX - currentX) * 0.08;
@@ -132,12 +132,12 @@ document.addEventListener("DOMContentLoaded", () => {
     currentY += (mouseY - currentY) * 0.08;
 
     /*
-      SMOOTH POP
+      LETTER POP HEIGHT
     */
 
-    const targetPop = isPopped ? -170 : 0;
+    const targetPop = isPopped ? -260 : 0;
 
-    popAmount += (targetPop - popAmount) * 0.12;
+    popAmount += (targetPop - popAmount) * 0.10;
 
     /* =====================================================
        PHOTO MOVEMENT
@@ -145,8 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     photo.style.transform = `
       translate3d(
-        ${currentX * 1.15}px,
-        ${currentY * 1.15}px,
+        ${currentX * 1.2}px,
+        ${currentY * 1.2}px,
         0
       )
       rotate(8deg)
@@ -156,9 +156,14 @@ document.addEventListener("DOMContentLoaded", () => {
        LETTER MOVEMENT
     ===================================================== */
 
-    const letterScale = isPopped ? 1.05 : 1;
+    const letterScale = isPopped ? 1.08 : 1;
 
-    const letterRotate = isPopped ? -2 : -4;
+    /*
+      Starts tilted
+      becomes straighter when popped
+    */
+
+    const letterRotate = isPopped ? 0 : -4;
 
     letter.style.transform = `
       translate3d(
@@ -170,11 +175,19 @@ document.addEventListener("DOMContentLoaded", () => {
       scale(${letterScale})
     `;
 
+    /* =====================================================
+       REAL ENVELOPE EFFECT
+    ===================================================== */
+
     /*
-      BRING ABOVE ENVELOPE
+      While paper is inside envelope:
+      stay BEHIND flap
+
+      Once enough emerges:
+      bring IN FRONT
     */
 
-    if(isPopped){
+    if(popAmount < -120){
 
       letter.style.zIndex = "20";
 
