@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ─────────────────────────────
-     LETTER POP
+     LETTER POP + SHINE
   ───────────────────────────── */
 
   let isPopped = false;
@@ -49,14 +49,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     isAnimating = true;
 
+    /* POP FIRST */
+
     isPopped = true;
+
+    /* SHINE COMES AFTER POP */
+
+    setTimeout(() => {
+
+      letter.classList.add("pop-out");
+
+    }, 180);
+
+    /* RESET */
 
     setTimeout(() => {
 
       isPopped = false;
+
+      letter.classList.remove("pop-out");
+
       isAnimating = false;
 
-    }, 2200);
+    }, 1800);
 
   });
 
@@ -66,18 +81,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function animate(){
 
+    /* SMOOTH CURSOR FOLLOW */
+
     currentX += (mouseX - currentX) * 0.08;
     currentY += (mouseY - currentY) * 0.08;
-
-    const time = Date.now() * 0.001;
-
-    const letterFloat = Math.sin(time * 1.2) * 8;
-    const photoFloat = Math.sin(time * 1.1) * 10;
 
     /* PHOTO */
 
     photo.style.transform = `
-      translate(${currentX}px, ${currentY + photoFloat}px)
+      translate(${currentX}px, ${currentY}px)
       rotate(8deg)
     `;
 
@@ -89,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     letter.style.transform = `
       translate(
         ${currentX * 0.6}px,
-        ${currentY * 0.6 + letterFloat + popY}px
+        ${currentY * 0.6 + popY}px
       )
       rotate(-4deg)
       scale(${popScale})
