@@ -1,11 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* =========================================================
+     ELEMENTS
+  ========================================================= */
+
+  const hero = document.querySelector(".about-hero");
+
   const scene = document.querySelector(".envelope-scene");
 
   const photo = document.querySelector(".photo-card");
+
   const letter = document.querySelector(".letter");
 
-  if(!scene || !photo || !letter) return;
+  if(!hero || !scene || !photo || !letter) return;
+
+  /* =========================================================
+     MOUSE PARALLAX
+  ========================================================= */
 
   let mouseX = 0;
   let mouseY = 0;
@@ -13,35 +24,44 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentX = 0;
   let currentY = 0;
 
-  /* ─────────────────────────────
-     MOUSE PARALLAX
-  ───────────────────────────── */
+  /*
+    ENTIRE HERO AREA REACTS
+  */
 
-  scene.addEventListener("mousemove", (e) => {
+  hero.addEventListener("mousemove", (e) => {
 
-    const rect = scene.getBoundingClientRect();
+    const rect = hero.getBoundingClientRect();
 
     const x = e.clientX - rect.left;
+
     const y = e.clientY - rect.top;
 
-    mouseX = (x - rect.width / 2) / 25;
-    mouseY = (y - rect.height / 2) / 25;
+    mouseX = (x - rect.width / 2) / 28;
+
+    mouseY = (y - rect.height / 2) / 28;
 
   });
 
-  scene.addEventListener("mouseleave", () => {
+  hero.addEventListener("mouseleave", () => {
 
     mouseX = 0;
     mouseY = 0;
 
   });
 
-  /* ─────────────────────────────
-     LETTER POP + SHINE
-  ───────────────────────────── */
+  /* =========================================================
+     LETTER POP STATE
+  ========================================================= */
 
   let isPopped = false;
+
   let isAnimating = false;
+
+  let popAmount = 0;
+
+  /* =========================================================
+     LETTER CLICK
+  ========================================================= */
 
   letter.addEventListener("click", () => {
 
@@ -49,79 +69,120 @@ document.addEventListener("DOMContentLoaded", () => {
 
     isAnimating = true;
 
-    /* REMOVE OLD CLASS FIRST */
+    /*
+      RESET SHINE
+    */
+
     letter.classList.remove("pop-out");
 
-    /* FORCE REFLOW */
     void letter.offsetWidth;
 
-    /* POP UP */
+    /*
+      POP UP
+    */
+
     isPopped = true;
 
-    /* ADD GLOW AFTER POP */
+    /*
+      SHINE AFTER POP
+    */
+
     setTimeout(() => {
 
       letter.classList.add("pop-out");
 
     }, 180);
 
-    /* RETURN BACK */
+    /*
+      KEEP OPEN FOR READING
+    */
+
     setTimeout(() => {
 
       isPopped = false;
 
-    }, 1200);
+    }, 2600);
 
-    /* REMOVE SHINE */
+    /*
+      REMOVE GLOW
+    */
+
     setTimeout(() => {
 
       letter.classList.remove("pop-out");
 
       isAnimating = false;
 
-    }, 1800);
+    }, 3200);
 
   });
 
-  /* ─────────────────────────────
+  /* =========================================================
      ANIMATION LOOP
-  ───────────────────────────── */
+  ========================================================= */
 
   function animate(){
 
-    /* SMOOTH CURSOR FOLLOW */
+    /*
+      SMOOTH FOLLOW
+    */
 
     currentX += (mouseX - currentX) * 0.08;
+
     currentY += (mouseY - currentY) * 0.08;
 
-    /* PHOTO */
+    /*
+      SMOOTH POP
+    */
+
+    const targetPop = isPopped ? -170 : 0;
+
+    popAmount += (targetPop - popAmount) * 0.12;
+
+    /* =====================================================
+       PHOTO MOVEMENT
+    ===================================================== */
 
     photo.style.transform = `
       translate3d(
-        ${currentX}px,
-        ${currentY}px,
+        ${currentX * 1.15}px,
+        ${currentY * 1.15}px,
         0
       )
       rotate(8deg)
     `;
 
-    /* LETTER */
+    /* =====================================================
+       LETTER MOVEMENT
+    ===================================================== */
 
-    const popY = isPopped ? -130 : 0;
+    const letterScale = isPopped ? 1.05 : 1;
 
-    const popScale = isPopped ? 1.03 : 1;
-
-    const popRotate = isPopped ? -2deg : -4deg;
+    const letterRotate = isPopped ? -2 : -4;
 
     letter.style.transform = `
       translate3d(
-        ${currentX * 0.6}px,
-        ${currentY * 0.6 + popY}px,
+        ${currentX * 0.55}px,
+        ${currentY * 0.55 + popAmount}px,
         0
       )
-      rotate(${isPopped ? -2 : -4}deg)
-      scale(${popScale})
+      rotate(${letterRotate}deg)
+      scale(${letterScale})
     `;
+
+    /*
+      BRING ABOVE ENVELOPE
+    */
+
+    if(isPopped){
+
+      letter.style.zIndex = "20";
+
+    }else{
+
+      letter.style.zIndex = "2";
+
+    }
 
     requestAnimationFrame(animate);
 
@@ -130,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
   animate();
 
   /* =========================================================
-     OPTIONAL REEL
+     OPTIONAL REEL SCROLL
   ========================================================= */
 
   const reelTrack = document.querySelector(".reel-track");
