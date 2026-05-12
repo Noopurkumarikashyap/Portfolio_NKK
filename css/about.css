@@ -409,8 +409,6 @@ body{
   z-index:2;
   border-radius:4px;
   box-shadow:0 20px 46px rgba(0,0,0,.08);
-
-  animation:gentleFloat 6s ease-in-out infinite;
 }
 
 .letter::before{
@@ -465,8 +463,6 @@ body{
   border-radius:10px;
   z-index:10;
   box-shadow:0 20px 42px rgba(0,0,0,.12);
-
-  animation:gentlePhotoFloat 7s ease-in-out infinite;
 }
 
 .photo-card img{
