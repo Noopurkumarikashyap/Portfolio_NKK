@@ -1,74 +1,113 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const hero   = document.querySelector(".about-hero");
-  const photo  = document.querySelector(".photo-card");
-  const letter = document.querySelector(".letter");
-  if (!hero || !photo || !letter) return;
+const scene = document.querySelector(".envelope-scene");
 
-  /* Parallax state */
-  let mouseX = 0, mouseY = 0;
-  let currentX = 0, currentY = 0;
-  hero.addEventListener("mousemove", (e) => {
-    const rect = hero.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    mouseX = (x - rect.width  / 2) / 28;
-    mouseY = (y - rect.height / 2) / 28;
-  });
-  hero.addEventListener("mouseleave", () => {
-    mouseX = 0;
-    mouseY = 0;
-  });
+const photo = document.querySelector(".photo-card");
+const letter = document.querySelector(".letter");
 
-  /* Letter pop state */
-  let isPopped    = false;
-  let popProgress = 0;
-  let isAnimating = false;
+/* ─────────────────────────────
+   MOUSE PARALLAX
+───────────────────────────── */
 
-  letter.addEventListener("click", () => {
-    if (isAnimating) return;
-    isAnimating = true;
-    isPopped = true;
-    letter.classList.add("pop-out");
+let mouseX = 0;
+let mouseY = 0;
 
-    // After pop-out, return the letter smoothly
-    setTimeout(() => {
-      isPopped = false;
-      letter.classList.remove("pop-out");
-      // (Can adjust easing here if needed for backtracking effect)
-    }, 2200);
-    setTimeout(() => { isAnimating = false; }, 2600);
-  });
+scene.addEventListener("mousemove", (e) => {
 
-  /* Animation loop */
-  function animate() {
-    // Smooth parallax for card and letter
-    currentX += (mouseX - currentX) * 0.08;
-    currentY += (mouseY - currentY) * 0.08;
+  const rect = scene.getBoundingClientRect();
 
-    // Pop-out movement
-    const targetPop = isPopped ? -180 : 0;
-    popProgress += (targetPop - popProgress) * 0.08;
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
 
-    // Move photo-card slightly with parallax
-    photo.style.transform = `
-      translate3d(${currentX * 1.2}px, ${currentY * 1.2}px, 0)
-      rotate(8deg)
-    `;
+  mouseX = (x - rect.width / 2) / 28;
+  mouseY = (y - rect.height / 2) / 28;
 
-    // Calculate letter transforms
-    const progressRatio = Math.abs(popProgress) / 180;
-    const rotateValue   = -4 + (progressRatio * 4); // from -4deg to 0deg
-    const scaleValue    = 1  + (progressRatio * 0.05);
-    const zMove         = progressRatio * 120;
+  updateTransforms();
 
-    letter.style.transform = `
-      translate3d(
-        ${currentX * 0.55}px,
-        ${currentY * 0.55 + popProgress}px,
-        ${zMove}px
-      ) rotate(${rotateValue}deg) scale(${scaleValue})
-    `;
-    requestAnimationFrame(animate);
-  }
-  animate();
+});
+
+scene.addEventListener("mouseleave", () => {
+
+  mouseX = 0;
+  mouseY = 0;
+
+  updateTransforms();
+
+});
+
+/* ─────────────────────────────
+   LETTER CLICK POP
+───────────────────────────── */
+
+let isPopped = false;
+let isAnimating = false;
+
+letter.addEventListener("click", () => {
+
+  if(isAnimating) return;
+
+  isAnimating = true;
+
+  isPopped = true;
+
+  letter.classList.add("pop-out");
+
+  updateTransforms();
+
+  setTimeout(() => {
+
+    letter.classList.remove("pop-out");
+
+    isPopped = false;
+
+    updateTransforms();
+
+    isAnimating = false;
+
+  }, 2600);
+
+});
+
+/* ─────────────────────────────
+   UPDATE TRANSFORMS
+───────────────────────────── */
+
+function updateTransforms(){
+
+  /* PHOTO */
+
+  photo.style.transform = `
+    rotate(8deg)
+    translate(${mouseX}px, ${mouseY}px)
+  `;
+
+  /* LETTER */
+
+  const popY = isPopped ? -130 : 0;
+  const popScale = isPopped ? 1.02 : 1;
+  const popRotate = isPopped ? -2 : -4;
+
+  letter.style.transform = `
+    rotate(${popRotate}deg)
+    translate(
+      ${mouseX * 0.6}px,
+      ${mouseY * 0.6 + popY}px
+    )
+    scale(${popScale})
+  `;
+
+}
+
+/* =========================================================
+HORIZONTAL PHOTO REEL SCROLL
+========================================================= */
+
+const reelTrack = document.querySelector(".reel-track");
+
+window.addEventListener("scroll", () => {
+
+  const scrollY = window.scrollY;
+
+  reelTrack.style.transform = `
+    translateX(-${scrollY * 0.45}px)
+  `;
+
 });
